@@ -17,6 +17,10 @@ defmodule FarmQWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/get-started", PageController, :get_started
+    get "/browse", DataController, :index
+    get "/docs", DocumentController, :index
+    get "/contact", PageController, :contact
   end
 
   # Other scopes may use custom stacks.

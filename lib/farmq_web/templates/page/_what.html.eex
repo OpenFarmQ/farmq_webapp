@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 class="pb=2 mt-4">What is Open FarmQ?</h2>
+  <p>Collecting datasets for Farming is costly due to
+  <blockquote class="blockquote">
+    <p class="mb-0">Numerous scientists have pointed out the irony that right at the historical moment
+      when we have the technologies to permit worldwide availability and distributed process of scientific data, broadening collaboration and accelerating the pace and depth of discovery ... we are busy locking up that data and preventing the use of correspondingly advanced technologies on knowledge.</p>
+    <footer class="blockquote-footer">John Wilbanks, VP Science, Creative Commons</footer>
+  </blockquote>
+
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Crowdsourced Rich Datasets for ML</h5>
+        <p class="card-text">ML modeling for farming is a complex problem. There are numerous parameters that can affect the growth of a plant &mdash; it can the local weather, soil and seed quality or the presence bees and butterflies.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Open Data for Good</h5>
+        <p class="card-text">Coming Soon!!</p>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Crowdsourced Rich Datasets for ML</h5>
+        <p class="card-text">ML modeling for farming is a complex problem. There are numerous parameters that can affect the growth of a plant &mdash; it can the local weather, soil and seed quality or the presence bees and butterflies.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Open Data for Good</h5>
+        <p class="card-text">Coming Soon!!</p>
+      </div>
+    </div>
+  </div>
+</div>

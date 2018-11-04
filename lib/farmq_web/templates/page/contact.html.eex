@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="pb-2 mt-4">About me</h1>
+
+  <p class="lead">I’m Narandra Sridar aka Nittin. I’m a 14 year old teenager who is being homeschooled in Auroville, India. I’m also an award winning short-film actor and has acted in two short films for an organization called Yatra arts media. The field of programming has always amazed me. The amazement has now made me into creating tools that solve real-world problems. I program in Elixir language and use Phoenix framework. I’ve been inspired by Farmbot and the problems of farming to do this project.
+  </p>
+
+  <h1 class="pb-2 mt-4">Contact</h1>
+  <p class="lead">You can contact me by email. My e-mail id is <a href="mailto:nittin.shankar@gmail.com">nittin.shankar@gmail.com</a></p>
+
+
+</div>

@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="pb-2 mt-4">Get Started</h1>
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Browse Data</h5>
+        <p class="card-text">Browse many rich datasets in the field of agriculture &mdash; crowdsourced deom various  peoply by various nodes on the world.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Contibute Data</h5>
+        <p class="card-text">Be part of a solution to ensure food security by contributing data in the field of agriculture. Your data will be useful for thousands of data scientists to train their model.</p>
+      </div>
+
+    </div>
+    <div class="card">
+      <div class="card-body">
+      <h5 class="card-title">Improve Open FarmQ</h5>
+      <p class="card-text">We believe improving takes a community. Be part of the Open FarmQ community by improving Open FarmQ's hardware and software.</p>
+      </div>
+    </div>
+  </div>
+</div>
