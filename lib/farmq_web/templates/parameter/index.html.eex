@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="pb=2 mt-4">Parameters</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Key</th>
+        <th>Description</th>
+        <th>Unit</th>
+        <th>Data type</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= for parameter <- @parameters do %>
+        <tr>
+          <td><%= parameter.name %></td>
+          <td><%= parameter.key %></td>
+          <td><%= parameter.description %></td>
+          <td><%= parameter.unit %></td>
+          <td><%= parameter.data_type %></td>
+
+          <td>
+            <%= link "Show", to: Routes.parameter_path(@conn, :show, parameter) %>
+            <%= link "Edit", to: Routes.parameter_path(@conn, :edit, parameter) %>
+            <%= link "Delete", to: Routes.parameter_path(@conn, :delete, parameter), method: :delete, data: [confirm: "Are you sure?"] %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <span><%= link "New Parameter", to: Routes.parameter_path(@conn, :new) %></span>
+</div>

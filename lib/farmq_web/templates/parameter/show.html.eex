@@ -1,0 +1,33 @@
+<h1 class="pb=2 mt-4">Show Parameter</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @parameter.name %>
+  </li>
+
+  <li>
+    <strong>Key:</strong>
+    <%= @parameter.key %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @parameter.description %>
+  </li>
+
+  <li>
+    <strong>Unit:</strong>
+    <%= @parameter.unit %>
+  </li>
+
+  <li>
+    <strong>Data type:</strong>
+    <%= @parameter.data_type %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.parameter_path(@conn, :edit, @parameter) %></span>
+<span><%= link "Back", to: Routes.parameter_path(@conn, :index) %></span>
