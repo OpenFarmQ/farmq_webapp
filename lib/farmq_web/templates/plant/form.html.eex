@@ -1,0 +1,45 @@
+<div class="container">
+  <%= form_for @changeset, @action, fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+
+    <%= label f, :image %>
+    <%= text_input f, :image %>
+    <%= error_tag f, :image %>
+
+    <%= label f, :binomial_name %>
+    <%= text_input f, :binomial_name %>
+    <%= error_tag f, :binomial_name %>
+
+    <%= label f, :common_name %>
+    <%= multiple_select f, :common_name, ["Option 1": "option1", "Option 2": "option2"] %>
+    <%= error_tag f, :common_name %>
+
+    <%= label f, :description %>
+    <%= textarea f, :description %>
+    <%= error_tag f, :description %>
+
+    <%= label f, :source_name %>
+    <%= text_input f, :source_name %>
+    <%= error_tag f, :source_name %>
+
+    <%= label f, :source_url %>
+    <%= text_input f, :source_url %>
+    <%= error_tag f, :source_url %>
+
+    <%= label f, :data_scrapper_id %>
+    <%= text_input f, :data_scrapper_id %>
+    <%= error_tag f, :data_scrapper_id %>
+
+    <div>
+      <%= submit "Save" %>
+    </div>
+  <% end %>
+</div>

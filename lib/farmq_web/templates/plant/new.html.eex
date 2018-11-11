@@ -1,0 +1,7 @@
+<div class="container">
+  <h1 class="pb=2 mt-4">New Plant</h1>
+
+  <%= render "form.html", Map.put(assigns, :action, Routes.plant_path(@conn, :create)) %>
+
+  <span><%= link "Back", to: Routes.plant_path(@conn, :index) %></span>
+</div>
