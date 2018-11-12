@@ -146,4 +146,73 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_plant(plant)
     end
   end
+
+  describe "locations" do
+    alias FarmQ.Core.Location
+
+    @valid_attrs %{description: "some description", latitude: "120.5", location_type: "some location_type", longitude: "120.5", name: "some name"}
+    @update_attrs %{description: "some updated description", latitude: "456.7", location_type: "some updated location_type", longitude: "456.7", name: "some updated name"}
+    @invalid_attrs %{description: nil, latitude: nil, location_type: nil, longitude: nil, name: nil}
+
+    def location_fixture(attrs \\ %{}) do
+      {:ok, location} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_location()
+
+      location
+    end
+
+    test "list_locations/0 returns all locations" do
+      location = location_fixture()
+      assert Core.list_locations() == [location]
+    end
+
+    test "get_location!/1 returns the location with given id" do
+      location = location_fixture()
+      assert Core.get_location!(location.id) == location
+    end
+
+    test "create_location/1 with valid data creates a location" do
+      assert {:ok, %Location{} = location} = Core.create_location(@valid_attrs)
+      assert location.description == "some description"
+      assert location.latitude == Decimal.new("120.5")
+      assert location.location_type == "some location_type"
+      assert location.longitude == Decimal.new("120.5")
+      assert location.name == "some name"
+    end
+
+    test "create_location/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_location(@invalid_attrs)
+    end
+
+    test "update_location/2 with valid data updates the location" do
+      location = location_fixture()
+      assert {:ok, %Location{} = location} = Core.update_location(location, @update_attrs)
+
+      
+      assert location.description == "some updated description"
+      assert location.latitude == Decimal.new("456.7")
+      assert location.location_type == "some updated location_type"
+      assert location.longitude == Decimal.new("456.7")
+      assert location.name == "some updated name"
+    end
+
+    test "update_location/2 with invalid data returns error changeset" do
+      location = location_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_location(location, @invalid_attrs)
+      assert location == Core.get_location!(location.id)
+    end
+
+    test "delete_location/1 deletes the location" do
+      location = location_fixture()
+      assert {:ok, %Location{}} = Core.delete_location(location)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_location!(location.id) end
+    end
+
+    test "change_location/1 returns a location changeset" do
+      location = location_fixture()
+      assert %Ecto.Changeset{} = Core.change_location(location)
+    end
+  end
 end

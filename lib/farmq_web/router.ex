@@ -23,7 +23,7 @@ defmodule FarmQWeb.Router do
     get "/contact", PageController, :contact
     resources "/parameters", ParameterController
     resources "/plants", PlantController
-
+    resources "/locations", LocationController
   end
 
   # Other scopes may use custom stacks.

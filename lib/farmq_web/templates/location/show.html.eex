@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="pb=2 mt-4">Show Location</h1>
+
+  <ul>
+
+    <li>
+      <strong>Name:</strong>
+      <%= @location.name %>
+    </li>
+
+    <li>
+      <strong>Description:</strong>
+      <%= @location.description %>
+    </li>
+
+    <li>
+      <strong>Location type:</strong>
+      <%= @location.location_type %>
+    </li>
+
+    <li>
+      <strong>Latitude:</strong>
+      <%= @location.latitude %>
+    </li>
+
+    <li>
+      <strong>Longitude:</strong>
+      <%= @location.longitude %>
+    </li>
+
+  </ul>
+
+  <span><%= link "Edit", to: Routes.location_path(@conn, :edit, @location) %></span>
+  <span><%= link "Back", to: Routes.location_path(@conn, :index) %></span>
+</div>
