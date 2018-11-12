@@ -21,6 +21,7 @@ defmodule FarmQWeb.Router do
     get "/browse", DataController, :index
     get "/docs", DocumentController, :index
     get "/contact", PageController, :contact
+    resources "/parameters", ParameterController
   end
 
   # Other scopes may use custom stacks.
