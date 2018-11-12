@@ -15,7 +15,7 @@ defmodule FarmQWeb.PlantControllerTest do
   describe "index" do
     test "lists all plants", %{conn: conn} do
       conn = get(conn, Routes.plant_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Plants"
+      assert html_response(conn, 200) =~ "Plants"
     end
   end
 

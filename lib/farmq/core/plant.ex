@@ -20,6 +20,6 @@ defmodule FarmQ.Core.Plant do
   def changeset(plant, attrs) do
     plant
     |> cast(attrs, [:name, :image, :binomial_name, :common_name, :description, :source_name, :source_url, :data_scrapper_id])
-    |> validate_required([:name, :image, :binomial_name, :common_name, :description, :source_name, :source_url, :data_scrapper_id])
+    |> validate_required([:name, :image, :binomial_name, :common_name, :description, :source_name, :source_url])
   end
 end

@@ -9,7 +9,7 @@
         <a class="nav-item nav-link" href="<%= Routes.page_path(@conn, :get_started) %>">Get Started</a>
         <a class="nav-item nav-link" href="<%= Routes.data_path(@conn, :index) %>">Browse Data</a>
         <a class="nav-item nav-link" href="<%= Routes.document_path(@conn, :index) %>">Documentation</a>
-        <a class="nav-item nav-link" href="<%= Routes.page_path(@conn, :dashboard_for_dc) %>">Dashboard for data contributor</a>
+        <a class="nav-item nav-link" href="<%= Routes.page_path(@conn, :dashboard_for_dc) %>">Dasboard</a>
 
     </div>
     <div class="navbar-nav">

@@ -6,28 +6,35 @@
       </div>
     <% end %>
 
-    <%= label f, :name %>
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
+      <%= label f, :name %>
+      <%= text_input f, :name, [class: "form-control"] %>
+      <%= error_tag f, :name %>
 
-    <%= label f, :description %>
-    <%= textarea f, :description %>
-    <%= error_tag f, :description %>
+      <%= label f, :description %>
+      <%= textarea f, :description, [class: "form-control"]%>
+      <%= error_tag f, :description %>
 
     <%= label f, :location_type %>
-    <%= text_input f, :location_type %>
+    <%= text_input f, :location_type, [class: "form-control"] %>
     <%= error_tag f, :location_type %>
 
-    <%= label f, :latitude %>
-    <%= number_input f, :latitude, step: "any" %>
-    <%= error_tag f, :latitude %>
 
-    <%= label f, :longitude %>
-    <%= number_input f, :longitude, step: "any" %>
-    <%= error_tag f, :longitude %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= label f, :latitude %>
+        <%= number_input f, :latitude, [step: "any", class: "form-control form-control-sm"] %>
+        <%= error_tag f, :latitude %>
+      </div>
+
+      <div class="col-md-6">
+        <%= label f, :longitude %>
+        <%= number_input f, :longitude, [step: "any", class: "form-control form-control-sm"] %>
+        <%= error_tag f, :longitude %>
+      </div>
+    </div>
 
     <div>
-      <%= submit "Save" %>
+      <%= submit "Submit", class: "btn btn-large bg-green text-white mt-4" %>
     </div>
   <% end %>
 </div>

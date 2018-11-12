@@ -7,27 +7,40 @@
     <% end %>
 
     <%= label f, :name %>
-    <%= text_input f, :name %>
+    <%= text_input f, :name, [class: "form-control"] %>
     <%= error_tag f, :name %>
 
-    <%= label f, :key %>
-    <%= text_input f, :key %>
-    <%= error_tag f, :key %>
-
     <%= label f, :description %>
-    <%= textarea f, :description %>
+    <%= textarea f, :description, [class: "form-control"] %>
     <%= error_tag f, :description %>
 
-    <%= label f, :unit %>
-    <%= text_input f, :unit %>
-    <%= error_tag f, :unit %>
+    <div class="row">
+      <div class="col-md-4">
+        <%= label f, :unit %>
+        <%= select f, :unit, ["Derived SI unit 1", "Derived SI unit 2"], [class: "form-control"] %>
+        <%= error_tag f, :unit %>
+      </div>
 
-    <%= label f, :data_type %>
-    <%= text_input f, :data_type %>
-    <%= error_tag f, :data_type %>
+      <div class="col-md-4">
+        <%= label f, :key %>
+        <%= text_input f, :key, [class: "form-control"] %>
+        <%= error_tag f, :key %>
+      </div>
+
+      <div class="col-md-4">
+        <%= label f, :data_type %>
+        <%= select f, :data_type, ["Decimal", "Integer", "String"], [class: "form-control"] %>
+        <%= error_tag f, :data_type %>
+      </div>
+    </div>
+
+
+
+
+
 
     <div>
-      <%= submit "Save" %>
+      <%= submit "Submit", class: "btn btn-large bg-green text-white mt-4" %>
     </div>
   <% end %>
 </div>
