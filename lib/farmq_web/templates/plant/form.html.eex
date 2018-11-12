@@ -35,22 +35,16 @@
     <%= error_tag f, :image %>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <%= label f, :source_name %>
         <%= text_input f, :source_name, [class: "form-control"] %>
         <%= error_tag f, :source_name %>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-6">
         <%= label f, :source_url %>
         <%= text_input f, :source_url, [class: "form-control"] %>
         <%= error_tag f, :source_url %>
-      </div>
-
-      <div class="col-md-4">
-        <%= label f, :data_scrapper_id %>
-        <%= select f, :data_scrapper_id, ["wikipedia data scrapper", "openfarm.cc datascrapper"], [class: "form-control"] %>
-        <%= error_tag f, :data_scrapper_id %>
       </div>
     </div>
 
