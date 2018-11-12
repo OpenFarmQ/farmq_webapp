@@ -11,29 +11,21 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Crowdsourced Rich Datasets for ML</h5>
-        <p class="card-text">ML modeling for farming is a complex problem. There are numerous parameters that can affect the growth of a plant &mdash; it can the local weather, soil and seed quality or the presence bees and butterflies.</p>
+        <p class="card-text">ML modeling for farming is a complex problem. There are numerous parameters that can affect the growth of a plant. FarmQ's here to help you by providing crowdsourced open-data. </p>
       </div>
     </div>
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Open Data for Good</h5>
-        <p class="card-text">Coming Soon!!</p>
+        <p class="card-text">All datasets in Open FarmQ are free to use and access. Open FarmQ's datasets for machine learning are MIT licensed.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Contribute to Open FarmQ</h5>
+        <p class="card-text">We believe improving takes a community. Be part of the Open FarmQ community by improving Open FarmQ's hardware and software. The software of Open FarmQ can be found at Github.</p>
       </div>
     </div>
   </div>
   <br/>
-  <div class="card-deck">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Crowdsourced Rich Datasets for ML</h5>
-        <p class="card-text">ML modeling for farming is a complex problem. There are numerous parameters that can affect the growth of a plant &mdash; it can the local weather, soil and seed quality or the presence bees and butterflies.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Open Data for Good</h5>
-        <p class="card-text">Coming Soon!!</p>
-      </div>
-    </div>
-  </div>
 </div>
