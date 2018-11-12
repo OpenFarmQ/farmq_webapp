@@ -15,7 +15,7 @@ defmodule FarmQWeb.LocationControllerTest do
   describe "index" do
     test "lists all locations", %{conn: conn} do
       conn = get(conn, Routes.location_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Locations"
+      assert html_response(conn, 200) =~ "Locations"
     end
   end
 

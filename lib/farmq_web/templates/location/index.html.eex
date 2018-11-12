@@ -1,35 +1,35 @@
 <div class="container">
-  <h1 class="pb=2 mt-4">Listing Locations</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Location type</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="pb=2 mt-4">Locations</h1>
+    </div>
+    <div class="col-md-4">
+      <span class="btn btn mt-4"><%= link "New Location", to: Routes.location_path(@conn, :new) %></span>
+    </div>
+  </div>
 
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-  <%= for location <- @locations do %>
-      <tr>
-        <td><%= location.name %></td>
-        <td><%= location.description %></td>
-        <td><%= location.location_type %></td>
-        <td><%= location.latitude %></td>
-        <td><%= location.longitude %></td>
-
-        <td>
-          <%= link "Show", to: Routes.location_path(@conn, :show, location) %>
-          <%= link "Edit", to: Routes.location_path(@conn, :edit, location) %>
-          <%= link "Delete", to: Routes.location_path(@conn, :delete, location), method: :delete, data: [confirm: "Are you sure?"] %>
-        </td>
-      </tr>
+  <%= if @locations == [] do %>
+  <div class="alert alert-secondary" role="alert">
+    There are no locations created yet.
+  </div>
+  <% else %>
+    <%= for location <- @locations do %>
+        <div class="card" style="width: 18rem;">
+          <div class="card-header bg-green text-white">
+            <%= location.name %>
+          </div>
+         <div class="card-body">
+           <p class="card-subtitle pb-2"><%= location.description %></p>
+           <p class="card-text">
+             <strong>Location type: </strong><%= location.location_type %> </br>
+             <strong>Latitude: </strong><%= location.latitude %> </br>
+             <strong>Longitude: </strong><%= location.longitude %> </br>
+           </p>
+           <%= link "Show", to: Routes.location_path(@conn, :show, location) %>
+           <%= link "Edit", to: Routes.location_path(@conn, :edit, location) %>
+           <%= link "Delete", to: Routes.location_path(@conn, :delete, location), method: :delete, data: [confirm: "Are you sure?"] %>
+         </div>
+        </div>
+    <% end %>
   <% end %>
-    </tbody>
-  </table>
-
-  <span><%= link "New Location", to: Routes.location_path(@conn, :new) %></span>
 </div>

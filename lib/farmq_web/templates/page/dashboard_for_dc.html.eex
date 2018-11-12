@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="card-deck">
+
+    <div class="card mt-4" style="max-width: 18rem;">
+      <div class="card-header bg-green text-white">Locations</div>
+      <div class="card-body">
+        <p class="card-text">View your locations from which you provide data to Open FarmQ. If you don’t have a location, go ahead and create one.</p>
+        <a class="btn btn-sm bg-green text-white float-right" href="<%= Routes.location_path(@conn, :index) %>" role="button">
+          <i class="material-icons">arrow_forward</i>
+        </a>
+      </div>
+    </div>
+
+    <div class="card mt-4" style="max-width: 18rem;">
+      <div class="card-header bg-green text-white">Parameters</div>
+      <div class="card-body">
+        <p class="card-text">View the global parameters accepted by Open FarmQ. If there are any missing parameters, please let us know.</p>
+        <a class="btn btn-sm bg-green text-white float-right" href="<%= Routes.parameter_path(@conn, :index) %>" role="button">
+          <i class="material-icons">arrow_forward</i>
+        </a>
+      </div>
+    </div>
+
+    <div class="card mt-4" style="max-width: 18rem;">
+      <div class="card-header bg-green text-white">Plants</div>
+      <div class="card-body">
+        <p class="card-text">View the plants accepted to give as an input. All the plants have been listed using the help of <a href="https://openfarm.cc">openfarm.cc</a></p>
+        <a class="btn btn-sm bg-green text-white float-right" href="<%= Routes.location_path(@conn, :index) %>" role="button">
+          <i class="material-icons">arrow_forward</i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
