@@ -15,7 +15,7 @@ defmodule FarmQWeb.ParameterControllerTest do
   describe "index" do
     test "lists all parameters", %{conn: conn} do
       conn = get(conn, Routes.parameter_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Parameters"
+      assert html_response(conn, 200) =~ "Parameters"
     end
   end
 
