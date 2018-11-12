@@ -21,6 +21,7 @@ defmodule FarmQWeb.Router do
     get "/browse", DataController, :index
     get "/docs", DocumentController, :index
     get "/contact", PageController, :contact
+    get "/dashboard-for-dc", PageController, :dashboard_for_dc
     resources "/parameters", ParameterController
     resources "/plants", PlantController
     resources "/locations", LocationController
