@@ -1,0 +1,42 @@
+<div class="container">
+  <h1 class="pb=2 mt-4">Listing Plants</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Binomial name</th>
+        <th>Common name</th>
+        <th>Description</th>
+        <th>Source name</th>
+        <th>Source url</th>
+        <th>Data scrapper</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for plant <- @plants do %>
+      <tr>
+        <td><%= plant.name %></td>
+        <td><%= plant.image %></td>
+        <td><%= plant.binomial_name %></td>
+        <td><%= plant.common_name %></td>
+        <td><%= plant.description %></td>
+        <td><%= plant.source_name %></td>
+        <td><%= plant.source_url %></td>
+        <td><%= plant.data_scrapper_id %></td>
+
+        <td>
+          <%= link "Show", to: Routes.plant_path(@conn, :show, plant) %>
+          <%= link "Edit", to: Routes.plant_path(@conn, :edit, plant) %>
+          <%= link "Delete", to: Routes.plant_path(@conn, :delete, plant), method: :delete, data: [confirm: "Are you sure?"] %>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+
+  <span><%= link "New Plant", to: Routes.plant_path(@conn, :new) %></span>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+  <h1 class="pb=2 mt-4">Show Plant</h1>
+
+  <ul>
+
+    <li>
+      <strong>Name:</strong>
+      <%= @plant.name %>
+    </li>
+
+    <li>
+      <strong>Image:</strong>
+      <%= @plant.image %>
+    </li>
+
+    <li>
+      <strong>Binomial name:</strong>
+      <%= @plant.binomial_name %>
+    </li>
+
+    <li>
+      <strong>Common name:</strong>
+      <%= @plant.common_name %>
+    </li>
+
+    <li>
+      <strong>Description:</strong>
+      <%= @plant.description %>
+    </li>
+
+    <li>
+      <strong>Source name:</strong>
+      <%= @plant.source_name %>
+    </li>
+
+    <li>
+      <strong>Source url:</strong>
+      <%= @plant.source_url %>
+    </li>
+
+    <li>
+      <strong>Data scrapper:</strong>
+      <%= @plant.data_scrapper_id %>
+    </li>
+
+  </ul>
+
+  <span><%= link "Edit", to: Routes.plant_path(@conn, :edit, @plant) %></span>
+  <span><%= link "Back", to: Routes.plant_path(@conn, :index) %></span>
+</div>
