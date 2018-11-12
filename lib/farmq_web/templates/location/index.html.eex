@@ -4,7 +4,7 @@
       <h1 class="pb=2 mt-4">Locations</h1>
     </div>
     <div class="col-md-4">
-      <span class="btn btn mt-4"><%= link "New Location", to: Routes.location_path(@conn, :new) %></span>
+      <span class="btn btn mt-4"><%= link raw('<i class="material-icons"> add </i>'), to: Routes.location_path(@conn, :new), class: "btn btn-sm bg-green text-white btn-round" %></span>
     </div>
   </div>
 
@@ -13,7 +13,9 @@
     There are no locations created yet.
   </div>
   <% else %>
-    <%= for location <- @locations do %>
+    <div class="row">
+      <%= for location <- @locations do %>
+      <div class="col-md-4">
         <div class="card" style="width: 18rem;">
           <div class="card-header bg-green text-white">
             <%= location.name %>
@@ -25,11 +27,15 @@
              <strong>Latitude: </strong><%= location.latitude %> </br>
              <strong>Longitude: </strong><%= location.longitude %> </br>
            </p>
-           <%= link "Show", to: Routes.location_path(@conn, :show, location) %>
-           <%= link "Edit", to: Routes.location_path(@conn, :edit, location) %>
-           <%= link "Delete", to: Routes.location_path(@conn, :delete, location), method: :delete, data: [confirm: "Are you sure?"] %>
+          <div class="float-right">
+            <%= link raw('<i class="material-icons"> arrow_forward </i>'),  to: Routes.location_path(@conn, :show, location), class: "btn btn-sm bg-green text-white"%>
+            <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.location_path(@conn, :edit, location), class: "btn btn-sm bg-green text-white" %>
+            <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.location_path(@conn, :delete, location), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger text-white" %>
+          </div>
          </div>
         </div>
-    <% end %>
+      </div>
+      <% end %>
+    </div>
   <% end %>
 </div>

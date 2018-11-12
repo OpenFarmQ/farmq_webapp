@@ -25,7 +25,7 @@
       <div class="card-header bg-green text-white">Plants</div>
       <div class="card-body">
         <p class="card-text">View the plants accepted to give as an input. All the plants have been listed using the help of <a href="https://openfarm.cc">openfarm.cc</a></p>
-        <a class="btn btn-sm bg-green text-white float-right" href="<%= Routes.location_path(@conn, :index) %>" role="button">
+        <a class="btn btn-sm bg-green text-white float-right" href="<%= Routes.plant_path(@conn, :index) %>" role="button">
           <i class="material-icons">arrow_forward</i>
         </a>
       </div>
