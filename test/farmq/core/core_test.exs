@@ -215,4 +215,69 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_location(location)
     end
   end
+
+  describe "beds" do
+    alias FarmQ.Core.Bed
+
+    @valid_attrs %{area: "120.5", name: "some name", status: "some status"}
+    @update_attrs %{area: "456.7", name: "some updated name", status: "some updated status"}
+    @invalid_attrs %{area: nil, name: nil, status: nil}
+
+    def bed_fixture(attrs \\ %{}) do
+      {:ok, bed} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_bed()
+
+      bed
+    end
+
+    test "list_beds/0 returns all beds" do
+      bed = bed_fixture()
+      assert Core.list_beds() == [bed]
+    end
+
+    test "get_bed!/1 returns the bed with given id" do
+      bed = bed_fixture()
+      assert Core.get_bed!(bed.id) == bed
+    end
+
+    test "create_bed/1 with valid data creates a bed" do
+      assert {:ok, %Bed{} = bed} = Core.create_bed(@valid_attrs)
+      assert bed.area == Decimal.new("120.5")
+      assert bed.name == "some name"
+      assert bed.status == "some status"
+    end
+
+    test "create_bed/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_bed(@invalid_attrs)
+    end
+
+    test "update_bed/2 with valid data updates the bed" do
+      bed = bed_fixture()
+      assert {:ok, %Bed{} = bed} = Core.update_bed(bed, @update_attrs)
+
+      
+      assert bed.area == Decimal.new("456.7")
+      assert bed.name == "some updated name"
+      assert bed.status == "some updated status"
+    end
+
+    test "update_bed/2 with invalid data returns error changeset" do
+      bed = bed_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_bed(bed, @invalid_attrs)
+      assert bed == Core.get_bed!(bed.id)
+    end
+
+    test "delete_bed/1 deletes the bed" do
+      bed = bed_fixture()
+      assert {:ok, %Bed{}} = Core.delete_bed(bed)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_bed!(bed.id) end
+    end
+
+    test "change_bed/1 returns a bed changeset" do
+      bed = bed_fixture()
+      assert %Ecto.Changeset{} = Core.change_bed(bed)
+    end
+  end
 end

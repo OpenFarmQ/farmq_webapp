@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+
+      <h1 class="pb=2 mt-4"><%= @location.name %> <span class="action-link float-right"><%= link "Edit", to: Routes.location_path(@conn, :edit, @location) %></span></h1>
+      <p><%= @location.description %></p>
+      <strong>Location type:</strong>
+      <%= @location.location_type %>
+    </div>
+
+    <div class="col-md-6 mt-5">
+      <p> The map for latitude:<%= @location.latitude %> and longitude:<%= @location.longitude %></p>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-green mt-2">
+      <div class="collapse navbar-collapse">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-item nav-link" href="#">Field Robot Data</a>
+          <a class="nav-item nav-link" href="<%=Routes.location_bed_path(@conn, :index, @location) %>">Beds</a>
+          <a class="nav-item nav-link" href="#">Field Robots</a>
+      </div>
+    </div>
+  </nav>
+
+</div>
