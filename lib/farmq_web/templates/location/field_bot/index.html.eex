@@ -1,0 +1,35 @@
+<%= render FarmQWeb.LocationView, "_location_header.html", assigns %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="pb-2 mt-4">Field Bots</h1>
+    </div>
+
+    <div class="col-md-6 float-right mt-4">
+      <span><%= link "New Field bot", to: Routes.location_field_bot_path(@conn, :new, @location) %></span>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for field_bot <- @field_bots do %>
+      <tr>
+        <td><%= field_bot.name %></td>
+
+        <td>
+          <%= link "Show", to: Routes.location_field_bot_path(@conn, :show, @location, field_bot) %>
+          <%= link "Edit", to: Routes.location_field_bot_path(@conn, :edit, @location, field_bot) %>
+          <%= link "Delete", to: Routes.location_field_bot_path(@conn, :delete, @location, field_bot), method: :delete, data: [confirm: "Are you sure?"] %>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+</div>

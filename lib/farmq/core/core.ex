@@ -389,4 +389,100 @@ defmodule FarmQ.Core do
   def change_bed(%Bed{} = bed) do
     Bed.changeset(bed, %{})
   end
+
+  alias FarmQ.Core.FieldBot
+
+  @doc """
+  Returns the list of field_bots.
+
+  ## Examples
+
+      iex> list_field_bots()
+      [%FieldBot{}, ...]
+
+  """
+  def list_field_bots do
+    Repo.all(FieldBot)
+  end
+
+  @doc """
+  Gets a single field_bot.
+
+  Raises `Ecto.NoResultsError` if the Field bot does not exist.
+
+  ## Examples
+
+      iex> get_field_bot!(123)
+      %FieldBot{}
+
+      iex> get_field_bot!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_field_bot!(id), do: Repo.get!(FieldBot, id)
+
+  @doc """
+  Creates a field_bot.
+
+  ## Examples
+
+      iex> create_field_bot(%{field: value})
+      {:ok, %FieldBot{}}
+
+      iex> create_field_bot(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_field_bot(attrs \\ %{}) do
+    %FieldBot{}
+    |> FieldBot.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a field_bot.
+
+  ## Examples
+
+      iex> update_field_bot(field_bot, %{field: new_value})
+      {:ok, %FieldBot{}}
+
+      iex> update_field_bot(field_bot, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_field_bot(%FieldBot{} = field_bot, attrs) do
+    field_bot
+    |> FieldBot.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a FieldBot.
+
+  ## Examples
+
+      iex> delete_field_bot(field_bot)
+      {:ok, %FieldBot{}}
+
+      iex> delete_field_bot(field_bot)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_field_bot(%FieldBot{} = field_bot) do
+    Repo.delete(field_bot)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking field_bot changes.
+
+  ## Examples
+
+      iex> change_field_bot(field_bot)
+      %Ecto.Changeset{source: %FieldBot{}}
+
+  """
+  def change_field_bot(%FieldBot{} = field_bot) do
+    FieldBot.changeset(field_bot, %{})
+  end
 end
