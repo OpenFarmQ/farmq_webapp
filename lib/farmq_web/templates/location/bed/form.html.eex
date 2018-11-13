@@ -5,19 +5,21 @@
     </div>
   <% end %>
 
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= label f, :name %>
+      <%= text_input f, :name, class: "form-control" %>
+      <%= error_tag f, :name %>
+    </div>
 
-  <%= label f, :area %>
-  <%= number_input f, :area, step: "any" %>
-  <%= error_tag f, :area %>
+    <div class="col-md-6">
+        <%= label f, :area %>
+        <%= number_input f, :area, step: "any", class: "form-control" %>
+        <%= error_tag f, :area %>
+    </div>
+  </div>
 
-  <%= label f, :status %>
-  <%= text_input f, :status %>
-  <%= error_tag f, :status %>
-
-  <div>
-    <%= submit "Save" %>
+  <div class="mt-4">
+    <%= submit "Submit", class: "btn bg-green text-white" %>
   </div>
 <% end %>
