@@ -6,10 +6,10 @@
   <% end %>
 
   <%= label f, :name %>
-  <%= text_input f, :name %>
+  <%= text_input f, :name, class: "form-control" %>
   <%= error_tag f, :name %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Submit", class: "btn btn-large bg-green text-white mt-4" %>
   </div>
 <% end %>

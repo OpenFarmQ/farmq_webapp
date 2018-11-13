@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
 
-      <h1 class="pb=2 mt-4"><%= @location.name %> <span class="action-link float-right"><%= link "Edit", to: Routes.location_path(@conn, :edit, @location) %></span></h1>
+      <h1 class="pb=2 mt-4"><%= @location.name %> <span class="action-link float-right"><%= link raw('<i class="material-icons"> edit </i>'), to: Routes.location_path(@conn, :edit, @location), class: "btn btn-sm bg-green text-white" %></span></h1>
       <p><%= @location.description %></p>
       <strong>Location type:</strong>
       <%= @location.location_type %>
