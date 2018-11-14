@@ -14,7 +14,7 @@ defmodule FarmQ.Core.FieldBot do
   @doc false
   def changeset(field_bot, attrs) do
     field_bot
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :location_id])
     |> validate_required([:name])
   end
 end

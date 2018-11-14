@@ -305,8 +305,14 @@ defmodule FarmQ.Core do
       [%Bed{}, ...]
 
   """
-  def list_beds do
+  def list_beds() do
     Repo.all(Bed)
+  end
+
+  def list_beds(%Location{} = location) do
+    Bed
+    |> where(location_id: ^location.id)
+    |> Repo.all
   end
 
   @doc """
@@ -401,9 +407,17 @@ defmodule FarmQ.Core do
       [%FieldBot{}, ...]
 
   """
-  def list_field_bots do
-    Repo.all(FieldBot)
+  def list_field_bots(%Location{} = location) do
+    FieldBot
+    |> where(location_id: ^location.id)
+    |> Repo.all
   end
+
+  def list_field_bots() do
+    FieldBot
+    |> Repo.all
+  end
+
 
   @doc """
   Gets a single field_bot.

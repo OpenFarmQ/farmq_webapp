@@ -5,7 +5,7 @@ defmodule FarmQWeb.Location.FieldBotController do
   alias FarmQ.Core.FieldBot
 
   def index(conn, _params) do
-    field_bots = Core.list_field_bots()
+    field_bots = Core.list_field_bots(conn.assigns.location)
     render(conn, "index.html", field_bots: field_bots)
   end
 
@@ -17,6 +17,7 @@ defmodule FarmQWeb.Location.FieldBotController do
 
   def create(conn, %{"field_bot" => field_bot_params}) do
     location = conn.assigns.location
+    field_bot_params = Map.put(field_bot_params, "location_id", location.id)
     case Core.create_field_bot(field_bot_params) do
       {:ok, field_bot} ->
         conn

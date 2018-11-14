@@ -25,7 +25,7 @@
       <tr>
         <td><%= bed.name %></td>
         <td><%= bed.area %></td>
-        <td>Nil</td>
+        <td><%= bed.status %></td>
 
         <td>
           <%= link raw('<i class="material-icons"> arrow_forward </i>'), to: Routes.location_bed_path(@conn, :show, @location, bed), class: "btn btn-sm bg-green text-white" %>
