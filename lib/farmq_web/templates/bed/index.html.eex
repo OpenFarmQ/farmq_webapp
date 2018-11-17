@@ -1,0 +1,36 @@
+<h1>My beds</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Area</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for location <- @locations do %>
+    <tr>
+      <td><%= location.name %></td>
+      <td><%= location.description %></td>
+      <td><%= location.type %></td>
+      <td><%= location.longitude %></td>
+      <td><%= location.latitude %></td>
+      <td><%= location.area %></td>
+
+      <td>
+        <%= link "Show", to: Routes.bed_path(@conn, :show, location) %>
+        <%= link "Edit", to: Routes.bed_path(@conn, :edit, location) %>
+        <%= link "Delete", to: Routes.bed_path(@conn, :delete, location), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Location", to: Routes.bed_path(@conn, :new) %></span>

@@ -1,0 +1,5 @@
+<h1>My new bed</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.bed_path(@conn, :create)) %>
+
+<span><%= link "Back", to: Routes.bed_path(@conn, :index) %></span>

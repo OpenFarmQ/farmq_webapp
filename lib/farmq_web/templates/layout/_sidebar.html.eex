@@ -14,15 +14,21 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<%= Routes.bed_path(@conn, :index) %>">
           <span data-feather="home"></span>
           My beds
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<%= Routes.farm_path(@conn, :index) %>">
           <span data-feather="home"></span>
           My farms
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= Routes.location_path(@conn, :index) %>">
+          <span data-feather="home"></span>
+          My locations
         </a>
       </li>
       <li class="nav-item">

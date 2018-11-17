@@ -26,19 +26,25 @@ defmodule FarmQWeb.Router do
     get "/docs", DocumentController, :index
     get "/contact", PageController, :contact
     get "/dashboard-for-dc", PageController, :dashboard_for_dc
-    resources "/locations", LocationController do
-      resources "/beds", Location.BedController
-      get "/beds/:id/assign-field-bot", Location.BedController, :assign_field_bot
-      resources "/field_bots", Location.FieldBotController
-      put "/field_bots/:id/assign-bed", Location.FieldBotController, :assign_bed
-    end
+
 
     scope "/contributor" do
       pipe_through :contributor
       resources "/plants", PlantController
       resources "/parameters", ParameterController
+      resources "/locations", LocationController
+      resources "/farms", FarmController
+      resources "/beds", BedController
+
 
     end
+
+    resources "/locations", LocationController do
+      get "/beds/:id/assign-field-bot", Location.BedController, :assign_field_bot
+      resources "/field_bots", Location.FieldBotController
+      put "/field_bots/:id/assign-bed", Location.FieldBotController, :assign_bed
+    end
+
   end
 
   defp set_contributor_layout(conn, _params) do

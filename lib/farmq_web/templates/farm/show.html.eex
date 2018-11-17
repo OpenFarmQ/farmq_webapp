@@ -1,0 +1,38 @@
+<h1>Show bed</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @location.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @location.description %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @location.type %>
+  </li>
+
+  <li>
+    <strong>Longitude:</strong>
+    <%= @location.longitude %>
+  </li>
+
+  <li>
+    <strong>Latitude:</strong>
+    <%= @location.latitude %>
+  </li>
+
+  <li>
+    <strong>Area:</strong>
+    <%= @location.area %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.farm_path(@conn, :edit, @location) %></span>
+<span><%= link "Back", to: Routes.farm_path(@conn, :index) %></span>
