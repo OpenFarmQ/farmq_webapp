@@ -2,24 +2,13 @@
 <div class="container">
   <h1>Show Bed</h1>
 
-  <ul>
+      <h3><%= @bed.name %></h3>
+      <p>
+        <strong>Area: </strong><%= @bed.area %> </br>
+        <strong>Status: </strong><%= @bed.status %> </br>
+        <span><%= link "Assign Bed", to: Routes.location_bed_path(@conn, :assign_field_bot, @location, @bed) , class: "btn btn-sm bg-green text-white"  %></span>
 
-    <li>
-      <strong>Name:</strong>
-      <%= @bed.name %>
-    </li>
-
-    <li>
-      <strong>Area:</strong>
-      <%= @bed.area %>
-    </li>
-
-    <li>
-      <strong>Status:</strong>
-      <%= @bed.status %>
-    </li>
-
-  </ul>
+      </p>
 
   <span><%= link "Edit", to: Routes.location_bed_path(@conn, :edit, @location, @bed) %></span>
   <span><%= link "Back", to: Routes.location_bed_path(@conn, :index, @location) %></span>

@@ -27,7 +27,9 @@ defmodule FarmQWeb.Router do
     resources "/locations", LocationController do
       pipe_through([FarmQWeb.Plug.LoadLocation])
       resources "/beds", Location.BedController
+      get "/beds/:id/assign-field-bot", Location.BedController, :assign_field_bot
       resources "/field_bots", Location.FieldBotController
+      put "/field_bots/:id/assign-bed", Location.FieldBotController, :assign_bed 
 
     end
   end

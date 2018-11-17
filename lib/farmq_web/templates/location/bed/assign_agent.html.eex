@@ -1,0 +1,30 @@
+<%= render FarmQWeb.LocationView, "_location_header.html", assigns  %>
+
+<div class="container">
+  <h1 class="mt-4">Assign Field Bot</h1>
+
+<%= if @field_bots == [] do %>
+  There are no field bots created, Please create one from fiel
+<% else %>
+<%= for field_bot <- @field_bots do %>
+  <table>
+    <tbody>
+      <td class="pr-4"><%= field_bot.name %></td>
+      <td>
+        <% changeset_of_field_bot = FarmQ.Core.change_field_bot(field_bot) %>
+        <%= form_for changeset_of_field_bot, Routes.location_field_bot_path(@conn, :assign_bed, @location, field_bot.id ), fn f -> %>
+
+           <%= hidden_input f, :bed_id, [class: "form-control", value: @bed_id] %>
+           <%= error_tag f, :location_type %>
+
+           <%= submit "Assign this bed", class: "btn btn-sm bg-green" %>
+         <%= end %>
+      </td>
+    </tbody>
+  </table>
+
+<% end %>
+
+<% end %>
+
+</div>
