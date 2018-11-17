@@ -18,7 +18,7 @@
            <%= error_tag f, :location_type %>
 
            <%= submit "Assign this bed", class: "btn btn-sm bg-green" %>
-         <%= end %>
+         <% end %>
       </td>
     </tbody>
   </table>

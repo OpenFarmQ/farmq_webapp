@@ -69,7 +69,6 @@ defmodule FarmQWeb.Location.BedController do
   end
 
   def assign_field_bot(conn, %{"id" => id}) do
-    location = conn.assigns.location
     bed_id = id
     field_bots = Core.list_field_bots_by_nill_bed()
     render(conn, "assign_agent.html", field_bots: field_bots, bed_id: bed_id)
