@@ -9,42 +9,42 @@
     </div>
   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Key</th>
-        <th>Description</th>
-        <th>Unit</th>
-        <th>Data type</th>
+  <%= if @parameters == [] do %>
+  <div class="alert alert-secondary" role="alert">
+    There are no parameters created yet.
+  </div>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Key</th>
+          <th>Description</th>
+          <th>Unit</th>
+          <th>Data type</th>
 
-        <th></th>
-      </tr>
-    </thead>
-    <%= if @parameters == [] do %>
-    <div class="alert alert-secondary" role="alert">
-      There are no parameters created yet.
-    </div>
-    <% else %>
-      <tbody>
-      <%= for parameter <- @parameters do %>
-          <tr>
-            <td><%= parameter.name %></td>
-            <td><%= parameter.key %></td>
-            <td><%= parameter.description %></td>
-            <td><%= parameter.unit %></td>
-            <td><%= parameter.data_type %></td>
+          <th></th>
+        </tr>
+      </thead>
+        <tbody>
+        <%= for parameter <- @parameters do %>
+            <tr>
+              <td><%= parameter.name %></td>
+              <td><%= parameter.key %></td>
+              <td><%= parameter.description %></td>
+              <td><%= parameter.unit %></td>
+              <td><%= parameter.data_type %></td>
 
-            <td>
-              <%= link raw('<i class="material-icons"> arrow_forward </i>'), to: Routes.parameter_path(@conn, :show, parameter), class: "btn btn-sm bg-green text-white" %>
-              <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.parameter_path(@conn, :edit, parameter), class: "btn btn-sm bg-green text-white"  %>
-              <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.parameter_path(@conn, :delete, parameter), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger text-white" %>
-            </td>
-          </tr>
-      <% end %>
-      </tbody>
-    <% end %>
+              <td>
+                <%= link raw('<i class="material-icons"> arrow_forward </i>'), to: Routes.parameter_path(@conn, :show, parameter), class: "btn btn-sm bg-green text-white" %>
+                <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.parameter_path(@conn, :edit, parameter), class: "btn btn-sm bg-green text-white"  %>
+                <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.parameter_path(@conn, :delete, parameter), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger text-white" %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+<% end %>
 
-  </table>
 
 </div>

@@ -3,6 +3,13 @@
 @import "./components/alert.css";
 @import "./components/jumbotron.css";
 @import "./components/nav.css";
+@import "./components/color.css";
+@import "./components/sidebar.css";
+@import "./components/misc.css";
+
+
+
 
 /* Content */
 @import "./content/typography.css";
+@import "./content/content.css";
