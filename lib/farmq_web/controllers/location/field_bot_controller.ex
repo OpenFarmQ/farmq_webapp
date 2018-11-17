@@ -56,6 +56,22 @@ defmodule FarmQWeb.Location.FieldBotController do
     end
   end
 
+  def assign_bed(conn, %{"id" => id, "field_bot" => field_bot_params}) do
+    location = conn.assigns.location
+    field_bot = Core.get_field_bot!(id)
+
+    case Core.update_field_bot(field_bot, field_bot_params) do
+      {:ok, field_bot} ->
+        conn
+        |> put_flash(:info, "Field Bot has been assigned")
+        |> redirect(to: Routes.location_bed_path(conn, :show, location, field_bot.bed_id))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, FarmQWeb.Location.BedView, "assign_agent.html", field_bot: field_bot, changeset: changeset)
+    end
+  end
+
+
   def delete(conn, %{"id" => id}) do
     location = conn.assigns.location
     field_bot = Core.get_field_bot!(id)

@@ -9,6 +9,13 @@
       <%= @field_bot.name %>
     </li>
 
+    <%= if @field_bot.bed_id != nil do %>
+    <li>
+      <strong>Currently In:</strong>
+      <%= @field_bot.bed_id %>
+    </li>
+    <% end %>
+
   </ul>
 
   <span><%= link "Edit", to: Routes.location_field_bot_path(@conn, :edit, @location, @field_bot) %></span>

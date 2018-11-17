@@ -418,6 +418,11 @@ defmodule FarmQ.Core do
     |> Repo.all
   end
 
+  def list_field_bots_by_nill_bed() do
+    FieldBot
+    |> where([f], is_nil(f.bed_id))
+    |> Repo.all
+  end
 
   @doc """
   Gets a single field_bot.
