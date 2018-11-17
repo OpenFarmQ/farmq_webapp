@@ -6,7 +6,7 @@ defmodule FarmQ.Core.Bed do
   schema "beds" do
     field :area, :decimal
     field :name, :string
-    field :status, :string
+    field :status, :string, default: "cleared"
     field :location_id, :id
 
     timestamps()
@@ -15,7 +15,7 @@ defmodule FarmQ.Core.Bed do
   @doc false
   def changeset(bed, attrs) do
     bed
-    |> cast(attrs, [:name, :area, :status])
+    |> cast(attrs, [:name, :area, :status, :location_id])
     |> validate_required([:name, :area, :status])
   end
 end

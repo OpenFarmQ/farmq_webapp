@@ -1,0 +1,17 @@
+<%= render FarmQWeb.LocationView, "_location_header.html", assigns %>
+<div class="container">
+  <h1>Show Field bot</h1>
+
+  <ul>
+
+    <li>
+      <strong>Name:</strong>
+      <%= @field_bot.name %>
+    </li>
+
+  </ul>
+
+  <span><%= link "Edit", to: Routes.location_field_bot_path(@conn, :edit, @location, @field_bot) %></span>
+  <span><%= link "Back", to: Routes.location_field_bot_path(@conn, :index, @location) %></span>
+
+</div>

@@ -23,10 +23,12 @@ defmodule FarmQWeb.Router do
     get "/contact", PageController, :contact
     get "/dashboard-for-dc", PageController, :dashboard_for_dc
     resources "/parameters", ParameterController
-    resources "/plants", PlantController  
+    resources "/plants", PlantController
     resources "/locations", LocationController do
       pipe_through([FarmQWeb.Plug.LoadLocation])
       resources "/beds", Location.BedController
+      resources "/field_bots", Location.FieldBotController
+
     end
   end
 

@@ -4,7 +4,7 @@
       <h1 class="pb=2 mt-4">Locations</h1>
     </div>
     <div class="col-md-4">
-      <span class="btn btn mt-4"><%= link raw('<i class="material-icons"> add </i>'), to: Routes.location_path(@conn, :new), class: "btn btn-sm bg-green text-white btn-round" %></span>
+      <span class="btn btn mt-4"><%= link raw('<i class="material-icons"> add </i>'), to: Routes.location_path(@conn, :new), class: "btn btn-sm bg-green text-white" %></span>
     </div>
   </div>
 
@@ -16,7 +16,7 @@
     <div class="row">
       <%= for location <- @locations do %>
       <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card pb-2" style="width: 18rem;">
           <div class="card-header bg-green text-white">
             <%= location.name %>
           </div>

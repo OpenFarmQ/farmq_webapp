@@ -6,7 +6,7 @@ defmodule FarmQWeb.Location.BedController do
 
   def index(conn, _params) do
     location = conn.assigns.location
-    beds = Core.list_beds()
+    beds = Core.list_beds(location)
     render(conn, "index.html", beds: beds, location: location)
   end
 
@@ -18,6 +18,7 @@ defmodule FarmQWeb.Location.BedController do
 
   def create(conn, %{"bed" => bed_params}) do
     location = conn.assigns.location
+    bed_params = Map.put(bed_params, "location_id", location.id)
     case Core.create_bed(bed_params) do
       {:ok, bed} ->
         conn

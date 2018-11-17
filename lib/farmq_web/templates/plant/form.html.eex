@@ -50,7 +50,7 @@
 
 
     <div>
-      <%= submit "Submit", class: "btn btn-large bg-green text-white mt-4" %>
+      <%= submit "Submit", class: "btn bg-green text-white mt-4" %>
     </div>
   <% end %>
 </div>

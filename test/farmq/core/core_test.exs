@@ -280,4 +280,65 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_bed(bed)
     end
   end
+
+  describe "field_bots" do
+    alias FarmQ.Core.FieldBot
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    def field_bot_fixture(attrs \\ %{}) do
+      {:ok, field_bot} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_field_bot()
+
+      field_bot
+    end
+
+    test "list_field_bots/0 returns all field_bots" do
+      field_bot = field_bot_fixture()
+      assert Core.list_field_bots() == [field_bot]
+    end
+
+    test "get_field_bot!/1 returns the field_bot with given id" do
+      field_bot = field_bot_fixture()
+      assert Core.get_field_bot!(field_bot.id) == field_bot
+    end
+
+    test "create_field_bot/1 with valid data creates a field_bot" do
+      assert {:ok, %FieldBot{} = field_bot} = Core.create_field_bot(@valid_attrs)
+      assert field_bot.name == "some name"
+    end
+
+    test "create_field_bot/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_field_bot(@invalid_attrs)
+    end
+
+    test "update_field_bot/2 with valid data updates the field_bot" do
+      field_bot = field_bot_fixture()
+      assert {:ok, %FieldBot{} = field_bot} = Core.update_field_bot(field_bot, @update_attrs)
+
+      
+      assert field_bot.name == "some updated name"
+    end
+
+    test "update_field_bot/2 with invalid data returns error changeset" do
+      field_bot = field_bot_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_field_bot(field_bot, @invalid_attrs)
+      assert field_bot == Core.get_field_bot!(field_bot.id)
+    end
+
+    test "delete_field_bot/1 deletes the field_bot" do
+      field_bot = field_bot_fixture()
+      assert {:ok, %FieldBot{}} = Core.delete_field_bot(field_bot)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_field_bot!(field_bot.id) end
+    end
+
+    test "change_field_bot/1 returns a field_bot changeset" do
+      field_bot = field_bot_fixture()
+      assert %Ecto.Changeset{} = Core.change_field_bot(field_bot)
+    end
+  end
 end
