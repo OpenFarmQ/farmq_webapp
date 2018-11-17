@@ -5,29 +5,42 @@
     </div>
   <% end %>
 
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= label f, :name %>
+      <%= text_input f, :name, class: "form-control" %>
+      <%= error_tag f, :name %>
+    </div>
+
+    <div class="col-md-6">
+      <%= label f, :area %>
+      <%= number_input f, :area, step: "any", class: "form-control" %>
+      <%= error_tag f, :area %>
+    </div>
+  </div>
 
   <%= label f, :description %>
-  <%= text_input f, :description %>
+  <%= textarea f, :description, class: "form-control" %>
   <%= error_tag f, :description %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= label f, :longitude %>
+      <%= number_input f, :longitude, step: "any", class: "form-control" %>
+      <%= error_tag f, :longitude %>
+    </div>
+
+    <div class="col-md-6">
+      <%= label f, :latitude %>
+      <%= number_input f, :latitude, step: "any", class: "form-control" %>
+      <%= error_tag f, :latitude %>
+    </div>
+  </div>
 
   <%= hidden_input f, :type, value: "Farm" %>
 
-  <%= label f, :longitude %>
-  <%= number_input f, :longitude, step: "any" %>
-  <%= error_tag f, :longitude %>
-
-  <%= label f, :latitude %>
-  <%= number_input f, :latitude, step: "any" %>
-  <%= error_tag f, :latitude %>
-
-  <%= label f, :area %>
-  <%= number_input f, :area, step: "any" %>
-  <%= error_tag f, :area %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Submit", class: "btn btn-sm bg-green text-white mt-2" %>
   </div>
 <% end %>

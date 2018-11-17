@@ -5,6 +5,7 @@ defmodule FarmQ.Core.FieldBot do
 
   schema "field_bots" do
     field :name, :string
+    belongs_to :bed, Location, foreign_key: :location_id
 
     timestamps()
   end
@@ -12,7 +13,7 @@ defmodule FarmQ.Core.FieldBot do
   @doc false
   def changeset(field_bot, attrs) do
     field_bot
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :location_id])
     |> validate_required([:name])
   end
 end

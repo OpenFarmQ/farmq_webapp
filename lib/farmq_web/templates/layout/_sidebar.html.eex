@@ -32,7 +32,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<%= Routes.field_bot_path(@conn, :index) %>">
           <span data-feather="home"></span>
           My field bots
         </a>

@@ -1,0 +1,36 @@
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Field Bots</h1>
+    </div>
+
+    <div class="col-md-6 float-right mt-2">
+      <span><%= link raw('<i class="material-icons"> add </i>'), to: Routes.field_bot_path(@conn, :new), class: "btn btn-sm bg-green text-white"  %></span>
+    </div>
+  </div>
+
+  <%= if @field_bots == [] do %>
+    <div class="alert alert-secondary" role="alert">
+      Field Bots are not created yet! Please create one
+    </div>
+  <% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Currently In</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for field_bot <- @field_bots do %>
+      <tr>
+        <td><%= field_bot.name %></td>
+        <td><%= field_bot.location_id%></td>
+        <td>
+          <%= link raw('<i class="material-icons"> arrow_forward </i>'), to: Routes.field_bot_path(@conn, :show,  field_bot), class: "btn btn-sm bg-green text-white" %>
+          <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.field_bot_path(@conn, :edit,  field_bot), class: "btn btn-sm bg-green text-white" %>
+          <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.field_bot_path(@conn, :delete,  field_bot), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger text-white" %>
+        </td>
+      <% end %>
+    </tbody>
+  <% end %>
