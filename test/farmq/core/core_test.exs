@@ -278,4 +278,69 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_location(location)
     end
   end
+
+  describe "sensors" do
+    alias FarmQ.Core.Sensor
+
+    @valid_attrs %{description: "some description", name: "some name", url: "some url"}
+    @update_attrs %{description: "some updated description", name: "some updated name", url: "some updated url"}
+    @invalid_attrs %{description: nil, name: nil, url: nil}
+
+    def sensor_fixture(attrs \\ %{}) do
+      {:ok, sensor} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_sensor()
+
+      sensor
+    end
+
+    test "list_sensors/0 returns all sensors" do
+      sensor = sensor_fixture()
+      assert Core.list_sensors() == [sensor]
+    end
+
+    test "get_sensor!/1 returns the sensor with given id" do
+      sensor = sensor_fixture()
+      assert Core.get_sensor!(sensor.id) == sensor
+    end
+
+    test "create_sensor/1 with valid data creates a sensor" do
+      assert {:ok, %Sensor{} = sensor} = Core.create_sensor(@valid_attrs)
+      assert sensor.description == "some description"
+      assert sensor.name == "some name"
+      assert sensor.url == "some url"
+    end
+
+    test "create_sensor/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_sensor(@invalid_attrs)
+    end
+
+    test "update_sensor/2 with valid data updates the sensor" do
+      sensor = sensor_fixture()
+      assert {:ok, %Sensor{} = sensor} = Core.update_sensor(sensor, @update_attrs)
+
+      
+      assert sensor.description == "some updated description"
+      assert sensor.name == "some updated name"
+      assert sensor.url == "some updated url"
+    end
+
+    test "update_sensor/2 with invalid data returns error changeset" do
+      sensor = sensor_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_sensor(sensor, @invalid_attrs)
+      assert sensor == Core.get_sensor!(sensor.id)
+    end
+
+    test "delete_sensor/1 deletes the sensor" do
+      sensor = sensor_fixture()
+      assert {:ok, %Sensor{}} = Core.delete_sensor(sensor)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_sensor!(sensor.id) end
+    end
+
+    test "change_sensor/1 returns a sensor changeset" do
+      sensor = sensor_fixture()
+      assert %Ecto.Changeset{} = Core.change_sensor(sensor)
+    end
+  end
 end

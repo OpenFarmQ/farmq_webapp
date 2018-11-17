@@ -32,6 +32,7 @@ defmodule FarmQWeb.Router do
       pipe_through :contributor
       resources "/plants", PlantController
       resources "/parameters", ParameterController
+      resources "/sensors", SensorController
       resources "/locations", LocationController
       resources "/farms", FarmController
       resources "/beds", BedController
