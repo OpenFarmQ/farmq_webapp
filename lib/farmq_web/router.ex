@@ -27,7 +27,6 @@ defmodule FarmQWeb.Router do
     get "/contact", PageController, :contact
     get "/dashboard-for-dc", PageController, :dashboard_for_dc
     resources "/locations", LocationController do
-      pipe_through([FarmQWeb.Plug.LoadLocation])
       resources "/beds", Location.BedController
       get "/beds/:id/assign-field-bot", Location.BedController, :assign_field_bot
       resources "/field_bots", Location.FieldBotController
