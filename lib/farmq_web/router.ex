@@ -23,8 +23,11 @@ defmodule FarmQWeb.Router do
     get "/contact", PageController, :contact
     get "/dashboard-for-dc", PageController, :dashboard_for_dc
     resources "/parameters", ParameterController
-    resources "/plants", PlantController
-    resources "/locations", LocationController
+    resources "/plants", PlantController  
+    resources "/locations", LocationController do
+      pipe_through([FarmQWeb.Plug.LoadLocation])
+      resources "/beds", Location.BedController
+    end
   end
 
   # Other scopes may use custom stacks.

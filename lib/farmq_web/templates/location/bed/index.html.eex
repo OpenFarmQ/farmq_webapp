@@ -1,0 +1,36 @@
+<%= render FarmQWeb.LocationView, "_location_header.html", assigns %>
+<div class="container">
+  <h1 class="mt-4">Listing Beds</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Area</th>
+        <th>Status</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for bed <- @beds do %>
+      <tr>
+        <td><%= bed.id %></td>
+        <td><%= bed.name %></td>
+        <td><%= bed.area %></td>
+        <td><%= bed.status %></td>
+
+        <td>
+          <%= link "Show", to: Routes.location_bed_path(@conn, :show, @location, bed) %>
+          <%= link "Edit", to: Routes.location_bed_path(@conn, :edit, @location, bed) %>
+          <%= link "Delete", to: Routes.location_bed_path(@conn, :delete, @location, bed), method: :delete, data: [confirm: "Are you sure?"] %>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+
+  <span><%= link "New Bed", to: Routes.location_bed_path(@conn, :new, @location) %></span>
+
+</div>

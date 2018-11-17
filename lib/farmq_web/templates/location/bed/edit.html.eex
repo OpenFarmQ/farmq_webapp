@@ -1,0 +1,10 @@
+<%= render FarmQWeb.LocationView, "_location_header.html", assigns %>
+
+<div class="container">
+  <h1>Edit Bed</h1>
+
+  <%= render "form.html", Map.put(assigns, :action, Routes.location_bed_path(@conn, :update, @location, @bed)) %>
+
+  <span><%= link "Back", to: Routes.location_bed_path(@conn, :index, @location) %></span>
+
+</div>

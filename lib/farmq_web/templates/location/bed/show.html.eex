@@ -1,0 +1,26 @@
+<%= render FarmQWeb.LocationView, "_location_header.html", assigns %>
+<div class="container">
+  <h1>Show Bed</h1>
+
+  <ul>
+
+    <li>
+      <strong>Name:</strong>
+      <%= @bed.name %>
+    </li>
+
+    <li>
+      <strong>Area:</strong>
+      <%= @bed.area %>
+    </li>
+
+    <li>
+      <strong>Status:</strong>
+      <%= @bed.status %>
+    </li>
+
+  </ul>
+
+  <span><%= link "Edit", to: Routes.location_bed_path(@conn, :edit, @location, @bed) %></span>
+  <span><%= link "Back", to: Routes.location_bed_path(@conn, :index, @location) %></span>
+</div>
