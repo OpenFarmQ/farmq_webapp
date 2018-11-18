@@ -9,5 +9,6 @@
 
 </ul>
 
+<%= render FarmQWeb.FieldPreparationDataView, "index.html", assigns %>
 <span><%= link "Edit", to: Routes.crop_cycle_path(@conn, :edit, @crop_cycle) %></span>
 <span><%= link "Back", to: Routes.crop_cycle_path(@conn, :index) %></span>

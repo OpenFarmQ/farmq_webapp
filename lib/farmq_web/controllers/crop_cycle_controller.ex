@@ -30,7 +30,14 @@ defmodule FarmQWeb.CropCycleController do
 
   def show(conn, %{"id" => id}) do
     crop_cycle = Core.get_crop_cycle!(id)
-    render(conn, "show.html", crop_cycle: crop_cycle)
+    field_preparation_data = Core.list_field_preparation_data(crop_cycle)
+
+    render(
+      conn,
+      "show.html",
+      field_preparation_data: field_preparation_data,
+      crop_cycle: crop_cycle
+      )
   end
 
   def edit(conn, %{"id" => id}) do

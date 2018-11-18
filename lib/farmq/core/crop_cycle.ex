@@ -2,11 +2,13 @@ defmodule FarmQ.Core.CropCycle do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias FarmQ.Core.FieldPreparationData
 
   schema "crop_cycles" do
     field :name, :string
     field :bed_id, :id
 
+    has_many :field_preparation_data, FieldPreparationData
     timestamps()
   end
 

@@ -590,4 +590,106 @@ defmodule FarmQ.Core do
   def change_crop_cycle(%CropCycle{} = crop_cycle) do
     CropCycle.changeset(crop_cycle, %{})
   end
+
+  alias FarmQ.Core.FieldPreparationData
+
+  @doc """
+  Returns the list of field_preparation_data.
+
+  ## Examples
+
+      iex> list_field_preparation_data()
+      [%FieldPreparationData{}, ...]
+
+  """
+  def list_field_preparation_data do
+    Repo.all(FieldPreparationData)
+  end
+
+  def list_field_preparation_data(%CropCycle{} = crop_cycle) do
+    FieldPreparationData
+    |> where(crop_cycle_id: ^crop_cycle.id)
+    |> Repo.all
+  end
+
+  @doc """
+  Gets a single field_preparation_data.
+
+  Raises `Ecto.NoResultsError` if the Field preparation data does not exist.
+
+  ## Examples
+
+      iex> get_field_preparation_data!(123)
+      %FieldPreparationData{}
+
+      iex> get_field_preparation_data!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_field_preparation_data!(id), do: Repo.get!(FieldPreparationData, id)
+
+  @doc """
+  Creates a field_preparation_data.
+
+  ## Examples
+
+      iex> create_field_preparation_data(%{field: value})
+      {:ok, %FieldPreparationData{}}
+
+      iex> create_field_preparation_data(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_field_preparation_data(attrs \\ %{}) do
+    %FieldPreparationData{}
+    |> FieldPreparationData.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a field_preparation_data.
+
+  ## Examples
+
+      iex> update_field_preparation_data(field_preparation_data, %{field: new_value})
+      {:ok, %FieldPreparationData{}}
+
+      iex> update_field_preparation_data(field_preparation_data, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_field_preparation_data(%FieldPreparationData{} = field_preparation_data, attrs) do
+    field_preparation_data
+    |> FieldPreparationData.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a FieldPreparationData.
+
+  ## Examples
+
+      iex> delete_field_preparation_data(field_preparation_data)
+      {:ok, %FieldPreparationData{}}
+
+      iex> delete_field_preparation_data(field_preparation_data)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_field_preparation_data(%FieldPreparationData{} = field_preparation_data) do
+    Repo.delete(field_preparation_data)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking field_preparation_data changes.
+
+  ## Examples
+
+      iex> change_field_preparation_data(field_preparation_data)
+      %Ecto.Changeset{source: %FieldPreparationData{}}
+
+  """
+  def change_field_preparation_data(%FieldPreparationData{} = field_preparation_data) do
+    FieldPreparationData.changeset(field_preparation_data, %{})
+  end
 end

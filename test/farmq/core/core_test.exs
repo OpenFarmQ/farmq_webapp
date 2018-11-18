@@ -404,4 +404,67 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_crop_cycle(crop_cycle)
     end
   end
+
+  describe "field_preparation_data" do
+    alias FarmQ.Core.FieldPreparationData
+
+    @valid_attrs %{description: "some description", preparation_date: ~D[2010-04-17]}
+    @update_attrs %{description: "some updated description", preparation_date: ~D[2011-05-18]}
+    @invalid_attrs %{description: nil, preparation_date: nil}
+
+    def field_preparation_data_fixture(attrs \\ %{}) do
+      {:ok, field_preparation_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_field_preparation_data()
+
+      field_preparation_data
+    end
+
+    test "list_field_preparation_data/0 returns all field_preparation_data" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert Core.list_field_preparation_data() == [field_preparation_data]
+    end
+
+    test "get_field_preparation_data!/1 returns the field_preparation_data with given id" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert Core.get_field_preparation_data!(field_preparation_data.id) == field_preparation_data
+    end
+
+    test "create_field_preparation_data/1 with valid data creates a field_preparation_data" do
+      assert {:ok, %FieldPreparationData{} = field_preparation_data} = Core.create_field_preparation_data(@valid_attrs)
+      assert field_preparation_data.description == "some description"
+      assert field_preparation_data.preparation_date == ~D[2010-04-17]
+    end
+
+    test "create_field_preparation_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_field_preparation_data(@invalid_attrs)
+    end
+
+    test "update_field_preparation_data/2 with valid data updates the field_preparation_data" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert {:ok, %FieldPreparationData{} = field_preparation_data} = Core.update_field_preparation_data(field_preparation_data, @update_attrs)
+
+      
+      assert field_preparation_data.description == "some updated description"
+      assert field_preparation_data.preparation_date == ~D[2011-05-18]
+    end
+
+    test "update_field_preparation_data/2 with invalid data returns error changeset" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_field_preparation_data(field_preparation_data, @invalid_attrs)
+      assert field_preparation_data == Core.get_field_preparation_data!(field_preparation_data.id)
+    end
+
+    test "delete_field_preparation_data/1 deletes the field_preparation_data" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert {:ok, %FieldPreparationData{}} = Core.delete_field_preparation_data(field_preparation_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_field_preparation_data!(field_preparation_data.id) end
+    end
+
+    test "change_field_preparation_data/1 returns a field_preparation_data changeset" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_field_preparation_data(field_preparation_data)
+    end
+  end
 end
