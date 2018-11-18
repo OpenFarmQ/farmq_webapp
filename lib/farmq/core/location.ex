@@ -1,6 +1,7 @@
 defmodule FarmQ.Core.Location do
   use Ecto.Schema
   import Ecto.Changeset
+  alias FarmQ.Core.FieldBot
 
 
   schema "locations" do
@@ -11,6 +12,7 @@ defmodule FarmQ.Core.Location do
     field :name, :string
     field :type, :string
     field :parent_id, :id
+    has_many :field_bots, FieldBot, on_delete: :nilify_all
 
     timestamps()
   end

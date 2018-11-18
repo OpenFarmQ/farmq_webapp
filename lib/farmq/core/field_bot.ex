@@ -15,5 +15,6 @@ defmodule FarmQ.Core.FieldBot do
     field_bot
     |> cast(attrs, [:name, :location_id])
     |> validate_required([:name])
+    |> foreign_key_constraint(:location_id)
   end
 end
