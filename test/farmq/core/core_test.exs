@@ -343,4 +343,65 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_sensor(sensor)
     end
   end
+
+  describe "crop_cycles" do
+    alias FarmQ.Core.CropCycle
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    def crop_cycle_fixture(attrs \\ %{}) do
+      {:ok, crop_cycle} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_crop_cycle()
+
+      crop_cycle
+    end
+
+    test "list_crop_cycles/0 returns all crop_cycles" do
+      crop_cycle = crop_cycle_fixture()
+      assert Core.list_crop_cycles() == [crop_cycle]
+    end
+
+    test "get_crop_cycle!/1 returns the crop_cycle with given id" do
+      crop_cycle = crop_cycle_fixture()
+      assert Core.get_crop_cycle!(crop_cycle.id) == crop_cycle
+    end
+
+    test "create_crop_cycle/1 with valid data creates a crop_cycle" do
+      assert {:ok, %CropCycle{} = crop_cycle} = Core.create_crop_cycle(@valid_attrs)
+      assert crop_cycle.name == "some name"
+    end
+
+    test "create_crop_cycle/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_crop_cycle(@invalid_attrs)
+    end
+
+    test "update_crop_cycle/2 with valid data updates the crop_cycle" do
+      crop_cycle = crop_cycle_fixture()
+      assert {:ok, %CropCycle{} = crop_cycle} = Core.update_crop_cycle(crop_cycle, @update_attrs)
+
+      
+      assert crop_cycle.name == "some updated name"
+    end
+
+    test "update_crop_cycle/2 with invalid data returns error changeset" do
+      crop_cycle = crop_cycle_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_crop_cycle(crop_cycle, @invalid_attrs)
+      assert crop_cycle == Core.get_crop_cycle!(crop_cycle.id)
+    end
+
+    test "delete_crop_cycle/1 deletes the crop_cycle" do
+      crop_cycle = crop_cycle_fixture()
+      assert {:ok, %CropCycle{}} = Core.delete_crop_cycle(crop_cycle)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_crop_cycle!(crop_cycle.id) end
+    end
+
+    test "change_crop_cycle/1 returns a crop_cycle changeset" do
+      crop_cycle = crop_cycle_fixture()
+      assert %Ecto.Changeset{} = Core.change_crop_cycle(crop_cycle)
+    end
+  end
 end

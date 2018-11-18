@@ -8,7 +8,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <%= active_link(@conn, to: "/", class_active: "active nav-link", class_inactive: "nav-link") do %>
+        <%= active_link(@conn, to: Routes.crop_cycle_path(@conn, :index), class_active: "active nav-link", class_inactive: "nav-link") do %>
           <span data-feather="home"></span>
           My Crop Cycles <span class="sr-only">(current)</span>
         <% end %>

@@ -494,4 +494,100 @@ defmodule FarmQ.Core do
   def change_sensor(%Sensor{} = sensor) do
     Sensor.changeset(sensor, %{})
   end
+
+  alias FarmQ.Core.CropCycle
+
+  @doc """
+  Returns the list of crop_cycles.
+
+  ## Examples
+
+      iex> list_crop_cycles()
+      [%CropCycle{}, ...]
+
+  """
+  def list_crop_cycles do
+    Repo.all(CropCycle)
+  end
+
+  @doc """
+  Gets a single crop_cycle.
+
+  Raises `Ecto.NoResultsError` if the Crop cycle does not exist.
+
+  ## Examples
+
+      iex> get_crop_cycle!(123)
+      %CropCycle{}
+
+      iex> get_crop_cycle!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_crop_cycle!(id), do: Repo.get!(CropCycle, id)
+
+  @doc """
+  Creates a crop_cycle.
+
+  ## Examples
+
+      iex> create_crop_cycle(%{field: value})
+      {:ok, %CropCycle{}}
+
+      iex> create_crop_cycle(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_crop_cycle(attrs \\ %{}) do
+    %CropCycle{}
+    |> CropCycle.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a crop_cycle.
+
+  ## Examples
+
+      iex> update_crop_cycle(crop_cycle, %{field: new_value})
+      {:ok, %CropCycle{}}
+
+      iex> update_crop_cycle(crop_cycle, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_crop_cycle(%CropCycle{} = crop_cycle, attrs) do
+    crop_cycle
+    |> CropCycle.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a CropCycle.
+
+  ## Examples
+
+      iex> delete_crop_cycle(crop_cycle)
+      {:ok, %CropCycle{}}
+
+      iex> delete_crop_cycle(crop_cycle)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_crop_cycle(%CropCycle{} = crop_cycle) do
+    Repo.delete(crop_cycle)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking crop_cycle changes.
+
+  ## Examples
+
+      iex> change_crop_cycle(crop_cycle)
+      %Ecto.Changeset{source: %CropCycle{}}
+
+  """
+  def change_crop_cycle(%CropCycle{} = crop_cycle) do
+    CropCycle.changeset(crop_cycle, %{})
+  end
 end

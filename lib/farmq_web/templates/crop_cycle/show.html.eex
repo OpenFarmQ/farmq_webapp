@@ -1,0 +1,13 @@
+<h1>Show Crop cycle</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @crop_cycle.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.crop_cycle_path(@conn, :edit, @crop_cycle) %></span>
+<span><%= link "Back", to: Routes.crop_cycle_path(@conn, :index) %></span>

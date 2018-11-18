@@ -1,0 +1,26 @@
+<h1>Listing Crop cycles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for crop_cycle <- @crop_cycles do %>
+    <tr>
+      <td><%= crop_cycle.name %></td>
+
+      <td>
+        <%= link "Show", to: Routes.crop_cycle_path(@conn, :show, crop_cycle) %>
+        <%= link "Edit", to: Routes.crop_cycle_path(@conn, :edit, crop_cycle) %>
+        <%= link "Delete", to: Routes.crop_cycle_path(@conn, :delete, crop_cycle), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Crop cycle", to: Routes.crop_cycle_path(@conn, :new) %></span>
