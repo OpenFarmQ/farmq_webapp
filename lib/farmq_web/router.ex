@@ -30,6 +30,7 @@ defmodule FarmQWeb.Router do
 
     scope "/contributor" do
       pipe_through :contributor
+      get "/", PageController, :farmq_insight
       resources "/plants", PlantController
       resources "/parameters", ParameterController
       resources "/sensors", SensorController
