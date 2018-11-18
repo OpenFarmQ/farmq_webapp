@@ -33,6 +33,7 @@ defmodule FarmQWeb.Router do
       get "/", PageController, :farmq_insight
       resources "/crop_cycles", CropCycleController
       resources "/field_preparation_data", FieldPreparationDataController
+      resources "/sowing_data", SowingDataController
       resources "/locations", LocationController
       resources "/farms", FarmController
       resources "/beds", BedController

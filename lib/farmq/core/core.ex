@@ -692,4 +692,106 @@ defmodule FarmQ.Core do
   def change_field_preparation_data(%FieldPreparationData{} = field_preparation_data) do
     FieldPreparationData.changeset(field_preparation_data, %{})
   end
+
+  alias FarmQ.Core.SowingData
+
+  @doc """
+  Returns the list of sowing_data.
+
+  ## Examples
+
+      iex> list_sowing_data()
+      [%SowingData{}, ...]
+
+  """
+  def list_sowing_data do
+    Repo.all(SowingData)
+  end
+
+  def list_sowing_data(%CropCycle{} = crop_cycle) do
+    SowingData
+    |> where(crop_cycle_id: ^crop_cycle.id)
+    |> Repo.all
+  end
+
+  @doc """
+  Gets a single field_preparation_data.
+
+  Raises `Ecto.NoResultsError` if the Field preparation data does not exist.
+
+  ## Examples
+
+      iex> get_sowing_data!(123)
+      %FieldPreparationData{}
+
+      iex> get_sowing_data!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_sowing_data!(id), do: Repo.get!(SowingData, id)
+
+  @doc """
+  Creates a field_preparation_data.
+
+  ## Examples
+
+      iex> create_sowing_data(%{field: value})
+      {:ok, %FieldPreparationData{}}
+
+      iex> create_sowing_data(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_sowing_data(attrs \\ %{}) do
+    %SowingData{}
+    |> SowingData.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a sowing_data.
+
+  ## Examples
+
+      iex> update_field_preparation_data(field_preparation_data, %{field: new_value})
+      {:ok, %FieldPreparationData{}}
+
+      iex> update_field_preparation_data(field_preparation_data, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_sowing_data(%SowingData{} = sowing_data, attrs) do
+    sowing_data
+    |> SowingData.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a SowingData.
+
+  ## Examples
+
+      iex> delete_sowing_data(field_preparation_data)
+      {:ok, %FieldPreparationData{}}
+
+      iex> delete_sowing_data(field_preparation_data)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_sowing_data(%SowingData{} = sowing_data) do
+    Repo.delete(sowing_data)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking sowing_data changes.
+
+  ## Examples
+
+      iex> change_sowing_data(sowing_data)
+      %Ecto.Changeset{source: %SowingData{}}
+
+  """
+  def change_sowing_data(%SowingData{} = sowing_data) do
+    SowingData.changeset(sowing_data, %{})
+  end
 end

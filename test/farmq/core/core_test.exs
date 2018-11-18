@@ -467,4 +467,73 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_field_preparation_data(field_preparation_data)
     end
   end
+
+  describe "sowing_data" do
+    alias FarmQ.Core.SowingData
+
+    @valid_attrs %{description: "some description", expected_yield_unit: "some expected_yield_unit", expected_yield_value: "120.5", seed_weight: "120.5", sown_date: ~D[2010-04-17]}
+    @update_attrs %{description: "some updated description", expected_yield_unit: "some updated expected_yield_unit", expected_yield_value: "456.7", seed_weight: "456.7", sown_date: ~D[2011-05-18]}
+    @invalid_attrs %{description: nil, expected_yield_unit: nil, expected_yield_value: nil, seed_weight: nil, sown_date: nil}
+
+    def sowing_data_fixture(attrs \\ %{}) do
+      {:ok, sowing_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_sowing_data()
+
+      sowing_data
+    end
+
+    test "list_sowing_data/0 returns all sowing_data" do
+      sowing_data = sowing_data_fixture()
+      assert Core.list_sowing_data() == [sowing_data]
+    end
+
+    test "get_sowing_data!/1 returns the sowing_data with given id" do
+      sowing_data = sowing_data_fixture()
+      assert Core.get_sowing_data!(sowing_data.id) == sowing_data
+    end
+
+    test "create_sowing_data/1 with valid data creates a sowing_data" do
+      assert {:ok, %SowingData{} = sowing_data} = Core.create_sowing_data(@valid_attrs)
+      assert sowing_data.description == "some description"
+      assert sowing_data.expected_yield_unit == "some expected_yield_unit"
+      assert sowing_data.expected_yield_value == Decimal.new("120.5")
+      assert sowing_data.seed_weight == Decimal.new("120.5")
+      assert sowing_data.sown_date == ~D[2010-04-17]
+    end
+
+    test "create_sowing_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_sowing_data(@invalid_attrs)
+    end
+
+    test "update_sowing_data/2 with valid data updates the sowing_data" do
+      sowing_data = sowing_data_fixture()
+      assert {:ok, %SowingData{} = sowing_data} = Core.update_sowing_data(sowing_data, @update_attrs)
+
+      
+      assert sowing_data.description == "some updated description"
+      assert sowing_data.expected_yield_unit == "some updated expected_yield_unit"
+      assert sowing_data.expected_yield_value == Decimal.new("456.7")
+      assert sowing_data.seed_weight == Decimal.new("456.7")
+      assert sowing_data.sown_date == ~D[2011-05-18]
+    end
+
+    test "update_sowing_data/2 with invalid data returns error changeset" do
+      sowing_data = sowing_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_sowing_data(sowing_data, @invalid_attrs)
+      assert sowing_data == Core.get_sowing_data!(sowing_data.id)
+    end
+
+    test "delete_sowing_data/1 deletes the sowing_data" do
+      sowing_data = sowing_data_fixture()
+      assert {:ok, %SowingData{}} = Core.delete_sowing_data(sowing_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_sowing_data!(sowing_data.id) end
+    end
+
+    test "change_sowing_data/1 returns a sowing_data changeset" do
+      sowing_data = sowing_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_sowing_data(sowing_data)
+    end
+  end
 end

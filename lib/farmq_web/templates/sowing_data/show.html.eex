@@ -1,0 +1,33 @@
+<h1>Show Sowing data</h1>
+
+<ul>
+
+  <li>
+    <strong>Seed weight:</strong>
+    <%= @sowing_data.seed_weight %>
+  </li>
+
+  <li>
+    <strong>Expected yield value:</strong>
+    <%= @sowing_data.expected_yield_value %>
+  </li>
+
+  <li>
+    <strong>Expected yield unit:</strong>
+    <%= @sowing_data.expected_yield_unit %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @sowing_data.description %>
+  </li>
+
+  <li>
+    <strong>Sown date:</strong>
+    <%= @sowing_data.sown_date %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.sowing_data_path(@conn, :edit, @sowing_data) %></span>
+<span><%= link "Back", to: Routes.sowing_data_path(@conn, :index) %></span>

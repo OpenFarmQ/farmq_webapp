@@ -1,0 +1,37 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= if @conn.params["crop_cycle"] do %>
+  <%= hidden_input f, :crop_cycle_id, value: @conn.params["crop_cycle"] %>
+  <% else %>
+  <%= hidden_input f, :crop_cycle_id %>
+  <% end %>
+
+  <%= label f, :seed_weight %>
+  <%= number_input f, :seed_weight, step: "any" %>
+  <%= error_tag f, :seed_weight %>
+
+  <%= label f, :expected_yield_value %>
+  <%= number_input f, :expected_yield_value, step: "any" %>
+  <%= error_tag f, :expected_yield_value %>
+
+  <%= label f, :expected_yield_unit %>
+  <%= text_input f, :expected_yield_unit %>
+  <%= error_tag f, :expected_yield_unit %>
+
+  <%= label f, :description %>
+  <%= textarea f, :description %>
+  <%= error_tag f, :description %>
+
+  <%= label f, :sown_date %>
+  <%= date_select f, :sown_date %>
+  <%= error_tag f, :sown_date %>
+
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>
