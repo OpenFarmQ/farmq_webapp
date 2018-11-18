@@ -1,0 +1,5 @@
+<h1>Edit Harvest data</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.harvest_data_path(@conn, :update, @harvest_data)) %>
+
+<span><%= link "Back", to: Routes.harvest_data_path(@conn, :index) %></span>

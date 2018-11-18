@@ -32,12 +32,16 @@ defmodule FarmQWeb.CropCycleController do
     crop_cycle = Core.get_crop_cycle!(id)
     field_preparation_data = Core.list_field_preparation_data(crop_cycle)
     sowing_data = Core.list_sowing_data(crop_cycle)
+    harvest_data = Core.list_harvest_data(crop_cycle)
+    field_clearation_data = Core.list_field_clearation_data(crop_cycle)
 
     render(
       conn,
       "show.html",
       field_preparation_data: field_preparation_data,
       sowing_data: sowing_data,
+      harvest_data: harvest_data,
+      field_clearation_data: field_clearation_data,
       crop_cycle: crop_cycle
       )
   end

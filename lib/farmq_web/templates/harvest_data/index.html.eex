@@ -1,0 +1,33 @@
+<h1>Listing Harvest data</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Actual yield value</th>
+      <th>Actual yield unityield quality</th>
+      <th>Description</th>
+      <th>Harvest date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for harvest_data <- @harvest_data do %>
+    <tr>
+      <td><%= harvest_data.actual_yield_value %></td>
+      <td><%= harvest_data.actual_yield_unit %></td>
+      <td><%= harvest_data.yield_quality %></td>
+      <td><%= harvest_data.description %></td>
+      <td><%= harvest_data.harvest_date %></td>
+
+      <td>
+        <%= link "Show", to: Routes.harvest_data_path(@conn, :show, harvest_data) %>
+        <%= link "Edit", to: Routes.harvest_data_path(@conn, :edit, harvest_data) %>
+        <%= link "Delete", to: Routes.harvest_data_path(@conn, :delete, harvest_data), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Harvest data", to: Routes.harvest_data_path(@conn, :new, crop_cycle: @conn.params["id"]) %></span>

@@ -794,4 +794,208 @@ defmodule FarmQ.Core do
   def change_sowing_data(%SowingData{} = sowing_data) do
     SowingData.changeset(sowing_data, %{})
   end
+
+  alias FarmQ.Core.HarvestData
+
+  @doc """
+  Returns the list of harvest_data.
+
+  ## Examples
+
+      iex> list_harvest_data()
+      [%HarvestData{}, ...]
+
+  """
+  def list_harvest_data do
+    Repo.all(HarvestData)
+  end
+
+  def list_harvest_data(%CropCycle{} = crop_cycle) do
+    HarvestData
+    |> where(crop_cycle_id: ^crop_cycle.id)
+    |> Repo.all
+  end
+
+  @doc """
+  Gets a single harvest_data.
+
+  Raises `Ecto.NoResultsError` if the Harvest data does not exist.
+
+  ## Examples
+
+      iex> get_harvest_data!(123)
+      %HarvestData{}
+
+      iex> get_harvest_data!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_harvest_data!(id), do: Repo.get!(HarvestData, id)
+
+  @doc """
+  Creates a harvest_data.
+
+  ## Examples
+
+      iex> create_harvest_data(%{field: value})
+      {:ok, %HarvestData{}}
+
+      iex> create_harvest_data(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_harvest_data(attrs \\ %{}) do
+    %HarvestData{}
+    |> HarvestData.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a harvest_data.
+
+  ## Examples
+
+      iex> update_harvest_data(harvest_data, %{field: new_value})
+      {:ok, %HarvestData{}}
+
+      iex> update_harvest_data(harvest_data, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_harvest_data(%HarvestData{} = harvest_data, attrs) do
+    harvest_data
+    |> HarvestData.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a HarvestData.
+
+  ## Examples
+
+      iex> delete_harvest_data(harvest_data)
+      {:ok, %HarvestData{}}
+
+      iex> delete_harvest_data(harvest_data)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_harvest_data(%HarvestData{} = harvest_data) do
+    Repo.delete(harvest_data)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking harvest_data changes.
+
+  ## Examples
+
+      iex> change_harvest_data(harvest_data)
+      %Ecto.Changeset{source: %HarvestData{}}
+
+  """
+  def change_harvest_data(%HarvestData{} = harvest_data) do
+    HarvestData.changeset(harvest_data, %{})
+  end
+
+  alias FarmQ.Core.FieldClearationData
+
+  @doc """
+  Returns the list of field_clearation_data.
+
+  ## Examples
+
+      iex> list_field_clearation_data()
+      [%FieldClearationData{}, ...]
+
+  """
+  def list_field_clearation_data do
+    Repo.all(FieldClearationData)
+  end
+
+  def list_field_clearation_data(%CropCycle{} = crop_cycle) do
+    FieldClearationData
+    |> where(crop_cycle_id: ^crop_cycle.id)
+    |> Repo.all
+  end
+
+  @doc """
+  Gets a single field_clearation_data.
+
+  Raises `Ecto.NoResultsError` if the Field clearation data does not exist.
+
+  ## Examples
+
+      iex> get_field_clearation_data!(123)
+      %FieldClearationData{}
+
+      iex> get_field_clearation_data!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_field_clearation_data!(id), do: Repo.get!(FieldClearationData, id)
+
+  @doc """
+  Creates a field_clearation_data.
+
+  ## Examples
+
+      iex> create_field_clearation_data(%{field: value})
+      {:ok, %FieldClearationData{}}
+
+      iex> create_field_clearation_data(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_field_clearation_data(attrs \\ %{}) do
+    %FieldClearationData{}
+    |> FieldClearationData.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a field_clearation_data.
+
+  ## Examples
+
+      iex> update_field_clearation_data(field_clearation_data, %{field: new_value})
+      {:ok, %FieldClearationData{}}
+
+      iex> update_field_clearation_data(field_clearation_data, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_field_clearation_data(%FieldClearationData{} = field_clearation_data, attrs) do
+    field_clearation_data
+    |> FieldClearationData.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a FieldClearationData.
+
+  ## Examples
+
+      iex> delete_field_clearation_data(field_clearation_data)
+      {:ok, %FieldClearationData{}}
+
+      iex> delete_field_clearation_data(field_clearation_data)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_field_clearation_data(%FieldClearationData{} = field_clearation_data) do
+    Repo.delete(field_clearation_data)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking field_clearation_data changes.
+
+  ## Examples
+
+      iex> change_field_clearation_data(field_clearation_data)
+      %Ecto.Changeset{source: %FieldClearationData{}}
+
+  """
+  def change_field_clearation_data(%FieldClearationData{} = field_clearation_data) do
+    FieldClearationData.changeset(field_clearation_data, %{})
+  end
 end

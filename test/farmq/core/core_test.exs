@@ -536,4 +536,134 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_sowing_data(sowing_data)
     end
   end
+
+  describe "harvest_data" do
+    alias FarmQ.Core.HarvestData
+
+    @valid_attrs %{actual_yield_unityield_quality: "some actual_yield_unityield_quality", actual_yield_value: "120.5", description: "some description", harvest_date: ~D[2010-04-17]}
+    @update_attrs %{actual_yield_unityield_quality: "some updated actual_yield_unityield_quality", actual_yield_value: "456.7", description: "some updated description", harvest_date: ~D[2011-05-18]}
+    @invalid_attrs %{actual_yield_unityield_quality: nil, actual_yield_value: nil, description: nil, harvest_date: nil}
+
+    def harvest_data_fixture(attrs \\ %{}) do
+      {:ok, harvest_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_harvest_data()
+
+      harvest_data
+    end
+
+    test "list_harvest_data/0 returns all harvest_data" do
+      harvest_data = harvest_data_fixture()
+      assert Core.list_harvest_data() == [harvest_data]
+    end
+
+    test "get_harvest_data!/1 returns the harvest_data with given id" do
+      harvest_data = harvest_data_fixture()
+      assert Core.get_harvest_data!(harvest_data.id) == harvest_data
+    end
+
+    test "create_harvest_data/1 with valid data creates a harvest_data" do
+      assert {:ok, %HarvestData{} = harvest_data} = Core.create_harvest_data(@valid_attrs)
+      assert harvest_data.actual_yield_unityield_quality == "some actual_yield_unityield_quality"
+      assert harvest_data.actual_yield_value == Decimal.new("120.5")
+      assert harvest_data.description == "some description"
+      assert harvest_data.harvest_date == ~D[2010-04-17]
+    end
+
+    test "create_harvest_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_harvest_data(@invalid_attrs)
+    end
+
+    test "update_harvest_data/2 with valid data updates the harvest_data" do
+      harvest_data = harvest_data_fixture()
+      assert {:ok, %HarvestData{} = harvest_data} = Core.update_harvest_data(harvest_data, @update_attrs)
+
+      
+      assert harvest_data.actual_yield_unityield_quality == "some updated actual_yield_unityield_quality"
+      assert harvest_data.actual_yield_value == Decimal.new("456.7")
+      assert harvest_data.description == "some updated description"
+      assert harvest_data.harvest_date == ~D[2011-05-18]
+    end
+
+    test "update_harvest_data/2 with invalid data returns error changeset" do
+      harvest_data = harvest_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_harvest_data(harvest_data, @invalid_attrs)
+      assert harvest_data == Core.get_harvest_data!(harvest_data.id)
+    end
+
+    test "delete_harvest_data/1 deletes the harvest_data" do
+      harvest_data = harvest_data_fixture()
+      assert {:ok, %HarvestData{}} = Core.delete_harvest_data(harvest_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_harvest_data!(harvest_data.id) end
+    end
+
+    test "change_harvest_data/1 returns a harvest_data changeset" do
+      harvest_data = harvest_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_harvest_data(harvest_data)
+    end
+  end
+
+  describe "field_clearation_data" do
+    alias FarmQ.Core.FieldClearationData
+
+    @valid_attrs %{clearation_date: ~D[2010-04-17], description: "some description"}
+    @update_attrs %{clearation_date: ~D[2011-05-18], description: "some updated description"}
+    @invalid_attrs %{clearation_date: nil, description: nil}
+
+    def field_clearation_data_fixture(attrs \\ %{}) do
+      {:ok, field_clearation_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_field_clearation_data()
+
+      field_clearation_data
+    end
+
+    test "list_field_clearation_data/0 returns all field_clearation_data" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert Core.list_field_clearation_data() == [field_clearation_data]
+    end
+
+    test "get_field_clearation_data!/1 returns the field_clearation_data with given id" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert Core.get_field_clearation_data!(field_clearation_data.id) == field_clearation_data
+    end
+
+    test "create_field_clearation_data/1 with valid data creates a field_clearation_data" do
+      assert {:ok, %FieldClearationData{} = field_clearation_data} = Core.create_field_clearation_data(@valid_attrs)
+      assert field_clearation_data.clearation_date == ~D[2010-04-17]
+      assert field_clearation_data.description == "some description"
+    end
+
+    test "create_field_clearation_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_field_clearation_data(@invalid_attrs)
+    end
+
+    test "update_field_clearation_data/2 with valid data updates the field_clearation_data" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert {:ok, %FieldClearationData{} = field_clearation_data} = Core.update_field_clearation_data(field_clearation_data, @update_attrs)
+
+      
+      assert field_clearation_data.clearation_date == ~D[2011-05-18]
+      assert field_clearation_data.description == "some updated description"
+    end
+
+    test "update_field_clearation_data/2 with invalid data returns error changeset" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_field_clearation_data(field_clearation_data, @invalid_attrs)
+      assert field_clearation_data == Core.get_field_clearation_data!(field_clearation_data.id)
+    end
+
+    test "delete_field_clearation_data/1 deletes the field_clearation_data" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert {:ok, %FieldClearationData{}} = Core.delete_field_clearation_data(field_clearation_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_field_clearation_data!(field_clearation_data.id) end
+    end
+
+    test "change_field_clearation_data/1 returns a field_clearation_data changeset" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_field_clearation_data(field_clearation_data)
+    end
+  end
 end

@@ -4,6 +4,7 @@ defmodule FarmQ.Core.CropCycle do
 
   alias FarmQ.Core.FieldPreparationData
   alias FarmQ.Core.SowingData
+  alias FarmQ.Core.HarvestData
 
   schema "crop_cycles" do
     field :name, :string
@@ -11,6 +12,7 @@ defmodule FarmQ.Core.CropCycle do
 
     has_many :field_preparation_data, FieldPreparationData
     has_many :sowing_data, SowingData
+    has_many :harvest_data, HarvestData
     timestamps()
   end
 

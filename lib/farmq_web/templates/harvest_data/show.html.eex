@@ -1,0 +1,33 @@
+<h1>Show Harvest data</h1>
+
+<ul>
+
+  <li>
+    <strong>Actual yield value:</strong>
+    <%= @harvest_data.actual_yield_value %>
+  </li>
+
+  <li>
+    <strong>Actual yield unit:</strong>
+    <%= @harvest_data.actual_yield_unit %>
+  </li>
+
+  <li>
+    <strong>Yield quality</strong>
+    <%= @harvest_data.yield_quality %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @harvest_data.description %>
+  </li>
+
+  <li>
+    <strong>Harvest date:</strong>
+    <%= @harvest_data.harvest_date %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.harvest_data_path(@conn, :edit, @harvest_data) %></span>
+<span><%= link "Back", to: Routes.harvest_data_path(@conn, :index) %></span>

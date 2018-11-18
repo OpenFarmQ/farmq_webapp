@@ -34,6 +34,9 @@ defmodule FarmQWeb.Router do
       resources "/crop_cycles", CropCycleController
       resources "/field_preparation_data", FieldPreparationDataController
       resources "/sowing_data", SowingDataController
+      resources "/harvest_data", HarvestDataController
+      resources "/field_clearation_data", FieldClearationDataController
+
       resources "/locations", LocationController
       resources "/farms", FarmController
       resources "/beds", BedController
