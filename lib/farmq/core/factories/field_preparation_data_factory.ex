@@ -4,7 +4,7 @@ defmodule FarmQ.Core.FieldPreparationDataFactory do
       def field_preparation_data_factory do
         %FarmQ.Core.FieldPreparationData{
           description: sequence("Description"),
-          preparation_date: ~D[2003-11-24],
+          preparation_date: Date.utc_today(),
           crop_cycle: build(:crop_cycle)
         }
       end

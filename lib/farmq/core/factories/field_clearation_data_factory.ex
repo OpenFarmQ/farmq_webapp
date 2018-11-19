@@ -4,7 +4,7 @@ defmodule FarmQ.Core.FieldClearationDataFactory do
       def field_clearation_data_factory do
         %FarmQ.Core.FieldClearationData{
           description: sequence("Description"),
-          clearation_date: ~D[2003-11-24],
+          clearation_date: Date.utc_today |> Date.add(21),
           crop_cycle: build(:crop_cycle)
         }
       end
