@@ -1,12 +1,13 @@
 defmodule FarmQ.Core.FieldClearationData do
   use Ecto.Schema
   import Ecto.Changeset
+  alias FarmQ.Core.CropCycle
 
 
   schema "field_clearation_data" do
     field :clearation_date, :date
     field :description, :string
-    field :crop_cycle_id, :id
+    belongs_to :crop_cycle, CropCycle
 
     timestamps()
   end

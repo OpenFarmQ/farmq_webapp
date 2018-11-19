@@ -8,7 +8,6 @@ defmodule FarmQ.Core.ParameterFactory do
           unit: sequence("Unit"),
           description: sequence("Description"),
           data_type: sequence(:data_type, ["String", "Integer", "Decimal"]),
-          url: sequence(:url, &"url#{&1}.com")
 
         }
       end
