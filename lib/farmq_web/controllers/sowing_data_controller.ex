@@ -11,7 +11,8 @@ defmodule FarmQWeb.SowingDataController do
 
   def new(conn, _params) do
     changeset = Core.change_sowing_data(%SowingData{})
-    render(conn, "new.html", changeset: changeset)
+    plants = Core.list_plants()
+    render(conn, "new.html", changeset: changeset, plants: plants)
   end
 
   def create(conn, %{"sowing_data" => sowing_data_params}) do
@@ -33,8 +34,9 @@ defmodule FarmQWeb.SowingDataController do
 
   def edit(conn, %{"id" => id}) do
     sowing_data = Core.get_sowing_data!(id)
+    plants = Core.list_plants()
     changeset = Core.change_sowing_data(sowing_data)
-    render(conn, "edit.html", sowing_data: sowing_data, changeset: changeset)
+    render(conn, "edit.html", sowing_data: sowing_data, changeset: changeset, plants: plants)
   end
 
   def update(conn, %{"id" => id, "sowing_data" => sowing_data_params}) do

@@ -11,6 +11,11 @@
   <%= hidden_input f, :crop_cycle_id %>
   <% end %>
 
+  <%= label f, :plant_id, "Plant Name"%>
+  <%= select f, :plant_id, Enum.map(@plants, &{&1.name, &1.id}) %>
+  <%= error_tag f, :plant_id %>
+
+
   <%= label f, :seed_weight %>
   <%= number_input f, :seed_weight, step: "any" %>
   <%= error_tag f, :seed_weight %>

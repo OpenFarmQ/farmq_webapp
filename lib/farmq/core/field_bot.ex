@@ -1,6 +1,7 @@
 defmodule FarmQ.Core.FieldBot do
   use Ecto.Schema
   import Ecto.Changeset
+  alias FarmQ.Core.Location
 
 
   schema "field_bots" do

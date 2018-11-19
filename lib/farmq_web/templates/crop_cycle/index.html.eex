@@ -4,6 +4,15 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Plant</th>
+      <th>Area</th>
+      <th>Lat</th>
+      <th>Lon</th>
+      <th>Seeds Sown</th>
+      <th>Sown Date</th>
+
+
+
 
       <th></th>
     </tr>
@@ -12,6 +21,19 @@
 <%= for crop_cycle <- @crop_cycles do %>
     <tr>
       <td><%= crop_cycle.name %></td>
+      <td><%= crop_cycle.sowing_data.plant.name %></td>
+      <td><%= crop_cycle.bed.area %></td>
+      <td><%= crop_cycle.bed.latitude %></td>
+      <td><%= crop_cycle.bed.longitude %></td>
+      <td><%= crop_cycle.sowing_data.seed_weight %></td>
+      <td><%= crop_cycle.sowing_data.sown_date %></td>
+
+
+
+
+
+
+
 
       <td>
         <%= link "Show", to: Routes.crop_cycle_path(@conn, :show, crop_cycle) %>

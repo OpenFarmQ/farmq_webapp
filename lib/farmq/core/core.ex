@@ -507,7 +507,9 @@ defmodule FarmQ.Core do
 
   """
   def list_crop_cycles do
-    Repo.all(CropCycle)
+    CropCycle
+    |> Repo.all()
+    |> Repo.preload([:bed, :field_preparation_data, :harvest_data, sowing_data: [:plant]])
   end
 
   @doc """

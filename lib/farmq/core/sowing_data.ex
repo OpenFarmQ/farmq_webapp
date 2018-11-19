@@ -3,6 +3,7 @@ defmodule FarmQ.Core.SowingData do
   import Ecto.Changeset
 
   alias FarmQ.Core.CropCycle
+  alias FarmQ.Core.Plant
 
   schema "sowing_data" do
     field :description, :string
@@ -10,8 +11,8 @@ defmodule FarmQ.Core.SowingData do
     field :expected_yield_value, :decimal
     field :seed_weight, :decimal
     field :sown_date, :date
-    field :plant_id, :id
-    belongs_to :crop_cycle, CropCycle
+    belongs_to :plant, Plant
+    belongs_to :crop_cycle, CropCycle, foreign_key: :crop_cycle_id
 
     timestamps()
   end
@@ -19,8 +20,10 @@ defmodule FarmQ.Core.SowingData do
   @doc false
   def changeset(sowing_data, attrs) do
     sowing_data
-    |> cast(attrs, [:seed_weight, :expected_yield_value, :expected_yield_unit, :description, :sown_date, :crop_cycle_id])
-    |> validate_required([:seed_weight, :expected_yield_value, :expected_yield_unit, :description, :sown_date])
+    |> cast(attrs, [:seed_weight, :expected_yield_value, :expected_yield_unit, :description, :sown_date, :crop_cycle_id, :plant_id])
+    |> validate_required([:seed_weight, :expected_yield_value, :expected_yield_unit, :description, :sown_date, :crop_cycle_id, :plant_id])
     |> foreign_key_constraint(:crop_cycle_id)
+    |> foreign_key_constraint(:plant_id)
+
   end
 end
