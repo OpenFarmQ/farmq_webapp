@@ -19,7 +19,7 @@ defmodule FarmQWeb.FieldClearationDataController do
       {:ok, field_clearation_data} ->
         conn
         |> put_flash(:info, "Field clearation data created successfully.")
-        |> redirect(to: Routes.field_clearation_data_path(conn, :show, field_clearation_data))
+        |> redirect(to: Routes.crop_cycle_path(conn, :show, field_clearation_data.crop_cycle_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule FarmQWeb.FieldClearationDataController do
       {:ok, field_clearation_data} ->
         conn
         |> put_flash(:info, "Field clearation data updated successfully.")
-        |> redirect(to: Routes.field_clearation_data_path(conn, :show, field_clearation_data))
+        |> redirect(to: Routes.crop_cycle_path(conn, :show, field_clearation_data.crop_cycle_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", field_clearation_data: field_clearation_data, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule FarmQWeb.FieldClearationDataController do
 
     conn
     |> put_flash(:info, "Field clearation data deleted successfully.")
-    |> redirect(to: Routes.field_clearation_data_path(conn, :index))
+    |> redirect(to: Routes.crop_cycle_path(conn, :show, field_clearation_data.crop_cycle_id))
   end
 end

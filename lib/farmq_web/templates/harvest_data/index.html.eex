@@ -1,10 +1,19 @@
-<h1>Listing Harvest data</h1>
+<%= link raw('<i class="material-icons"> add </i>'), to: Routes.harvest_data_path(@conn, :new, crop_cycle: @conn.params["id"]), class: "btn btn-sm bg-green text-white float-right" %>
+<h3>Harvest data</h3>
 
-<table>
+
+<%= if @harvest_data == [] do %>
+  <div class="alert alert-secondary" role="alert">
+    Harvest data is not created yet!
+  </div>
+<% else %>
+<table class="table">
   <thead>
     <tr>
       <th>Actual yield value</th>
-      <th>Actual yield unityield quality</th>
+      <th>Actual yield unit</th>
+      <th>Yield quality</th>
+
       <th>Description</th>
       <th>Harvest date</th>
 
@@ -12,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for harvest_data <- @harvest_data do %>
+  <%= for harvest_data <- @harvest_data do %>
     <tr>
       <td><%= harvest_data.actual_yield_value %></td>
       <td><%= harvest_data.actual_yield_unit %></td>
@@ -20,14 +29,12 @@
       <td><%= harvest_data.description %></td>
       <td><%= harvest_data.harvest_date %></td>
 
-      <td>
-        <%= link "Show", to: Routes.harvest_data_path(@conn, :show, harvest_data) %>
-        <%= link "Edit", to: Routes.harvest_data_path(@conn, :edit, harvest_data) %>
-        <%= link "Delete", to: Routes.harvest_data_path(@conn, :delete, harvest_data), method: :delete, data: [confirm: "Are you sure?"] %>
+      <td class="float-right">
+        <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.harvest_data_path(@conn, :edit, harvest_data), class: "btn btn-sm bg-green text-white" %>
+        <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.harvest_data_path(@conn, :delete, harvest_data), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger text-white" %>
       </td>
     </tr>
-<% end %>
+  <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Harvest data", to: Routes.harvest_data_path(@conn, :new, crop_cycle: @conn.params["id"]) %></span>
+<% end %>

@@ -20,7 +20,7 @@ defmodule FarmQWeb.BedController do
       {:ok, location} ->
         conn
         |> put_flash(:info, "Location created successfully.")
-        |> redirect(to: Routes.bed_path(conn, :show, location))
+        |> redirect(to: Routes.bed_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -45,7 +45,7 @@ defmodule FarmQWeb.BedController do
       {:ok, location} ->
         conn
         |> put_flash(:info, "Location updated successfully.")
-        |> redirect(to: Routes.bed_path(conn, :show, location))
+        |> redirect(to: Routes.bed_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", location: location, changeset: changeset)

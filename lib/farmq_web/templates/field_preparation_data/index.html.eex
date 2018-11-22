@@ -1,28 +1,31 @@
-<h1>Listing Field preparation data</h1>
+  <%= link raw('<i class="material-icons"> add </i>'), to: Routes.field_preparation_data_path(@conn, :new, crop_cycle: @conn.params["id"]), class: "btn btn-sm bg-green text-white float-right" %></span>
+  <h3>Field preparation data</h3>
+<%= if @field_preparation_data == [] do %>
+  <div class="alert alert-secondary" role="alert">
+    Field preparation data is not created yet!
+  </div>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Preparation date</th>
+        <th>Description</th>
 
-<table>
-  <thead>
-    <tr>
-      <th>Preparation date</th>
-      <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for field_preparation_data <- @field_preparation_data do %>
+      <tr>
+        <td><%= field_preparation_data.preparation_date %></td>
+        <td><%= field_preparation_data.description %></td>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for field_preparation_data <- @field_preparation_data do %>
-    <tr>
-      <td><%= field_preparation_data.preparation_date %></td>
-      <td><%= field_preparation_data.description %></td>
-
-      <td>
-        <%= link "Show", to: Routes.field_preparation_data_path(@conn, :show, field_preparation_data) %>
-        <%= link "Edit", to: Routes.field_preparation_data_path(@conn, :edit, field_preparation_data) %>
-        <%= link "Delete", to: Routes.field_preparation_data_path(@conn, :delete, field_preparation_data), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
+        <td class="float-right">
+          <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.field_preparation_data_path(@conn, :edit, field_preparation_data), class: "btn btn-sm bg-green text-white" %>
+          <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.field_preparation_data_path(@conn, :delete, field_preparation_data), class: "btn btn-sm btn-danger text-white",  method: :delete, data: [confirm: "Are you sure?"] %>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
 <% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Field preparation data", to: Routes.field_preparation_data_path(@conn, :new, crop_cycle: @conn.params["id"]) %></span>

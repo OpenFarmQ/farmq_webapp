@@ -1,5 +1,3 @@
 <h1>Edit Field preparation data</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.field_preparation_data_path(@conn, :update, @field_preparation_data)) %>
-
-<span><%= link "Back", to: Routes.field_preparation_data_path(@conn, :index) %></span>

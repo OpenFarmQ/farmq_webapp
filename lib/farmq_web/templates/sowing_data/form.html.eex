@@ -11,32 +11,44 @@
   <%= hidden_input f, :crop_cycle_id %>
   <% end %>
 
-  <%= label f, :plant_id, "Plant Name"%>
-  <%= select f, :plant_id, Enum.map(@plants, &{&1.name, &1.id}) %>
-  <%= error_tag f, :plant_id %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= label f, :plant_id, "Plant Name"%>
+      <%= select f, :plant_id, Enum.map(@plants, &{&1.name, &1.id}), class: "form-control" %>
+      <%= error_tag f, :plant_id %>
+    </div>
 
+    <div class="col-md-6">
+      <%= label f, :seed_weight, "Weight Of Seeds" %>
+      <%= number_input f, :seed_weight, step: "any", class: "form-control" %>
+      <%= error_tag f, :seed_weight %>
+    </div>
+  </div>
 
-  <%= label f, :seed_weight %>
-  <%= number_input f, :seed_weight, step: "any" %>
-  <%= error_tag f, :seed_weight %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= label f, :expected_yield_value %>
+      <%= number_input f, :expected_yield_value, step: "any", class: "form-control" %>
+      <%= error_tag f, :expected_yield_value %>
+    </div>
 
-  <%= label f, :expected_yield_value %>
-  <%= number_input f, :expected_yield_value, step: "any" %>
-  <%= error_tag f, :expected_yield_value %>
+    <div class="col-md-6">
+      <%= label f, :expected_yield_unit %>
+      <%= text_input f, :expected_yield_unit, class: "form-control" %>
+      <%= error_tag f, :expected_yield_unit %>
+    </div>
+  </div>
 
-  <%= label f, :expected_yield_unit %>
-  <%= text_input f, :expected_yield_unit %>
-  <%= error_tag f, :expected_yield_unit %>
 
   <%= label f, :description %>
-  <%= textarea f, :description %>
+  <%= textarea f, :description, class: "form-control" %>
   <%= error_tag f, :description %>
 
   <%= label f, :sown_date %>
-  <%= date_select f, :sown_date %>
+  <%= date_select f, :sown_date, class: "form-control" %>
   <%= error_tag f, :sown_date %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Submit", class: "btn bg-green text-white mt-2" %>
   </div>
 <% end %>

@@ -19,7 +19,7 @@ defmodule FarmQWeb.ParameterController do
       {:ok, parameter} ->
         conn
         |> put_flash(:info, "Parameter created successfully.")
-        |> redirect(to: Routes.parameter_path(conn, :show, parameter))
+        |> redirect(to: Routes.parameter_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule FarmQWeb.ParameterController do
       {:ok, parameter} ->
         conn
         |> put_flash(:info, "Parameter updated successfully.")
-        |> redirect(to: Routes.parameter_path(conn, :show, parameter))
+        |> redirect(to: Routes.parameter_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", parameter: parameter, changeset: changeset)

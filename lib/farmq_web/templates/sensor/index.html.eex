@@ -1,6 +1,12 @@
+<%= link raw('<i class="material-icons"> add </i>'), to: Routes.sensor_path(@conn, :new), class: "btn btn-sm bg-green text-white float-right mt-3" %>
 <h1>Listing Sensors</h1>
 
-<table>
+<%= if @sensors == [] do %>
+<div class="alert alert-secondary" role="alert">
+  There are no sensors created yet.
+</div>
+<% else %>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -11,20 +17,19 @@
     </tr>
   </thead>
   <tbody>
-<%= for sensor <- @sensors do %>
-    <tr>
-      <td><%= sensor.name %></td>
-      <td><%= sensor.description %></td>
-      <td><%= sensor.url %></td>
+    <%= for sensor <- @sensors do %>
+      <tr>
+        <td><%= sensor.name %></td>
+        <td><%= sensor.description %></td>
+        <td><%= sensor.url %></td>
 
-      <td>
-        <%= link "Show", to: Routes.sensor_path(@conn, :show, sensor) %>
-        <%= link "Edit", to: Routes.sensor_path(@conn, :edit, sensor) %>
-        <%= link "Delete", to: Routes.sensor_path(@conn, :delete, sensor), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
+        <td>
+          <%= link "Show", to: Routes.sensor_path(@conn, :show, sensor) %>
+          <%= link "Edit", to: Routes.sensor_path(@conn, :edit, sensor) %>
+          <%= link "Delete", to: Routes.sensor_path(@conn, :delete, sensor), method: :delete, data: [confirm: "Are you sure?"] %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Sensor", to: Routes.sensor_path(@conn, :new) %></span>
+<% end %>

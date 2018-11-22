@@ -10,7 +10,7 @@
   <%= error_tag f, :name %>
 
   <%= label f, :location_id, "Choose bed" %>
-  <%= select f, :location_id, Enum.map(@beds, &{&1.name, &1.id}), prompt: "select a farm", class: "form-control" %>
+  <%= select f, :location_id, Enum.map(@beds, &{&1.name, &1.id}), prompt: "select a bed", class: "form-control" %>
   <%= error_tag f, :location_id %>
 
   <div>

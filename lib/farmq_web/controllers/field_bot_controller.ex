@@ -20,7 +20,7 @@ defmodule FarmQWeb.FieldBotController do
       {:ok, field_bot} ->
         conn
         |> put_flash(:info, "Field bot created successfully.")
-        |> redirect(to: Routes.field_bot_path(conn, :show, field_bot))
+        |> redirect(to: Routes.field_bot_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -47,7 +47,7 @@ defmodule FarmQWeb.FieldBotController do
       {:ok, field_bot} ->
         conn
         |> put_flash(:info, "Field bot updated successfully.")
-        |> redirect(to: Routes.field_bot_path(conn, :show, field_bot))
+        |> redirect(to: Routes.field_bot_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", field_bot: field_bot, changeset: changeset)
