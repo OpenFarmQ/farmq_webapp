@@ -27,10 +27,16 @@ defmodule FarmQWeb.Router do
     get "/contact", PageController, :contact
     get "/dashboard-for-dc", PageController, :dashboard_for_dc
 
+    get "/register", RegistrationController, :new
+    post "/register", RegistrationController, :create
+
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create 
 
     scope "/contributor" do
       pipe_through :contributor
       get "/insight", PageController, :farmq_insight
+
       resources "/crop_cycles", CropCycleController
       resources "/field_preparation_data", FieldPreparationDataController
       resources "/sowing_data", SowingDataController

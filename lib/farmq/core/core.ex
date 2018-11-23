@@ -1000,4 +1000,17 @@ defmodule FarmQ.Core do
   def change_field_clearation_data(%FieldClearationData{} = field_clearation_data) do
     FieldClearationData.changeset(field_clearation_data, %{})
   end
+
+  alias FarmQ.Core.User
+
+  def build_user(attrs \\ %{}) do
+    %User{}
+    |> User.changeset(attrs)
+  end
+
+  def create_user(attrs) do
+    attrs
+    |> build_user
+    |> Repo.insert
+  end
 end

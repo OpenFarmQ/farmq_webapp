@@ -252,7 +252,7 @@ defmodule FarmQ.CoreTest do
       location = location_fixture()
       assert {:ok, %Location{} = location} = Core.update_location(location, @update_attrs)
 
-      
+
       assert location.area == Decimal.new("456.7")
       assert location.description == "some updated description"
       assert location.latitude == Decimal.new("456.7")
@@ -320,7 +320,7 @@ defmodule FarmQ.CoreTest do
       sensor = sensor_fixture()
       assert {:ok, %Sensor{} = sensor} = Core.update_sensor(sensor, @update_attrs)
 
-      
+
       assert sensor.description == "some updated description"
       assert sensor.name == "some updated name"
       assert sensor.url == "some updated url"
@@ -383,7 +383,7 @@ defmodule FarmQ.CoreTest do
       crop_cycle = crop_cycle_fixture()
       assert {:ok, %CropCycle{} = crop_cycle} = Core.update_crop_cycle(crop_cycle, @update_attrs)
 
-      
+
       assert crop_cycle.name == "some updated name"
     end
 
@@ -445,7 +445,7 @@ defmodule FarmQ.CoreTest do
       field_preparation_data = field_preparation_data_fixture()
       assert {:ok, %FieldPreparationData{} = field_preparation_data} = Core.update_field_preparation_data(field_preparation_data, @update_attrs)
 
-      
+
       assert field_preparation_data.description == "some updated description"
       assert field_preparation_data.preparation_date == ~D[2011-05-18]
     end
@@ -511,7 +511,7 @@ defmodule FarmQ.CoreTest do
       sowing_data = sowing_data_fixture()
       assert {:ok, %SowingData{} = sowing_data} = Core.update_sowing_data(sowing_data, @update_attrs)
 
-      
+
       assert sowing_data.description == "some updated description"
       assert sowing_data.expected_yield_unit == "some updated expected_yield_unit"
       assert sowing_data.expected_yield_value == Decimal.new("456.7")
@@ -579,7 +579,7 @@ defmodule FarmQ.CoreTest do
       harvest_data = harvest_data_fixture()
       assert {:ok, %HarvestData{} = harvest_data} = Core.update_harvest_data(harvest_data, @update_attrs)
 
-      
+
       assert harvest_data.actual_yield_unityield_quality == "some updated actual_yield_unityield_quality"
       assert harvest_data.actual_yield_value == Decimal.new("456.7")
       assert harvest_data.description == "some updated description"
@@ -644,7 +644,7 @@ defmodule FarmQ.CoreTest do
       field_clearation_data = field_clearation_data_fixture()
       assert {:ok, %FieldClearationData{} = field_clearation_data} = Core.update_field_clearation_data(field_clearation_data, @update_attrs)
 
-      
+
       assert field_clearation_data.clearation_date == ~D[2011-05-18]
       assert field_clearation_data.description == "some updated description"
     end
@@ -666,4 +666,32 @@ defmodule FarmQ.CoreTest do
       assert %Ecto.Changeset{} = Core.change_field_clearation_data(field_clearation_data)
     end
   end
+
+  describe "user" do
+    alias FarmQ.Core.User
+
+    test "build_user/0 returns a user changeset" do
+      assert %Ecto.Changeset{data: %User{}} = Core.build_user
+    end
+
+    test "build_user/1 returns a user changeset with values applied" do
+      attrs = %{"name" => "Nittin"}
+      changeset = Core.build_user(attrs)
+      assert changeset.params == attrs
+    end
+
+    test "create_customer/1 returns a customer for valid data" do
+      valid_attrs = %{
+      "name" => "Nittin",
+      "email" => "nittin@example.com",
+      "password" => "password",
+      }
+      assert {:ok, user} = Core.create_user(valid_attrs)
+      assert Comeonin.Bcrypt.checkpw(valid_attrs["password"], user.password_hash)
+    end
+
+    test "create_customer/1 returns a changeset for invalid data" do
+      invalid_attrs = %{}
+      assert {:error, %Ecto.Changeset{}} = Core.create_user(invalid_attrs)
+    end
 end
