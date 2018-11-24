@@ -5,7 +5,7 @@ defmodule FarmQWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -36,6 +36,8 @@ defmodule FarmQWeb.Router do
     get "/logout", SessionController, :delete
 
     get "/csv", CsvController, :export
+
+    post "/receive", DataReceiverController, :create
 
     scope "/contributor" do
       pipe_through :contributor
