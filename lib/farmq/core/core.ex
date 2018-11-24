@@ -1002,6 +1002,7 @@ defmodule FarmQ.Core do
   end
 
   alias FarmQ.Core.User
+  import Comeonin.Bcrypt
 
   def build_user(attrs \\ %{}) do
     %User{}
@@ -1013,4 +1014,21 @@ defmodule FarmQ.Core do
     |> build_user
     |> Repo.insert
   end
+
+  def get_user_by_email(email) do
+    Repo.get_by(User, email: email)
+  end
+
+  def get_user_by_credentials(%{"email" => email, "password" => pass}) do
+    user = get_user_by_email(email)
+    cond do
+      user && checkpw(pass, user.password_hash) ->
+        user
+      true ->
+        :error
+    end
+  end
+
+  def get_user(id), do: Repo.get(User, id)
+
 end

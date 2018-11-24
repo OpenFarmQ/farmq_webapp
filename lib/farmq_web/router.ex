@@ -15,6 +15,7 @@ defmodule FarmQWeb.Router do
 
   pipeline :contributor do
     plug :set_contributor_layout
+    plug FarmQWeb.Plugs.LoadUser
   end
 
   scope "/", FarmQWeb do
@@ -31,7 +32,8 @@ defmodule FarmQWeb.Router do
     post "/register", RegistrationController, :create
 
     get "/login", SessionController, :new
-    post "/login", SessionController, :create 
+    post "/login", SessionController, :create
+    get "/logout", SessionController, :delete
 
     scope "/contributor" do
       pipe_through :contributor

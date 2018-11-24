@@ -680,18 +680,40 @@ defmodule FarmQ.CoreTest do
       assert changeset.params == attrs
     end
 
-    test "create_customer/1 returns a customer for valid data" do
+    test "create_user/1 returns a user for valid data" do
       valid_attrs = %{
       "name" => "Nittin",
       "email" => "nittin@example.com",
-      "password" => "password",
+      "password" => "password"
       }
       assert {:ok, user} = Core.create_user(valid_attrs)
       assert Comeonin.Bcrypt.checkpw(valid_attrs["password"], user.password_hash)
     end
 
-    test "create_customer/1 returns a changeset for invalid data" do
+    test "create_user/1 returns a changeset for invalid data" do
       invalid_attrs = %{}
       assert {:error, %Ecto.Changeset{}} = Core.create_user(invalid_attrs)
+    end
+
+    test "get_user_by_email/1" do
+      valid_attrs = %{
+      "name" => "Nittin",
+      "email" => "nittin@example.com",
+      "password" => "password"
+      }
+      user1 = Core.create_user(valid_attrs)
+      user_from_db = Core.get_user_by_email("nittin@example.com")
+      assert user1.id == user_from_db.id
+    end
+
+    test "get_user_by_credentials/1" do
+      valid_attrs = %{
+      "name" => "Nittin",
+      "email" => "nittin@example.com",
+      "password" => "password"
+      }
+      user1 = Core.create_user(valid_attrs)
+      user_from_db = Core.get_user_by_credentials(valid_attrs)
+      assert user1.id == user_from_db.id
     end
 end
