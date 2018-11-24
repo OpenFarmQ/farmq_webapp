@@ -35,6 +35,8 @@ defmodule FarmQWeb.Router do
     post "/login", SessionController, :create
     get "/logout", SessionController, :delete
 
+    get "/csv", CsvController, :export
+
     scope "/contributor" do
       pipe_through :contributor
       get "/insight", PageController, :farmq_insight
