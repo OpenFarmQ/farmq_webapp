@@ -46,7 +46,8 @@ defmodule FarmQ.MixProject do
       {:ex_machina, "~> 2.2"},
       {:phoenix_active_link, "~> 0.1.1"},
       {:comeonin, "~> 3.0"},
-      {:nimble_csv, "~> 0.3"}
+      {:nimble_csv, "~> 0.3"},
+      {:timex, "~> 3.1"}
     ]
   end
 

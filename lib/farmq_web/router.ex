@@ -37,7 +37,15 @@ defmodule FarmQWeb.Router do
     post "/login", SessionController, :create
     get "/logout", SessionController, :delete
 
-    get "/csv", CsvController, :export
+    get "/crop_cycles/:id/download-prep-data", CsvController, :download_prep_data
+    get "/crop_cycles/:id/download-sowing-data", CsvController, :download_sowing_data
+    get "/crop_cycles/:id/download-harvest_data", CsvController, :download_harvest_data
+    get "/crop_cycles/:id/download-clearation-data", CsvController, :download_clearation_data
+    get "/crop_cycles/:id/download-sensor-data", CsvController, :download_sensor_data
+
+
+
+
     get "/browse", DataController, :index
 
 

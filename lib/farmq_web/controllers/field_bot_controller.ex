@@ -33,7 +33,8 @@ defmodule FarmQWeb.FieldBotController do
 
   def show(conn, %{"id" => id}) do
     field_bot = Core.get_field_bot!(id)
-    render(conn, "show.html", field_bot: field_bot)
+    sensor_data = Core.list_sensor_data_by_field_bot(field_bot)
+    render(conn, "show.html", field_bot: field_bot, sensor_data: sensor_data)
   end
 
   def edit(conn, %{"id" => id}) do

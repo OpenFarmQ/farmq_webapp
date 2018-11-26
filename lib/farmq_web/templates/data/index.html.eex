@@ -15,7 +15,7 @@
         <th>Sowing Data</th>
         <th>Harvest Data</th>
         <th>Clearation Data</th>
-
+        <th>Sensor Data</th>
 
 
 
@@ -32,7 +32,11 @@
           <td><%= crop_cycle.bed.longitude %></td>
           <td><%= seed_weight(crop_cycle) %></td>
           <td><%= sown_date(crop_cycle) %></td>
-
+          <td><%= link "Download Prep Data", to: Routes.csv_path(@conn, :download_prep_data, crop_cycle) %></td>
+          <td><%= link "Download Sowing Data", to: Routes.csv_path(@conn, :download_sowing_data, crop_cycle) %></td>
+          <td><%= link "Download Harvest Data", to: Routes.csv_path(@conn, :download_harvest_data, crop_cycle) %></td>
+          <td><%= link "Download Clearation Data", to: Routes.csv_path(@conn, :download_clearation_data, crop_cycle) %></td>
+          <td><%= link "Download Sensor Data", to: Routes.csv_path(@conn, :download_sensor_data, crop_cycle) %></td>
         </tr>
     <% end %>
     </tbody>
