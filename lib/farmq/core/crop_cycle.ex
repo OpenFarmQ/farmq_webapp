@@ -8,6 +8,8 @@ defmodule FarmQ.Core.CropCycle do
   alias FarmQ.Core.SowingData
   alias FarmQ.Core.HarvestData
   alias FarmQ.Core.FieldClearationData
+  alias FarmQ.Core.User
+
 
   schema "crop_cycles" do
     field :name, :string
@@ -17,6 +19,7 @@ defmodule FarmQ.Core.CropCycle do
     has_one :sowing_data, SowingData, on_delete: :nilify_all
     has_many :harvest_data, HarvestData, on_delete: :nilify_all
     has_one :field_clearation_data, FieldClearationData, on_delete: :nilify_all
+    belongs_to :user, User
 
     timestamps()
   end
@@ -24,7 +27,7 @@ defmodule FarmQ.Core.CropCycle do
   @doc false
   def changeset(crop_cycle, attrs) do
     crop_cycle
-    |> cast(attrs, [:name, :location_id])
+    |> cast(attrs, [:name, :location_id, :user_id])
     |> validate_required([:name])
   end
 end

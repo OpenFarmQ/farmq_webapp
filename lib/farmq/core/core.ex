@@ -5,6 +5,9 @@ defmodule FarmQ.Core do
 
   import Ecto.Query, warn: false
   alias FarmQ.Repo
+  alias FarmQ.Core.User
+  alias FarmQ.Core
+
 
   alias FarmQ.Core.Parameter
 
@@ -36,11 +39,6 @@ defmodule FarmQ.Core do
 
   """
   def get_parameter!(id), do: Repo.get!(Parameter, id)
-
-  def get_parameter_by_key(key) do
-    Parameter
-    |> Repo.get_by(key: key)
-  end
 
   @doc """
   Creates a parameter.
@@ -219,6 +217,12 @@ defmodule FarmQ.Core do
     |> Repo.all
   end
 
+  def list_field_bots_by_user(%User{} = user) do
+    FieldBot
+    |> where(user_id: ^user.id)
+    |> Repo.all
+  end
+
 
 
   @doc """
@@ -320,6 +324,13 @@ defmodule FarmQ.Core do
   def list_locations(type) do
     Location
     |> where([l], l.type == ^type)
+    |> Repo.all
+  end
+
+  def list_locations_by_user(type, %User{} = user) do
+    Location
+    |> where([l], l.type == ^type)
+    |> where(user_id: ^user.id)
     |> Repo.all
   end
 
@@ -513,6 +524,13 @@ defmodule FarmQ.Core do
   """
   def list_crop_cycles do
     CropCycle
+    |> Repo.all()
+    |> Repo.preload([:bed, :field_preparation_data, :harvest_data, sowing_data: [:plant]])
+  end
+
+  def list_crop_cycles_by_user(%User{} = user) do
+    CropCycle
+    |> where(user_id: ^user.id)
     |> Repo.all()
     |> Repo.preload([:bed, :field_preparation_data, :harvest_data, sowing_data: [:plant]])
   end
@@ -1006,7 +1024,6 @@ defmodule FarmQ.Core do
     FieldClearationData.changeset(field_clearation_data, %{})
   end
 
-  alias FarmQ.Core.User
   import Comeonin.Bcrypt
 
   def build_user(attrs \\ %{}) do

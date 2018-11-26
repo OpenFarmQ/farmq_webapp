@@ -17,6 +17,13 @@
 
   </ul>
 
+  <pre>
+    config :farmq_os,
+    location_id: <%= @field_bot.location_id %>,
+    field_bot_id: <%= @field_bot.id %>,
+    arduino_serial: YOUR ARDUINO SERIAL
+  </pre>
+
   <span><%= link "Edit", to: Routes.field_bot_path(@conn, :edit, @field_bot) %></span>
   <span><%= link "Back", to: Routes.field_bot_path(@conn, :index) %></span>
 
