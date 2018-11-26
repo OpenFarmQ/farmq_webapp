@@ -9,7 +9,7 @@ defmodule FarmQ.Core.FieldBot do
   schema "field_bots" do
     field :name, :string
     belongs_to :bed, Location, foreign_key: :location_id
-    has_many :sensor_data, FarmQ.Core.SensorData
+    has_many :sensor_data, FarmQ.Core.SensorData, on_delete: :nilify_all
     belongs_to :user, User
 
 

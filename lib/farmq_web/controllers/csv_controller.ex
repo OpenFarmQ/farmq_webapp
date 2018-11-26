@@ -62,7 +62,7 @@ defmodule FarmQWeb.CsvController do
   end
 
   defp sensor_data(crop_cycle) do
-  CSV.dump_to_iodata(Core.list_sensor_data_by_crop_cycle(crop_cycle) |> Enum.map(fn(f) -> [f.id, f.parameter.name, f.value, f.collected_time, f.bed_id] end))
+  CSV.dump_to_iodata(Core.list_sensor_data_by_crop_cycle(crop_cycle) |> Enum.map(fn(f) -> [f.id, f.parameter.name, f.value, f.collected_time, f.bed.name] end))
   |> IO.iodata_to_binary
   end
 
