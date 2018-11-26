@@ -19,6 +19,7 @@ defmodule FarmQWeb.Router do
   pipeline :contributor do
     plug :set_contributor_layout
     plug FarmQWeb.Plugs.LoadUser
+    plug FarmQWeb.Plugs.Locale
   end
 
   scope "/", FarmQWeb do

@@ -1,0 +1,22 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/farmq_web/templates/page/farmq_insight.html.eex:2
+msgid "This feaute will be soon available with our growing community."
+msgstr "Cette fonctionnalité sera bientôt disponible dans notre communauté grandissante."
+
+#, elixir-format
+#: lib/farmq_web/templates/page/farmq_insight.html.eex:2
+msgid "This page will contain insights on your farm's how to dos. We need more data with more people like you and a larger community of ML scientists to provide insights with your data."
+msgstr "Cette page vous expliquera comment procéder. Nous avons besoin de plus de données avec plus de personnes comme vous et d'une communauté plus large de scientifiques du ML pour fournir des informations avec vos données."

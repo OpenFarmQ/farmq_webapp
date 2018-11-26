@@ -1,5 +1,5 @@
 <h1>FarmQ Insights</h1>
-<p>This page will contain insights on your farm's how to dos. We need more data with more people like you and a larger community of ML scientists to provide insights with your data.<strong> This feaute will be soon available with our growing community.</strong></p>
+<p><%= gettext "This page will contain insights on your farm's how to dos. We need more data with more people like you and a larger community of ML scientists to provide insights with your data." %><strong><%= gettext "This feaute will be soon available with our growing community." %></strong></p>
 
 <%= if @locations == [] do %>
   It seems like, you have not created any farms. Go ahead and create your <a href="<%= Routes.farm_path(@conn, :index) %>">farm</a> in the FarmQ interface.

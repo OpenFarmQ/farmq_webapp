@@ -1,0 +1,21 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+
+#, elixir-format
+#: lib/farmq_web/templates/page/farmq_insight.html.eex:2
+msgid "This feaute will be soon available with our growing community."
+msgstr ""
+
+#, elixir-format
+#: lib/farmq_web/templates/page/farmq_insight.html.eex:2
+msgid "This page will contain insights on your farm's how to dos. We need more data with more people like you and a larger community of ML scientists to provide insights with your data."
+msgstr ""
