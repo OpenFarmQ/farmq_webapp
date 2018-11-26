@@ -1,4 +1,40 @@
 <div class="container">
   <h1 style="padding-top: 10px;">Browse Data</h1>
-  <p class="lead"> Coming soon!!!</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Plant</th>
+        <th>Area</th>
+        <th>Lat</th>
+        <th>Lon</th>
+        <th>Seeds Sown</th>
+        <th>Sown Date</th>
+
+        <th>Preparation Data</th>
+        <th>Sowing Data</th>
+        <th>Harvest Data</th>
+        <th>Clearation Data</th>
+
+
+
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= for crop_cycle <- @crop_cycles do %>
+        <tr>
+          <td><%= crop_cycle.name %></td>
+          <td><%= plant_name(crop_cycle) %></td>
+          <td><%= crop_cycle.bed.area %></td>
+          <td><%= crop_cycle.bed.latitude %></td>
+          <td><%= crop_cycle.bed.longitude %></td>
+          <td><%= seed_weight(crop_cycle) %></td>
+          <td><%= sown_date(crop_cycle) %></td>
+
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
