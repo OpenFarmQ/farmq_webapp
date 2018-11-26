@@ -2,11 +2,13 @@ defmodule FarmQ.Core.FieldBot do
   use Ecto.Schema
   import Ecto.Changeset
   alias FarmQ.Core.Location
+  alias FarmQ.Core.SensorData
 
 
   schema "field_bots" do
     field :name, :string
     belongs_to :bed, Location, foreign_key: :location_id
+    has_many :sensor_data, SensorData
 
     timestamps()
   end

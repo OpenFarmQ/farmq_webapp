@@ -3,6 +3,7 @@ defmodule FarmQ.Core.Parameter do
   import Ecto.Changeset
 
   alias FarmQ.Core.Sensor
+  alias FarmQ.Core.SensorData
 
   schema "parameters" do
     field :data_type, :string
@@ -11,6 +12,8 @@ defmodule FarmQ.Core.Parameter do
     field :name, :string
     field :unit, :string
     many_to_many :sensors, Sensor, join_through: "sensors_parameters"
+    has_many :sensor_data, SensorData
+
 
     timestamps()
   end

@@ -37,6 +37,11 @@ defmodule FarmQ.Core do
   """
   def get_parameter!(id), do: Repo.get!(Parameter, id)
 
+  def get_parameter_by_key(key) do
+    Parameter
+    |> Repo.get_by(key: key)
+  end
+
   @doc """
   Creates a parameter.
 
@@ -1031,4 +1036,100 @@ defmodule FarmQ.Core do
 
   def get_user(id), do: Repo.get(User, id)
 
+
+  alias FarmQ.Core.SensorData
+
+  @doc """
+  Returns the list of sensor_data.
+
+  ## Examples
+
+      iex> list_sensor_data()
+      [%SensorData{}, ...]
+
+  """
+  def list_sensor_data do
+    Repo.all(SensorData)
+  end
+
+  @doc """
+  Gets a single sensor_data.
+
+  Raises `Ecto.NoResultsError` if the Sensor data does not exist.
+
+  ## Examples
+
+      iex> get_sensor_data!(123)
+      %SensorData{}
+
+      iex> get_sensor_data!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_sensor_data!(id), do: Repo.get!(SensorData, id)
+
+  @doc """
+  Creates a sensor_data.
+
+  ## Examples
+
+      iex> create_sensor_data(%{field: value})
+      {:ok, %SensorData{}}
+
+      iex> create_sensor_data(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_sensor_data(attrs \\ %{}) do
+    %SensorData{}
+    |> SensorData.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a sensor_data.
+
+  ## Examples
+
+      iex> update_sensor_data(sensor_data, %{field: new_value})
+      {:ok, %SensorData{}}
+
+      iex> update_sensor_data(sensor_data, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_sensor_data(%SensorData{} = sensor_data, attrs) do
+    sensor_data
+    |> SensorData.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a SensorData.
+
+  ## Examples
+
+      iex> delete_sensor_data(sensor_data)
+      {:ok, %SensorData{}}
+
+      iex> delete_sensor_data(sensor_data)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_sensor_data(%SensorData{} = sensor_data) do
+    Repo.delete(sensor_data)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking sensor_data changes.
+
+  ## Examples
+
+      iex> change_sensor_data(sensor_data)
+      %Ecto.Changeset{source: %SensorData{}}
+
+  """
+  def change_sensor_data(%SensorData{} = sensor_data) do
+    SensorData.changeset(sensor_data, %{})
+  end
 end
