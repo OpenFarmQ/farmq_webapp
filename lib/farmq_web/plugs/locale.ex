@@ -11,5 +11,5 @@ defmodule FarmQWeb.Plugs.Locale do
         conn |> put_session(:locale, locale)
     end
   end
-  
+
 end
