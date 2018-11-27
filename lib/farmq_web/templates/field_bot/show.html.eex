@@ -18,11 +18,16 @@
   </ul>
 
   <p>Copy this piece of code to config.exs in farmq_firmware's firmware folder:</p>
-  <pre><code>
-      config :farmq_os,
-      location_id: <%= @field_bot.location_id %>,
-      field_bot_id: <%= @field_bot.id %>,
-      arduino_serial: YOUR ARDUINO SERIAL</code>
+  <pre>
+  <button class="text_to_copy float-right btn btn-sm" data-clipboard-target="#code" alt="Copy to clipboard">
+    <i class="material-icons">file_copy</i>
+  </button>
+  <code id="code">
+  config :farmq_os,
+  location_id: <%= @field_bot.location_id %>,
+  field_bot_id: <%= @field_bot.id %>,
+  arduino_serial: YOUR ARDUINO SERIAL
+  </code>
   </pre>
 
   <table class="table">

@@ -1,0 +1,12 @@
+pre {
+    position: relative;
+    max-width: 500px;
+    padding: 30px 15px;
+    background: #f7f7f7;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre;
+    font-family: monospace, serif;
+    font-size: 14px;
+    color: #666666;
+}
