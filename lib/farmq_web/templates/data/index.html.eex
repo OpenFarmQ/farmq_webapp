@@ -10,16 +10,11 @@
         <th>Lon</th>
         <th>Seeds Sown</th>
         <th>Sown Date</th>
-
         <th>Preparation Data</th>
         <th>Sowing Data</th>
         <th>Harvest Data</th>
         <th>Clearation Data</th>
         <th>Sensor Data</th>
-
-
-
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -32,11 +27,15 @@
           <td><%= crop_cycle.bed.longitude %></td>
           <td><%= seed_weight(crop_cycle) %></td>
           <td><%= sown_date(crop_cycle) %></td>
-          <td><%= link "Download Prep Data", to: Routes.csv_path(@conn, :download_prep_data, crop_cycle) %></td>
-          <td><%= link "Download Sowing Data", to: Routes.csv_path(@conn, :download_sowing_data, crop_cycle) %></td>
-          <td><%= link "Download Harvest Data", to: Routes.csv_path(@conn, :download_harvest_data, crop_cycle) %></td>
-          <td><%= link "Download Clearation Data", to: Routes.csv_path(@conn, :download_clearation_data, crop_cycle) %></td>
-          <td><%= link "Download Sensor Data", to: Routes.csv_path(@conn, :download_sensor_data, crop_cycle) %></td>
+          <td><%= link raw('<i class="material-icons"> arrow_downward </i>'), to: Routes.csv_path(@conn, :download_prep_data, crop_cycle), class: "btn btn-sm bg-green text-white" %></td>
+
+          <td><%= link raw('<i class="material-icons"> arrow_downward </i>'), to: Routes.csv_path(@conn, :download_sowing_data, crop_cycle), class: "btn btn-sm bg-green text-white" %></td>
+
+          <td><%= link raw('<i class="material-icons"> arrow_downward </i>'), to: Routes.csv_path(@conn, :download_harvest_data, crop_cycle), class: "btn btn-sm bg-green text-white" %></td>
+
+          <td><%= link raw('<i class="material-icons"> arrow_downward </i>'), to: Routes.csv_path(@conn, :download_clearation_data, crop_cycle), class: "btn btn-sm bg-green text-white" %></td>
+
+          <td><%= link raw('<i class="material-icons"> arrow_downward </i>'), to: Routes.csv_path(@conn, :download_sensor_data, crop_cycle), class: "btn btn-sm bg-green text-white" %></td>
         </tr>
     <% end %>
     </tbody>

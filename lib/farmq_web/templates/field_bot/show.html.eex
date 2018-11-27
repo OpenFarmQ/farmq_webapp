@@ -18,11 +18,11 @@
   </ul>
 
   <p>Copy this piece of code to config.exs in farmq_firmware's firmware folder:</p>
-  <pre>
-    config :farmq_os,
-    location_id: <%= @field_bot.location_id %>,
-    field_bot_id: <%= @field_bot.id %>,
-    arduino_serial: YOUR ARDUINO SERIAL
+  <pre><code>
+      config :farmq_os,
+      location_id: <%= @field_bot.location_id %>,
+      field_bot_id: <%= @field_bot.id %>,
+      arduino_serial: YOUR ARDUINO SERIAL</code>
   </pre>
 
   <table class="table">

@@ -34,7 +34,6 @@ defmodule FarmQWeb.Router do
     get "/get-started", PageController, :get_started
     get "/docs", DocumentController, :index
     get "/contact", PageController, :contact
-    get "/dashboard-for-dc", PageController, :dashboard_for_dc
 
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
@@ -59,6 +58,8 @@ defmodule FarmQWeb.Router do
 
 
     post "/receive", DataReceiverController, :create
+
+    get "/contributor", PageController, :contributor
 
     scope "/contributor" do
       pipe_through :contributor

@@ -19,6 +19,19 @@
     <!-- Navbar -->
     <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow bg-green">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Open FarmQ</a>
+
+      <div class="dropdown nav-item">
+        <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown"><i class="material-icons">language</i></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="<%= get_active_locale_class("en") %>">
+            <a class="text-dark" href="?locale=en">English</a>
+          </div>
+          <div class="<%= get_active_locale_class("fr") %>">
+            <a class="text-dark" href="?locale=fr">French</a>
+          </div>
+        </div>
+      </div>
+
         <%= if @current_user do %>
           <div class="dropdown nav-item px-5">
             <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown"><%= @current_user.name %><span class="caret"></span></a>

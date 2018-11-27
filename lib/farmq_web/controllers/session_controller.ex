@@ -19,12 +19,13 @@ defmodule FarmQWeb.SessionController do
         |> put_session(:user_id, user.id)
         |> configure_session(renew: true)
         |> put_flash(:info, "Login successful")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :farmq_insight))
     end
   end
 
   def delete(conn, _) do
     clear_session(conn)
-    |> put_flash(:info, "You have been logged out") |> redirect(to: Routes.page_path(conn, :index))
+    |> put_flash(:info, "You have been logged out")
+    |> redirect(to: Routes.page_path(conn, :contributor))
   end
 end
