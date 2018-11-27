@@ -22,6 +22,11 @@ defmodule FarmQWeb.Router do
     plug FarmQWeb.Plugs.Locale
   end
 
+  pipeline :browse do
+    plug :set_browse_layout
+    plug FarmQWeb.Plugs.LoadUser
+  end
+
   scope "/", FarmQWeb do
     pipe_through :browser
 
@@ -47,7 +52,10 @@ defmodule FarmQWeb.Router do
 
 
 
-    get "/browse", DataController, :index
+    scope "/browse" do
+      pipe_through :browse
+      get "/", DataController, :index
+    end
 
 
     post "/receive", DataReceiverController, :create
@@ -77,6 +85,11 @@ defmodule FarmQWeb.Router do
   defp set_contributor_layout(conn, _params) do
     conn
     |> put_layout({FarmQWeb.LayoutView, :contributor_app})
+  end
+
+  defp set_browse_layout(conn, _params) do
+    conn
+    |> put_layout({FarmQWeb.LayoutView, :browse_app})
   end
 
   # Other scopes may use custom stacks.
