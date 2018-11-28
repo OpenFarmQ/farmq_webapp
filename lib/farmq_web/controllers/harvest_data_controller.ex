@@ -19,7 +19,7 @@ defmodule FarmQWeb.HarvestDataController do
       {:ok, harvest_data} ->
         conn
         |> put_flash(:info, "Harvest data created successfully.")
-        |> redirect(to: Routes.harvest_data_path(conn, :show, harvest_data))
+        |> redirect(to: Routes.crop_cycle_path(conn, :show, harvest_data.crop_cycle_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule FarmQWeb.HarvestDataController do
       {:ok, harvest_data} ->
         conn
         |> put_flash(:info, "Harvest data updated successfully.")
-        |> redirect(to: Routes.harvest_data_path(conn, :show, harvest_data))
+        |> redirect(to: Routes.crop_cycle_path(conn, :show, harvest_data.crop_cycle_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", harvest_data: harvest_data, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule FarmQWeb.HarvestDataController do
 
     conn
     |> put_flash(:info, "Harvest data deleted successfully.")
-    |> redirect(to: Routes.harvest_data_path(conn, :index))
+    |> redirect(to: Routes.crop_cycle_path(conn, :show, harvest_data.crop_cycle_id))
   end
 end

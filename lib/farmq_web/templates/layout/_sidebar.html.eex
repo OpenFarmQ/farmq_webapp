@@ -2,10 +2,10 @@
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" href="<%= Routes.page_path(@conn, :farmq_insight) %>">
+        <%= active_link(@conn, to: Routes.page_path(@conn, :farmq_insight), class_active: "active nav-link", class_inactive: "nav-link") do %>
           <span data-feather="home"></span>
-          FarmQ insights
-        </a>
+          FarmQ Insights <span class="sr-only">(current)</span>
+        <% end %>
       </li>
       <li class="nav-item">
         <%= active_link(@conn, to: Routes.crop_cycle_path(@conn, :index), class_active: "active nav-link", class_inactive: "nav-link") do %>
@@ -20,22 +20,16 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= Routes.farm_path(@conn, :index) %>">
+        <%= active_link(@conn, to: Routes.farm_path(@conn, :index), class_active: "active nav-link", class_inactive: "nav-link") do %>
           <span data-feather="home"></span>
-          My farms
-        </a>
+          My Farms <span class="sr-only">(current)</span>
+        <% end %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= Routes.location_path(@conn, :index) %>">
+        <%= active_link(@conn, to: Routes.field_bot_path(@conn, :index), class_active: "active nav-link", class_inactive: "nav-link") do %>
           <span data-feather="home"></span>
-          My locations
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= Routes.field_bot_path(@conn, :index) %>">
-          <span data-feather="home"></span>
-          My field bots
-        </a>
+          My Field Bots <span class="sr-only">(current)</span>
+        <% end %>
       </li>
     </ul>
 
@@ -47,24 +41,24 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" href="<%= Routes.parameter_path(@conn, :index) %>">
-          <span data-feather="file-text"></span>
-          Parameters
-        </a>
+        <%= active_link(@conn, to: Routes.parameter_path(@conn, :index), class_active: "active nav-link", class_inactive: "nav-link") do %>
+          <span data-feather="home"></span>
+          Parameters <span class="sr-only">(current)</span>
+        <% end %>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= Routes.plant_path(@conn, :index) %>" >
-          <span data-feather="file-text"></span>
-          Plants
-        </a>
+        <%= active_link(@conn, to: Routes.plant_path(@conn, :index), class_active: "active nav-link", class_inactive: "nav-link") do %>
+          <span data-feather="home"></span>
+          Plants <span class="sr-only">(current)</span>
+        <% end %>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= Routes.sensor_path(@conn, :index) %>">
-          <span data-feather="file-text"></span>
-          Sensors
-        </a>
+        <%= active_link(@conn, to: Routes.sensor_path(@conn, :index), class_active: "active nav-link", class_inactive: "nav-link") do %>
+          <span data-feather="home"></span>
+          Sensors <span class="sr-only">(current)</span>
+        <% end %>
       </li>
     </ul>
   </div>

@@ -15,7 +15,7 @@ defmodule FarmQWeb.CropCycleControllerTest do
   describe "index" do
     test "lists all crop_cycles", %{conn: conn} do
       conn = get(conn, Routes.crop_cycle_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Crop cycles"
+      assert html_response(conn, 200) =~ "Crop cycles"
     end
   end
 
@@ -34,7 +34,7 @@ defmodule FarmQWeb.CropCycleControllerTest do
       assert redirected_to(conn) == Routes.crop_cycle_path(conn, :show, id)
 
       conn = get(conn, Routes.crop_cycle_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Crop cycle"
+      assert html_response(conn, 200) =~ @create_attrs.name
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

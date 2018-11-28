@@ -1,6 +1,12 @@
-<h1>Listing Field clearation data</h1>
+<span><%= link raw('<i class="material-icons"> add </i>'), to: Routes.field_clearation_data_path(@conn, :new, crop_cycle: @conn.params["id"]), class: "btn btn-sm bg-green text-white float-right" %></span>
+<h3>Field clearation data</h3>
 
-<table>
+<%= if @field_clearation_data == [] do %>
+  <div class="alert alert-secondary" role="alert">
+    Field clearation data is not created yet!
+  </div>
+<% else %>
+  <table class="table">
   <thead>
     <tr>
       <th>Clearation date</th>
@@ -10,19 +16,17 @@
     </tr>
   </thead>
   <tbody>
-<%= for field_clearation_data <- @field_clearation_data do %>
+  <%= for field_clearation_data <- @field_clearation_data do %>
     <tr>
       <td><%= field_clearation_data.clearation_date %></td>
       <td><%= field_clearation_data.description %></td>
 
-      <td>
-        <%= link "Show", to: Routes.field_clearation_data_path(@conn, :show, field_clearation_data) %>
-        <%= link "Edit", to: Routes.field_clearation_data_path(@conn, :edit, field_clearation_data) %>
-        <%= link "Delete", to: Routes.field_clearation_data_path(@conn, :delete, field_clearation_data), method: :delete, data: [confirm: "Are you sure?"] %>
+      <td class="float-right">
+        <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.field_clearation_data_path(@conn, :edit, field_clearation_data), class: "btn btn-sm bg-green text-white" %>
+        <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.field_clearation_data_path(@conn, :delete, field_clearation_data), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger text-white" %>
       </td>
     </tr>
-<% end %>
+  <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Field clearation data", to: Routes.field_clearation_data_path(@conn, :new, crop_cycle: @conn.params["id"]) %></span>
+<% end %>

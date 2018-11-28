@@ -11,16 +11,17 @@
   <%= hidden_input f, :crop_cycle_id %>
   <% end %>
 
-
-  <%= label f, :preparation_date %>
-  <%= date_select f, :preparation_date %>
-  <%= error_tag f, :preparation_date %>
-
   <%= label f, :description %>
-  <%= textarea f, :description %>
+  <%= textarea f, :description, class: "form-control" %>
   <%= error_tag f, :description %>
 
+  <%= label f, :preparation_date %>
+  <%= date_select f, :preparation_date, class: "custom-select" %>
+  <%= error_tag f, :preparation_date %>
+
+
+
   <div>
-    <%= submit "Save" %>
+    <%= submit "Submit", class: "btn btn bg-green text-white mt-2" %>
   </div>
 <% end %>

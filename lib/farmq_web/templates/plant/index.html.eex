@@ -1,13 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <h1 class="pb-2 mt-4">Plants</h1>
-    </div>
+<span><%= link raw('<i class="material-icons"> add </i>'), to: Routes.plant_path(@conn, :new), class: "btn btn-sm bg-green text-white float-right mt-3" %></span>
+<h1>Plants</h1>
 
-    <div class="col-md-4 pb-2 mt-4 float-right">
-      <span><%= link raw('<i class="material-icons"> add </i>'), to: Routes.plant_path(@conn, :new), class: "btn btn-large bg-green text-white" %></span>
-    </div>
-  </div>
 
   <%= if @plants == [] do %>
     <div class="alert alert-secondary" role="alert">
@@ -42,7 +35,6 @@
               <td><%= plant.data_scrapper_id %></td>
 
               <td>
-                <%= link raw('<i class="material-icons"> arrow_forward </i>'), to: Routes.plant_path(@conn, :show, plant), class: "btn btn-sm bg-green text-white" %>
                 <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.plant_path(@conn, :edit, plant), class: "btn btn-sm bg-green text-white" %>
                 <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.plant_path(@conn, :delete, plant), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm bg-danger text-white" %>
               </td>
@@ -51,5 +43,3 @@
         </tbody>
     </table>
   <% end %>
-
-</div>

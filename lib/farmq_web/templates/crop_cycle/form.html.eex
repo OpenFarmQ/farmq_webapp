@@ -6,15 +6,15 @@
   <% end %>
 
   <%= label f, :name %>
-  <%= text_input f, :name %>
+  <%= text_input f, :name, class: "form-control" %>
   <%= error_tag f, :name %>
 
   <%= label f, :location_id %>
-  <%= select f, :location_id, Enum.map(@beds, &{&1.name, &1.id}), prompt: "Choose a bed" %>
+  <%= select f, :location_id, Enum.map(@beds, &{&1.name, &1.id}), prompt: "Choose a bed", class: "form-control" %>
   <%= error_tag f, :location_id %>
 
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", class: "btn btn bg-green text-white mt-2" %>
   </div>
 <% end %>

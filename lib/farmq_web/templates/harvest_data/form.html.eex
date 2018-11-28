@@ -9,29 +9,37 @@
   <%= hidden_input f, :crop_cycle_id, value: @conn.params["crop_cycle"] %>
   <% else %>
   <%= hidden_input f, :crop_cycle_id %>
-  <% end %>  
+  <% end %>
 
-  <%= label f, :actual_yield_value %>
-  <%= number_input f, :actual_yield_value, step: "any" %>
-  <%= error_tag f, :actual_yield_value %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= label f, :actual_yield_value %>
+      <%= number_input f, :actual_yield_value, step: "any", class: "form-control" %>
+      <%= error_tag f, :actual_yield_value %>
+    </div>
 
-  <%= label f, :actual_yield_unit %>
-  <%= text_input f, :actual_yield_unit %>
-  <%= error_tag f, :actual_yield_unit %>
+    <div class="col-md-4">
+      <%= label f, :actual_yield_unit %>
+      <%= text_input f, :actual_yield_unit, class: "form-control" %>
+      <%= error_tag f, :actual_yield_unit %>
+    </div>
 
-  <%= label f, :yield_quality %>
-  <%= text_input f, :yield_quality %>
-  <%= error_tag f, :yield_quality %>
+    <div class="col-md-4">
+      <%= label f, :yield_quality %>
+      <%= text_input f, :yield_quality, class: "form-control" %>
+      <%= error_tag f, :yield_quality %>
+    </div>
+  </div>
 
   <%= label f, :description %>
-  <%= textarea f, :description %>
+  <%= textarea f, :description, class: "form-control" %>
   <%= error_tag f, :description %>
 
   <%= label f, :harvest_date %>
-  <%= date_select f, :harvest_date %>
+  <%= date_select f, :harvest_date, class: "form-control" %>
   <%= error_tag f, :harvest_date %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", class: "btn bg-green text-white mt-2" %>
   </div>
 <% end %>

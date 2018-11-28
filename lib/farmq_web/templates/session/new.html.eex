@@ -1,0 +1,8 @@
+<h1>Login</h1>
+
+<%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, id: "session_form"], fn f -> %>
+  <%= text_input f, :email, placeholder: "Email", class: "form-control" %>
+  <%= password_input f, :password, placeholder: "Password", class: "form-control mt-2" %>
+
+  <%= submit "Log in", class: "btn bg-green text-white mt-2" %>
+<% end %>

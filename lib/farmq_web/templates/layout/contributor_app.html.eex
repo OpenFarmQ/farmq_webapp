@@ -18,12 +18,21 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow bg-green">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Open FarmQ</a>
-        <ul class="navbar-nav px-3">
-          <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
-          </li>
-        </ul>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Open FarmQ</a>
+        <%= if @current_user do %>
+          <div class="dropdown nav-item px-5">
+            <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown"><%= @current_user.name %><span class="caret"></span></a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Switch as contributor</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<%= Routes.session_path(@conn, :delete) %>">Sign out</a>
+            </div>
+          </div>
+        <% else %>
+            <div class="nav-item text-nowrap px-5">
+              <a class="nav-link float-right px-5 text-white" href="<%= Routes.session_path(@conn, :new) %>">Sign in</a>
+            </div>
+        <% end %>
       </nav>
 
       <div class="container-fluid">

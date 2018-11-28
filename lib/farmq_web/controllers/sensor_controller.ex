@@ -19,7 +19,7 @@ defmodule FarmQWeb.SensorController do
       {:ok, sensor} ->
         conn
         |> put_flash(:info, "Sensor created successfully.")
-        |> redirect(to: Routes.sensor_path(conn, :show, sensor))
+        |> redirect(to: Routes.sensor_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule FarmQWeb.SensorController do
       {:ok, sensor} ->
         conn
         |> put_flash(:info, "Sensor updated successfully.")
-        |> redirect(to: Routes.sensor_path(conn, :show, sensor))
+        |> redirect(to: Routes.sensor_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", sensor: sensor, changeset: changeset)

@@ -19,7 +19,7 @@ defmodule FarmQWeb.PlantController do
       {:ok, plant} ->
         conn
         |> put_flash(:info, "Plant created successfully.")
-        |> redirect(to: Routes.plant_path(conn, :show, plant))
+        |> redirect(to: Routes.plant_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule FarmQWeb.PlantController do
       {:ok, plant} ->
         conn
         |> put_flash(:info, "Plant updated successfully.")
-        |> redirect(to: Routes.plant_path(conn, :show, plant))
+        |> redirect(to: Routes.plant_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", plant: plant, changeset: changeset)

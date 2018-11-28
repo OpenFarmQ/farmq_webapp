@@ -1,11 +1,6 @@
-<h1>Show bed</h1>
+<h1><%= @location.name %></h1>
 
 <ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @location.name %>
-  </li>
 
   <li>
     <strong>Description:</strong>

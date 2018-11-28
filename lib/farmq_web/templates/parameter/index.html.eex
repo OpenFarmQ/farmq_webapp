@@ -1,13 +1,5 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <h1 class="pb-2 mt-4">Parameters</h1>
-    </div>
-
-    <div class="col-md-4 float-right pb-2 mt-4">
-      <span><%= link raw('<i class="material-icons"> add </i>'), to: Routes.parameter_path(@conn, :new), class: "btn btn-large bg-green text-white"%></span>
-    </div>
-  </div>
+<%= link raw('<i class="material-icons"> add </i>'), to: Routes.parameter_path(@conn, :new), class: "btn btn-sm bg-green text-white float-right mt-3" %>
+<h1>Parameters</h1>
 
   <%= if @parameters == [] do %>
   <div class="alert alert-secondary" role="alert">
@@ -35,8 +27,7 @@
               <td><%= parameter.unit %></td>
               <td><%= parameter.data_type %></td>
 
-              <td>
-                <%= link raw('<i class="material-icons"> arrow_forward </i>'), to: Routes.parameter_path(@conn, :show, parameter), class: "btn btn-sm bg-green text-white" %>
+              <td class="float-right">
                 <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.parameter_path(@conn, :edit, parameter), class: "btn btn-sm bg-green text-white"  %>
                 <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.parameter_path(@conn, :delete, parameter), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger text-white" %>
               </td>
@@ -45,6 +36,3 @@
         </tbody>
     </table>
 <% end %>
-
-
-</div>

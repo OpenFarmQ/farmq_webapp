@@ -1,19 +1,23 @@
-<h1>Show Crop cycle</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= Routes.page_path(@conn, :farmq_insight) %>">Home</a></li>
+    <li class="breadcrumb-item"><a href="<%= Routes.crop_cycle_path(@conn, :index) %>">Crop cycle</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
 
-<ul>
+<div class="row">
+  <div class="col">
+    <h1 class="float-left"><%= @crop_cycle.name %></h1>
+    <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.crop_cycle_path(@conn, :edit, @crop_cycle), class: "btn btn-sm bg-green text-white ml-3 mt-2" %>
+  </div>
+</div>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @crop_cycle.name %>
-  </li>
-
-</ul>
-
-<%= render FarmQWeb.FieldPreparationDataView, "index.html", assigns %>
-<%= render FarmQWeb.SowingDataView, "index.html", assigns %>
-<%= render FarmQWeb.HarvestDataView, "index.html", assigns %>
-<%= render FarmQWeb.FieldClearationDataView, "index.html", assigns %>
-
-
-<span><%= link "Edit", to: Routes.crop_cycle_path(@conn, :edit, @crop_cycle) %></span>
-<span><%= link "Back", to: Routes.crop_cycle_path(@conn, :index) %></span>
+<div class="row">
+  <div class="col">
+    <%= render FarmQWeb.FieldPreparationDataView, "index.html", assigns %>
+    <%= render FarmQWeb.SowingDataView, "index.html", assigns %>
+    <%= render FarmQWeb.HarvestDataView, "index.html", assigns %>
+    <%= render FarmQWeb.FieldClearationDataView, "index.html", assigns %>
+  </div>
+</div>

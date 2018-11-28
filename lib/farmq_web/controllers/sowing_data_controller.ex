@@ -20,7 +20,7 @@ defmodule FarmQWeb.SowingDataController do
       {:ok, sowing_data} ->
         conn
         |> put_flash(:info, "Sowing data created successfully.")
-        |> redirect(to: Routes.sowing_data_path(conn, :show, sowing_data))
+        |> redirect(to: Routes.crop_cycle_path(conn, :show, sowing_data.crop_cycle_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -46,7 +46,7 @@ defmodule FarmQWeb.SowingDataController do
       {:ok, sowing_data} ->
         conn
         |> put_flash(:info, "Sowing data updated successfully.")
-        |> redirect(to: Routes.sowing_data_path(conn, :show, sowing_data))
+        |> redirect(to: Routes.crop_cycle_path(conn, :show, sowing_data.crop_cycle_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", sowing_data: sowing_data, changeset: changeset)
@@ -59,6 +59,6 @@ defmodule FarmQWeb.SowingDataController do
 
     conn
     |> put_flash(:info, "Sowing data deleted successfully.")
-    |> redirect(to: Routes.sowing_data_path(conn, :index))
+    |> redirect(to: Routes.crop_cycle_path(conn, :show, sowing_data.crop_cycle_id))
   end
 end

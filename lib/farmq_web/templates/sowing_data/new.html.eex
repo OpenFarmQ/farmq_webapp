@@ -1,5 +1,3 @@
 <h1>New Sowing data</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.sowing_data_path(@conn, :create)) %>
-
-<span><%= link "Back", to: Routes.sowing_data_path(@conn, :index) %></span>

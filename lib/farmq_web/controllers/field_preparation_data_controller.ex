@@ -19,7 +19,7 @@ defmodule FarmQWeb.FieldPreparationDataController do
       {:ok, field_preparation_data} ->
         conn
         |> put_flash(:info, "Field preparation data created successfully.")
-        |> redirect(to: Routes.field_preparation_data_path(conn, :show, field_preparation_data))
+        |> redirect(to: Routes.crop_cycle_path(conn, :show, field_preparation_data.crop_cycle_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule FarmQWeb.FieldPreparationDataController do
       {:ok, field_preparation_data} ->
         conn
         |> put_flash(:info, "Field preparation data updated successfully.")
-        |> redirect(to: Routes.field_preparation_data_path(conn, :show, field_preparation_data))
+        |> redirect(to: Routes.crop_cycle_path(conn, :show, field_preparation_data.crop_cycle_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", field_preparation_data: field_preparation_data, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule FarmQWeb.FieldPreparationDataController do
 
     conn
     |> put_flash(:info, "Field preparation data deleted successfully.")
-    |> redirect(to: Routes.field_preparation_data_path(conn, :index))
+    |> redirect(to: Routes.crop_cycle_path(conn, :show, field_preparation_data.crop_cycle_id))
   end
 end
