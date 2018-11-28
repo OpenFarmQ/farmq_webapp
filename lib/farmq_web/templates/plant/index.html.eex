@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <h1 class="pb=2 mt-4">Plants</h1>
+      <h1 class="pb-2 mt-4">Plants</h1>
     </div>
 
     <div class="col-md-4 pb-2 mt-4 float-right">
@@ -9,47 +9,47 @@
     </div>
   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Binomial name</th>
-        <th>Common name</th>
-        <th>Description</th>
-        <th>Source name</th>
-        <th>Source url</th>
-        <th>Data scrapper</th>
+  <%= if @plants == [] do %>
+    <div class="alert alert-secondary" role="alert">
+      There are no plants created yet.
+    </div>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Binomial name</th>
+          <th>Common name</th>
+          <th>Description</th>
+          <th>Source name</th>
+          <th>Source url</th>
+          <th>Data scrapper</th>
 
-        <th></th>
-      </tr>
-    </thead>
-    <%= if @plants == [] do %>
-      <div class="alert alert-secondary" role="alert">
-        There are no plants created yet.
-      </div>
-    <% else %>
-      <tbody>
-        <%= for plant <- @plants do %>
-          <tr>
-            <td><%= plant.name %></td>
-            <td><%= plant.image %></td>
-            <td><%= plant.binomial_name %></td>
-            <td><%= plant.common_name %></td>
-            <td><%= plant.description %></td>
-            <td><%= plant.source_name %></td>
-            <td><%= plant.source_url %></td>
-            <td><%= plant.data_scrapper_id %></td>
+          <th></th>
+        </tr>
+      </thead>
+        <tbody>
+          <%= for plant <- @plants do %>
+            <tr>
+              <td><%= plant.name %></td>
+              <td><%= plant.image %></td>
+              <td><%= plant.binomial_name %></td>
+              <td><%= plant.common_name %></td>
+              <td><%= plant.description %></td>
+              <td><%= plant.source_name %></td>
+              <td><%= plant.source_url %></td>
+              <td><%= plant.data_scrapper_id %></td>
 
-            <td>
-              <%= link raw('<i class="material-icons"> arrow_forward </i>'), to: Routes.plant_path(@conn, :show, plant), class: "btn btn-sm bg-green text-white" %>
-              <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.plant_path(@conn, :edit, plant), class: "btn btn-sm bg-green text-white" %>
-              <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.plant_path(@conn, :delete, plant), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm bg-danger text-white" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    <% end %>
-  </table>
+              <td>
+                <%= link raw('<i class="material-icons"> arrow_forward </i>'), to: Routes.plant_path(@conn, :show, plant), class: "btn btn-sm bg-green text-white" %>
+                <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.plant_path(@conn, :edit, plant), class: "btn btn-sm bg-green text-white" %>
+                <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.plant_path(@conn, :delete, plant), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm bg-danger text-white" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  <% end %>
 
 </div>

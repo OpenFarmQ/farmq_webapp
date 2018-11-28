@@ -1,41 +1,36 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <h1 class="pb=2 mt-4">Locations</h1>
-    </div>
-    <div class="col-md-4">
-      <span class="btn btn mt-4"><%= link raw('<i class="material-icons"> add </i>'), to: Routes.location_path(@conn, :new), class: "btn btn-sm bg-green text-white" %></span>
-    </div>
-  </div>
+<h1>Locations</h1>
 
-  <%= if @locations == [] do %>
-  <div class="alert alert-secondary" role="alert">
-    There are no locations created yet.
-  </div>
-  <% else %>
-    <div class="row">
-      <%= for location <- @locations do %>
-      <div class="col-md-4">
-        <div class="card pb-2" style="width: 18rem;">
-          <div class="card-header bg-green text-white">
-            <%= location.name %>
-          </div>
-         <div class="card-body">
-           <p class="card-subtitle pb-2"><%= location.description %></p>
-           <p class="card-text">
-             <strong>Location type: </strong><%= location.location_type %> </br>
-             <strong>Latitude: </strong><%= location.latitude %> </br>
-             <strong>Longitude: </strong><%= location.longitude %> </br>
-           </p>
-          <div class="float-right">
-            <%= link raw('<i class="material-icons"> arrow_forward </i>'),  to: Routes.location_path(@conn, :show, location), class: "btn btn-sm bg-green text-white"%>
-            <%= link raw('<i class="material-icons"> edit </i>'), to: Routes.location_path(@conn, :edit, location), class: "btn btn-sm bg-green text-white" %>
-            <%= link raw('<i class="material-icons"> delete </i>'), to: Routes.location_path(@conn, :delete, location), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger text-white" %>
-          </div>
-         </div>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Area</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for location <- @locations do %>
+    <tr>
+      <td><%= location.name %></td>
+      <td><%= location.description %></td>
+      <td><%= location.type %></td>
+      <td><%= location.longitude %></td>
+      <td><%= location.latitude %></td>
+      <td><%= location.area %></td>
+
+      <td>
+        <%= link "Show", to: Routes.location_path(@conn, :show, location) %>
+        <%= link "Edit", to: Routes.location_path(@conn, :edit, location) %>
+        <%= link "Delete", to: Routes.location_path(@conn, :delete, location), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Location", to: Routes.location_path(@conn, :new) %></span>

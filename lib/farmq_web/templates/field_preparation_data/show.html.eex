@@ -1,0 +1,18 @@
+<h1>Show Field preparation data</h1>
+
+<ul>
+
+  <li>
+    <strong>Preparation date:</strong>
+    <%= @field_preparation_data.preparation_date %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @field_preparation_data.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.field_preparation_data_path(@conn, :edit, @field_preparation_data) %></span>
+<span><%= link "Back", to: Routes.field_preparation_data_path(@conn, :index) %></span>

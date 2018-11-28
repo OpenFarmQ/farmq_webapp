@@ -1,0 +1,28 @@
+<h1>Listing Field clearation data</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clearation date</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for field_clearation_data <- @field_clearation_data do %>
+    <tr>
+      <td><%= field_clearation_data.clearation_date %></td>
+      <td><%= field_clearation_data.description %></td>
+
+      <td>
+        <%= link "Show", to: Routes.field_clearation_data_path(@conn, :show, field_clearation_data) %>
+        <%= link "Edit", to: Routes.field_clearation_data_path(@conn, :edit, field_clearation_data) %>
+        <%= link "Delete", to: Routes.field_clearation_data_path(@conn, :delete, field_clearation_data), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Field clearation data", to: Routes.field_clearation_data_path(@conn, :new, crop_cycle: @conn.params["id"]) %></span>

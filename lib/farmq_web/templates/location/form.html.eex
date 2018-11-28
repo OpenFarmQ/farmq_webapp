@@ -1,40 +1,35 @@
-<div class="container">
-  <%= form_for @changeset, @action, fn f -> %>
-    <%= if @changeset.action do %>
-      <div class="alert alert-danger">
-        <p>Oops, something went wrong! Please check the errors below.</p>
-      </div>
-    <% end %>
-
-      <%= label f, :name %>
-      <%= text_input f, :name, [class: "form-control"] %>
-      <%= error_tag f, :name %>
-
-      <%= label f, :description %>
-      <%= textarea f, :description, [class: "form-control"]%>
-      <%= error_tag f, :description %>
-
-    <%= label f, :location_type %>
-    <%= text_input f, :location_type, [class: "form-control"] %>
-    <%= error_tag f, :location_type %>
-
-
-    <div class="row">
-      <div class="col-md-6">
-        <%= label f, :latitude %>
-        <%= number_input f, :latitude, [step: "any", class: "form-control form-control-sm"] %>
-        <%= error_tag f, :latitude %>
-      </div>
-
-      <div class="col-md-6">
-        <%= label f, :longitude %>
-        <%= number_input f, :longitude, [step: "any", class: "form-control form-control-sm"] %>
-        <%= error_tag f, :longitude %>
-      </div>
-    </div>
-
-    <div>
-      <%= submit "Submit", class: "btn bg-green text-white mt-4" %>
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-</div>
+
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= error_tag f, :name %>
+
+  <%= label f, :description %>
+  <%= text_input f, :description %>
+  <%= error_tag f, :description %>
+
+  <%= label f, :type %>
+  <%= text_input f, :type %>
+  <%= error_tag f, :type %>
+
+  <%= label f, :longitude %>
+  <%= number_input f, :longitude, step: "any" %>
+  <%= error_tag f, :longitude %>
+
+  <%= label f, :latitude %>
+  <%= number_input f, :latitude, step: "any" %>
+  <%= error_tag f, :latitude %>
+
+  <%= label f, :area %>
+  <%= number_input f, :area, step: "any" %>
+  <%= error_tag f, :area %>
+
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>

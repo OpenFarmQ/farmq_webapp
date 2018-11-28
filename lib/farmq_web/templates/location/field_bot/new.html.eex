@@ -1,6 +1,0 @@
-<%= render FarmQWeb.LocationView, "_location_header.html", assigns %>
-<div class="container">
-  <h1>New Field bot</h1>
-  <%= render "form.html", Map.put(assigns, :action, Routes.location_field_bot_path(@conn, :create, @location)) %>
-  <span><%= link "Back", to: Routes.location_field_bot_path(@conn, :index, @location) %></span>
-</div>

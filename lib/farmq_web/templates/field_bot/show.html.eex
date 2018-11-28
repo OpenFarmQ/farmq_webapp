@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Show Field bot</h1>
+
+  <ul>
+
+    <li>
+      <strong>Name:</strong>
+      <%= @field_bot.name %>
+    </li>
+
+    <%= if @field_bot.location_id != nil do %>
+    <li>
+      <strong>Currently In:</strong>
+      <%= @field_bot.location_id %>
+    </li>
+    <% end %>
+
+  </ul>
+
+  <span><%= link "Edit", to: Routes.field_bot_path(@conn, :edit, @field_bot) %></span>
+  <span><%= link "Back", to: Routes.field_bot_path(@conn, :index) %></span>
+
+</div>

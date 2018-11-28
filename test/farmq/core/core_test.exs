@@ -46,7 +46,7 @@ defmodule FarmQ.CoreTest do
       parameter = parameter_fixture()
       assert {:ok, %Parameter{} = parameter} = Core.update_parameter(parameter, @update_attrs)
 
-      
+
       assert parameter.data_type == "some updated data_type"
       assert parameter.description == "some updated description"
       assert parameter.key == "some updated key"
@@ -118,7 +118,7 @@ defmodule FarmQ.CoreTest do
       plant = plant_fixture()
       assert {:ok, %Plant{} = plant} = Core.update_plant(plant, @update_attrs)
 
-      
+
       assert plant.binomial_name == "some updated binomial_name"
       assert plant.common_name == []
       assert plant.data_scrapper_id == "some updated data_scrapper_id"
@@ -144,140 +144,6 @@ defmodule FarmQ.CoreTest do
     test "change_plant/1 returns a plant changeset" do
       plant = plant_fixture()
       assert %Ecto.Changeset{} = Core.change_plant(plant)
-    end
-  end
-
-  describe "locations" do
-    alias FarmQ.Core.Location
-
-    @valid_attrs %{description: "some description", latitude: "120.5", location_type: "some location_type", longitude: "120.5", name: "some name"}
-    @update_attrs %{description: "some updated description", latitude: "456.7", location_type: "some updated location_type", longitude: "456.7", name: "some updated name"}
-    @invalid_attrs %{description: nil, latitude: nil, location_type: nil, longitude: nil, name: nil}
-
-    def location_fixture(attrs \\ %{}) do
-      {:ok, location} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Core.create_location()
-
-      location
-    end
-
-    test "list_locations/0 returns all locations" do
-      location = location_fixture()
-      assert Core.list_locations() == [location]
-    end
-
-    test "get_location!/1 returns the location with given id" do
-      location = location_fixture()
-      assert Core.get_location!(location.id) == location
-    end
-
-    test "create_location/1 with valid data creates a location" do
-      assert {:ok, %Location{} = location} = Core.create_location(@valid_attrs)
-      assert location.description == "some description"
-      assert location.latitude == Decimal.new("120.5")
-      assert location.location_type == "some location_type"
-      assert location.longitude == Decimal.new("120.5")
-      assert location.name == "some name"
-    end
-
-    test "create_location/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Core.create_location(@invalid_attrs)
-    end
-
-    test "update_location/2 with valid data updates the location" do
-      location = location_fixture()
-      assert {:ok, %Location{} = location} = Core.update_location(location, @update_attrs)
-
-      
-      assert location.description == "some updated description"
-      assert location.latitude == Decimal.new("456.7")
-      assert location.location_type == "some updated location_type"
-      assert location.longitude == Decimal.new("456.7")
-      assert location.name == "some updated name"
-    end
-
-    test "update_location/2 with invalid data returns error changeset" do
-      location = location_fixture()
-      assert {:error, %Ecto.Changeset{}} = Core.update_location(location, @invalid_attrs)
-      assert location == Core.get_location!(location.id)
-    end
-
-    test "delete_location/1 deletes the location" do
-      location = location_fixture()
-      assert {:ok, %Location{}} = Core.delete_location(location)
-      assert_raise Ecto.NoResultsError, fn -> Core.get_location!(location.id) end
-    end
-
-    test "change_location/1 returns a location changeset" do
-      location = location_fixture()
-      assert %Ecto.Changeset{} = Core.change_location(location)
-    end
-  end
-
-  describe "beds" do
-    alias FarmQ.Core.Bed
-
-    @valid_attrs %{area: "120.5", name: "some name", status: "some status"}
-    @update_attrs %{area: "456.7", name: "some updated name", status: "some updated status"}
-    @invalid_attrs %{area: nil, name: nil, status: nil}
-
-    def bed_fixture(attrs \\ %{}) do
-      {:ok, bed} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Core.create_bed()
-
-      bed
-    end
-
-    test "list_beds/0 returns all beds" do
-      bed = bed_fixture()
-      assert Core.list_beds() == [bed]
-    end
-
-    test "get_bed!/1 returns the bed with given id" do
-      bed = bed_fixture()
-      assert Core.get_bed!(bed.id) == bed
-    end
-
-    test "create_bed/1 with valid data creates a bed" do
-      assert {:ok, %Bed{} = bed} = Core.create_bed(@valid_attrs)
-      assert bed.area == Decimal.new("120.5")
-      assert bed.name == "some name"
-      assert bed.status == "some status"
-    end
-
-    test "create_bed/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Core.create_bed(@invalid_attrs)
-    end
-
-    test "update_bed/2 with valid data updates the bed" do
-      bed = bed_fixture()
-      assert {:ok, %Bed{} = bed} = Core.update_bed(bed, @update_attrs)
-
-      
-      assert bed.area == Decimal.new("456.7")
-      assert bed.name == "some updated name"
-      assert bed.status == "some updated status"
-    end
-
-    test "update_bed/2 with invalid data returns error changeset" do
-      bed = bed_fixture()
-      assert {:error, %Ecto.Changeset{}} = Core.update_bed(bed, @invalid_attrs)
-      assert bed == Core.get_bed!(bed.id)
-    end
-
-    test "delete_bed/1 deletes the bed" do
-      bed = bed_fixture()
-      assert {:ok, %Bed{}} = Core.delete_bed(bed)
-      assert_raise Ecto.NoResultsError, fn -> Core.get_bed!(bed.id) end
-    end
-
-    test "change_bed/1 returns a bed changeset" do
-      bed = bed_fixture()
-      assert %Ecto.Changeset{} = Core.change_bed(bed)
     end
   end
 
@@ -320,7 +186,7 @@ defmodule FarmQ.CoreTest do
       field_bot = field_bot_fixture()
       assert {:ok, %FieldBot{} = field_bot} = Core.update_field_bot(field_bot, @update_attrs)
 
-      
+
       assert field_bot.name == "some updated name"
     end
 
@@ -339,6 +205,465 @@ defmodule FarmQ.CoreTest do
     test "change_field_bot/1 returns a field_bot changeset" do
       field_bot = field_bot_fixture()
       assert %Ecto.Changeset{} = Core.change_field_bot(field_bot)
+    end
+  end
+
+  describe "locations" do
+    alias FarmQ.Core.Location
+
+    @valid_attrs %{area: "120.5", description: "some description", latitude: "120.5", longitude: "120.5", name: "some name", type: "some type"}
+    @update_attrs %{area: "456.7", description: "some updated description", latitude: "456.7", longitude: "456.7", name: "some updated name", type: "some updated type"}
+    @invalid_attrs %{area: nil, description: nil, latitude: nil, longitude: nil, name: nil, type: nil}
+
+    def location_fixture(attrs \\ %{}) do
+      {:ok, location} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_location()
+
+      location
+    end
+
+    test "list_locations/0 returns all locations" do
+      location = location_fixture()
+      assert Core.list_locations() == [location]
+    end
+
+    test "get_location!/1 returns the location with given id" do
+      location = location_fixture()
+      assert Core.get_location!(location.id) == location
+    end
+
+    test "create_location/1 with valid data creates a location" do
+      assert {:ok, %Location{} = location} = Core.create_location(@valid_attrs)
+      assert location.area == Decimal.new("120.5")
+      assert location.description == "some description"
+      assert location.latitude == Decimal.new("120.5")
+      assert location.longitude == Decimal.new("120.5")
+      assert location.name == "some name"
+      assert location.type == "some type"
+    end
+
+    test "create_location/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_location(@invalid_attrs)
+    end
+
+    test "update_location/2 with valid data updates the location" do
+      location = location_fixture()
+      assert {:ok, %Location{} = location} = Core.update_location(location, @update_attrs)
+
+      
+      assert location.area == Decimal.new("456.7")
+      assert location.description == "some updated description"
+      assert location.latitude == Decimal.new("456.7")
+      assert location.longitude == Decimal.new("456.7")
+      assert location.name == "some updated name"
+      assert location.type == "some updated type"
+    end
+
+    test "update_location/2 with invalid data returns error changeset" do
+      location = location_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_location(location, @invalid_attrs)
+      assert location == Core.get_location!(location.id)
+    end
+
+    test "delete_location/1 deletes the location" do
+      location = location_fixture()
+      assert {:ok, %Location{}} = Core.delete_location(location)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_location!(location.id) end
+    end
+
+    test "change_location/1 returns a location changeset" do
+      location = location_fixture()
+      assert %Ecto.Changeset{} = Core.change_location(location)
+    end
+  end
+
+  describe "sensors" do
+    alias FarmQ.Core.Sensor
+
+    @valid_attrs %{description: "some description", name: "some name", url: "some url"}
+    @update_attrs %{description: "some updated description", name: "some updated name", url: "some updated url"}
+    @invalid_attrs %{description: nil, name: nil, url: nil}
+
+    def sensor_fixture(attrs \\ %{}) do
+      {:ok, sensor} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_sensor()
+
+      sensor
+    end
+
+    test "list_sensors/0 returns all sensors" do
+      sensor = sensor_fixture()
+      assert Core.list_sensors() == [sensor]
+    end
+
+    test "get_sensor!/1 returns the sensor with given id" do
+      sensor = sensor_fixture()
+      assert Core.get_sensor!(sensor.id) == sensor
+    end
+
+    test "create_sensor/1 with valid data creates a sensor" do
+      assert {:ok, %Sensor{} = sensor} = Core.create_sensor(@valid_attrs)
+      assert sensor.description == "some description"
+      assert sensor.name == "some name"
+      assert sensor.url == "some url"
+    end
+
+    test "create_sensor/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_sensor(@invalid_attrs)
+    end
+
+    test "update_sensor/2 with valid data updates the sensor" do
+      sensor = sensor_fixture()
+      assert {:ok, %Sensor{} = sensor} = Core.update_sensor(sensor, @update_attrs)
+
+      
+      assert sensor.description == "some updated description"
+      assert sensor.name == "some updated name"
+      assert sensor.url == "some updated url"
+    end
+
+    test "update_sensor/2 with invalid data returns error changeset" do
+      sensor = sensor_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_sensor(sensor, @invalid_attrs)
+      assert sensor == Core.get_sensor!(sensor.id)
+    end
+
+    test "delete_sensor/1 deletes the sensor" do
+      sensor = sensor_fixture()
+      assert {:ok, %Sensor{}} = Core.delete_sensor(sensor)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_sensor!(sensor.id) end
+    end
+
+    test "change_sensor/1 returns a sensor changeset" do
+      sensor = sensor_fixture()
+      assert %Ecto.Changeset{} = Core.change_sensor(sensor)
+    end
+  end
+
+  describe "crop_cycles" do
+    alias FarmQ.Core.CropCycle
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    def crop_cycle_fixture(attrs \\ %{}) do
+      {:ok, crop_cycle} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_crop_cycle()
+
+      crop_cycle
+    end
+
+    test "list_crop_cycles/0 returns all crop_cycles" do
+      crop_cycle = crop_cycle_fixture()
+      assert Core.list_crop_cycles() == [crop_cycle]
+    end
+
+    test "get_crop_cycle!/1 returns the crop_cycle with given id" do
+      crop_cycle = crop_cycle_fixture()
+      assert Core.get_crop_cycle!(crop_cycle.id) == crop_cycle
+    end
+
+    test "create_crop_cycle/1 with valid data creates a crop_cycle" do
+      assert {:ok, %CropCycle{} = crop_cycle} = Core.create_crop_cycle(@valid_attrs)
+      assert crop_cycle.name == "some name"
+    end
+
+    test "create_crop_cycle/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_crop_cycle(@invalid_attrs)
+    end
+
+    test "update_crop_cycle/2 with valid data updates the crop_cycle" do
+      crop_cycle = crop_cycle_fixture()
+      assert {:ok, %CropCycle{} = crop_cycle} = Core.update_crop_cycle(crop_cycle, @update_attrs)
+
+      
+      assert crop_cycle.name == "some updated name"
+    end
+
+    test "update_crop_cycle/2 with invalid data returns error changeset" do
+      crop_cycle = crop_cycle_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_crop_cycle(crop_cycle, @invalid_attrs)
+      assert crop_cycle == Core.get_crop_cycle!(crop_cycle.id)
+    end
+
+    test "delete_crop_cycle/1 deletes the crop_cycle" do
+      crop_cycle = crop_cycle_fixture()
+      assert {:ok, %CropCycle{}} = Core.delete_crop_cycle(crop_cycle)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_crop_cycle!(crop_cycle.id) end
+    end
+
+    test "change_crop_cycle/1 returns a crop_cycle changeset" do
+      crop_cycle = crop_cycle_fixture()
+      assert %Ecto.Changeset{} = Core.change_crop_cycle(crop_cycle)
+    end
+  end
+
+  describe "field_preparation_data" do
+    alias FarmQ.Core.FieldPreparationData
+
+    @valid_attrs %{description: "some description", preparation_date: ~D[2010-04-17]}
+    @update_attrs %{description: "some updated description", preparation_date: ~D[2011-05-18]}
+    @invalid_attrs %{description: nil, preparation_date: nil}
+
+    def field_preparation_data_fixture(attrs \\ %{}) do
+      {:ok, field_preparation_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_field_preparation_data()
+
+      field_preparation_data
+    end
+
+    test "list_field_preparation_data/0 returns all field_preparation_data" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert Core.list_field_preparation_data() == [field_preparation_data]
+    end
+
+    test "get_field_preparation_data!/1 returns the field_preparation_data with given id" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert Core.get_field_preparation_data!(field_preparation_data.id) == field_preparation_data
+    end
+
+    test "create_field_preparation_data/1 with valid data creates a field_preparation_data" do
+      assert {:ok, %FieldPreparationData{} = field_preparation_data} = Core.create_field_preparation_data(@valid_attrs)
+      assert field_preparation_data.description == "some description"
+      assert field_preparation_data.preparation_date == ~D[2010-04-17]
+    end
+
+    test "create_field_preparation_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_field_preparation_data(@invalid_attrs)
+    end
+
+    test "update_field_preparation_data/2 with valid data updates the field_preparation_data" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert {:ok, %FieldPreparationData{} = field_preparation_data} = Core.update_field_preparation_data(field_preparation_data, @update_attrs)
+
+      
+      assert field_preparation_data.description == "some updated description"
+      assert field_preparation_data.preparation_date == ~D[2011-05-18]
+    end
+
+    test "update_field_preparation_data/2 with invalid data returns error changeset" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_field_preparation_data(field_preparation_data, @invalid_attrs)
+      assert field_preparation_data == Core.get_field_preparation_data!(field_preparation_data.id)
+    end
+
+    test "delete_field_preparation_data/1 deletes the field_preparation_data" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert {:ok, %FieldPreparationData{}} = Core.delete_field_preparation_data(field_preparation_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_field_preparation_data!(field_preparation_data.id) end
+    end
+
+    test "change_field_preparation_data/1 returns a field_preparation_data changeset" do
+      field_preparation_data = field_preparation_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_field_preparation_data(field_preparation_data)
+    end
+  end
+
+  describe "sowing_data" do
+    alias FarmQ.Core.SowingData
+
+    @valid_attrs %{description: "some description", expected_yield_unit: "some expected_yield_unit", expected_yield_value: "120.5", seed_weight: "120.5", sown_date: ~D[2010-04-17]}
+    @update_attrs %{description: "some updated description", expected_yield_unit: "some updated expected_yield_unit", expected_yield_value: "456.7", seed_weight: "456.7", sown_date: ~D[2011-05-18]}
+    @invalid_attrs %{description: nil, expected_yield_unit: nil, expected_yield_value: nil, seed_weight: nil, sown_date: nil}
+
+    def sowing_data_fixture(attrs \\ %{}) do
+      {:ok, sowing_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_sowing_data()
+
+      sowing_data
+    end
+
+    test "list_sowing_data/0 returns all sowing_data" do
+      sowing_data = sowing_data_fixture()
+      assert Core.list_sowing_data() == [sowing_data]
+    end
+
+    test "get_sowing_data!/1 returns the sowing_data with given id" do
+      sowing_data = sowing_data_fixture()
+      assert Core.get_sowing_data!(sowing_data.id) == sowing_data
+    end
+
+    test "create_sowing_data/1 with valid data creates a sowing_data" do
+      assert {:ok, %SowingData{} = sowing_data} = Core.create_sowing_data(@valid_attrs)
+      assert sowing_data.description == "some description"
+      assert sowing_data.expected_yield_unit == "some expected_yield_unit"
+      assert sowing_data.expected_yield_value == Decimal.new("120.5")
+      assert sowing_data.seed_weight == Decimal.new("120.5")
+      assert sowing_data.sown_date == ~D[2010-04-17]
+    end
+
+    test "create_sowing_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_sowing_data(@invalid_attrs)
+    end
+
+    test "update_sowing_data/2 with valid data updates the sowing_data" do
+      sowing_data = sowing_data_fixture()
+      assert {:ok, %SowingData{} = sowing_data} = Core.update_sowing_data(sowing_data, @update_attrs)
+
+      
+      assert sowing_data.description == "some updated description"
+      assert sowing_data.expected_yield_unit == "some updated expected_yield_unit"
+      assert sowing_data.expected_yield_value == Decimal.new("456.7")
+      assert sowing_data.seed_weight == Decimal.new("456.7")
+      assert sowing_data.sown_date == ~D[2011-05-18]
+    end
+
+    test "update_sowing_data/2 with invalid data returns error changeset" do
+      sowing_data = sowing_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_sowing_data(sowing_data, @invalid_attrs)
+      assert sowing_data == Core.get_sowing_data!(sowing_data.id)
+    end
+
+    test "delete_sowing_data/1 deletes the sowing_data" do
+      sowing_data = sowing_data_fixture()
+      assert {:ok, %SowingData{}} = Core.delete_sowing_data(sowing_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_sowing_data!(sowing_data.id) end
+    end
+
+    test "change_sowing_data/1 returns a sowing_data changeset" do
+      sowing_data = sowing_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_sowing_data(sowing_data)
+    end
+  end
+
+  describe "harvest_data" do
+    alias FarmQ.Core.HarvestData
+
+    @valid_attrs %{actual_yield_unityield_quality: "some actual_yield_unityield_quality", actual_yield_value: "120.5", description: "some description", harvest_date: ~D[2010-04-17]}
+    @update_attrs %{actual_yield_unityield_quality: "some updated actual_yield_unityield_quality", actual_yield_value: "456.7", description: "some updated description", harvest_date: ~D[2011-05-18]}
+    @invalid_attrs %{actual_yield_unityield_quality: nil, actual_yield_value: nil, description: nil, harvest_date: nil}
+
+    def harvest_data_fixture(attrs \\ %{}) do
+      {:ok, harvest_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_harvest_data()
+
+      harvest_data
+    end
+
+    test "list_harvest_data/0 returns all harvest_data" do
+      harvest_data = harvest_data_fixture()
+      assert Core.list_harvest_data() == [harvest_data]
+    end
+
+    test "get_harvest_data!/1 returns the harvest_data with given id" do
+      harvest_data = harvest_data_fixture()
+      assert Core.get_harvest_data!(harvest_data.id) == harvest_data
+    end
+
+    test "create_harvest_data/1 with valid data creates a harvest_data" do
+      assert {:ok, %HarvestData{} = harvest_data} = Core.create_harvest_data(@valid_attrs)
+      assert harvest_data.actual_yield_unityield_quality == "some actual_yield_unityield_quality"
+      assert harvest_data.actual_yield_value == Decimal.new("120.5")
+      assert harvest_data.description == "some description"
+      assert harvest_data.harvest_date == ~D[2010-04-17]
+    end
+
+    test "create_harvest_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_harvest_data(@invalid_attrs)
+    end
+
+    test "update_harvest_data/2 with valid data updates the harvest_data" do
+      harvest_data = harvest_data_fixture()
+      assert {:ok, %HarvestData{} = harvest_data} = Core.update_harvest_data(harvest_data, @update_attrs)
+
+      
+      assert harvest_data.actual_yield_unityield_quality == "some updated actual_yield_unityield_quality"
+      assert harvest_data.actual_yield_value == Decimal.new("456.7")
+      assert harvest_data.description == "some updated description"
+      assert harvest_data.harvest_date == ~D[2011-05-18]
+    end
+
+    test "update_harvest_data/2 with invalid data returns error changeset" do
+      harvest_data = harvest_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_harvest_data(harvest_data, @invalid_attrs)
+      assert harvest_data == Core.get_harvest_data!(harvest_data.id)
+    end
+
+    test "delete_harvest_data/1 deletes the harvest_data" do
+      harvest_data = harvest_data_fixture()
+      assert {:ok, %HarvestData{}} = Core.delete_harvest_data(harvest_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_harvest_data!(harvest_data.id) end
+    end
+
+    test "change_harvest_data/1 returns a harvest_data changeset" do
+      harvest_data = harvest_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_harvest_data(harvest_data)
+    end
+  end
+
+  describe "field_clearation_data" do
+    alias FarmQ.Core.FieldClearationData
+
+    @valid_attrs %{clearation_date: ~D[2010-04-17], description: "some description"}
+    @update_attrs %{clearation_date: ~D[2011-05-18], description: "some updated description"}
+    @invalid_attrs %{clearation_date: nil, description: nil}
+
+    def field_clearation_data_fixture(attrs \\ %{}) do
+      {:ok, field_clearation_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_field_clearation_data()
+
+      field_clearation_data
+    end
+
+    test "list_field_clearation_data/0 returns all field_clearation_data" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert Core.list_field_clearation_data() == [field_clearation_data]
+    end
+
+    test "get_field_clearation_data!/1 returns the field_clearation_data with given id" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert Core.get_field_clearation_data!(field_clearation_data.id) == field_clearation_data
+    end
+
+    test "create_field_clearation_data/1 with valid data creates a field_clearation_data" do
+      assert {:ok, %FieldClearationData{} = field_clearation_data} = Core.create_field_clearation_data(@valid_attrs)
+      assert field_clearation_data.clearation_date == ~D[2010-04-17]
+      assert field_clearation_data.description == "some description"
+    end
+
+    test "create_field_clearation_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_field_clearation_data(@invalid_attrs)
+    end
+
+    test "update_field_clearation_data/2 with valid data updates the field_clearation_data" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert {:ok, %FieldClearationData{} = field_clearation_data} = Core.update_field_clearation_data(field_clearation_data, @update_attrs)
+
+      
+      assert field_clearation_data.clearation_date == ~D[2011-05-18]
+      assert field_clearation_data.description == "some updated description"
+    end
+
+    test "update_field_clearation_data/2 with invalid data returns error changeset" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_field_clearation_data(field_clearation_data, @invalid_attrs)
+      assert field_clearation_data == Core.get_field_clearation_data!(field_clearation_data.id)
+    end
+
+    test "delete_field_clearation_data/1 deletes the field_clearation_data" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert {:ok, %FieldClearationData{}} = Core.delete_field_clearation_data(field_clearation_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_field_clearation_data!(field_clearation_data.id) end
+    end
+
+    test "change_field_clearation_data/1 returns a field_clearation_data changeset" do
+      field_clearation_data = field_clearation_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_field_clearation_data(field_clearation_data)
     end
   end
 end

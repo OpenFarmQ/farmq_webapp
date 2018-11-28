@@ -13,6 +13,10 @@ defmodule FarmQWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :contributor do
+    plug :set_contributor_layout
+  end
+
   scope "/", FarmQWeb do
     pipe_through :browser
 
@@ -22,16 +26,32 @@ defmodule FarmQWeb.Router do
     get "/docs", DocumentController, :index
     get "/contact", PageController, :contact
     get "/dashboard-for-dc", PageController, :dashboard_for_dc
-    resources "/parameters", ParameterController
-    resources "/plants", PlantController
-    resources "/locations", LocationController do
-      pipe_through([FarmQWeb.Plug.LoadLocation])
-      resources "/beds", Location.BedController
-      get "/beds/:id/assign-field-bot", Location.BedController, :assign_field_bot
-      resources "/field_bots", Location.FieldBotController
-      put "/field_bots/:id/assign-bed", Location.FieldBotController, :assign_bed 
 
+
+    scope "/contributor" do
+      pipe_through :contributor
+      get "/", PageController, :farmq_insight
+      resources "/crop_cycles", CropCycleController
+      resources "/field_preparation_data", FieldPreparationDataController
+      resources "/sowing_data", SowingDataController
+      resources "/harvest_data", HarvestDataController
+      resources "/field_clearation_data", FieldClearationDataController
+
+      resources "/locations", LocationController
+      resources "/farms", FarmController
+      resources "/beds", BedController
+      resources "/field_bots", FieldBotController
+
+      resources "/plants", PlantController
+      resources "/parameters", ParameterController
+      resources "/sensors", SensorController
     end
+
+  end
+
+  defp set_contributor_layout(conn, _params) do
+    conn
+    |> put_layout({FarmQWeb.LayoutView, :contributor_app})
   end
 
   # Other scopes may use custom stacks.

@@ -1,12 +1,12 @@
 defmodule FarmQ.Core.FieldBot do
   use Ecto.Schema
   import Ecto.Changeset
+  alias FarmQ.Core.Location
 
 
   schema "field_bots" do
     field :name, :string
-    field :location_id, :id
-    field :bed_id, :id
+    belongs_to :bed, Location, foreign_key: :location_id
 
     timestamps()
   end
@@ -14,8 +14,8 @@ defmodule FarmQ.Core.FieldBot do
   @doc false
   def changeset(field_bot, attrs) do
     field_bot
-    |> cast(attrs, [:name, :location_id, :bed_id])
+    |> cast(attrs, [:name, :location_id])
     |> validate_required([:name])
-    |> foreign_key_constraint(:bed_id)
+    |> foreign_key_constraint(:location_id)
   end
 end

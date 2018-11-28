@@ -3,9 +3,9 @@ defmodule FarmQWeb.LocationControllerTest do
 
   alias FarmQ.Core
 
-  @create_attrs %{description: "some description", latitude: "120.5", location_type: "some location_type", longitude: "120.5", name: "some name"}
-  @update_attrs %{description: "some updated description", latitude: "456.7", location_type: "some updated location_type", longitude: "456.7", name: "some updated name"}
-  @invalid_attrs %{description: nil, latitude: nil, location_type: nil, longitude: nil, name: nil}
+  @create_attrs %{area: "120.5", description: "some description", latitude: "120.5", longitude: "120.5", name: "some name", type: "some type"}
+  @update_attrs %{area: "456.7", description: "some updated description", latitude: "456.7", longitude: "456.7", name: "some updated name", type: "some updated type"}
+  @invalid_attrs %{area: nil, description: nil, latitude: nil, longitude: nil, name: nil, type: nil}
 
   def fixture(:location) do
     {:ok, location} = Core.create_location(@create_attrs)
@@ -34,7 +34,7 @@ defmodule FarmQWeb.LocationControllerTest do
       assert redirected_to(conn) == Routes.location_path(conn, :show, id)
 
       conn = get(conn, Routes.location_path(conn, :show, id))
-      assert html_response(conn, 200) =~ @create_attrs.name
+      assert html_response(conn, 200) =~ "Show Location"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

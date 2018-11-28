@@ -1,6 +1,7 @@
 defmodule FarmQ.Core.Plant do
   use Ecto.Schema
   import Ecto.Changeset
+  alias FarmQ.Core.SowingData
 
 
   schema "plants" do
@@ -12,6 +13,7 @@ defmodule FarmQ.Core.Plant do
     field :name, :string
     field :source_name, :string
     field :source_url, :string
+    has_many :sowing_data, SowingData
 
     timestamps()
   end

@@ -42,6 +42,7 @@ defmodule FarmQWeb do
       import FarmQWeb.ErrorHelpers
       import FarmQWeb.Gettext
       alias FarmQWeb.Router.Helpers, as: Routes
+      import PhoenixActiveLink
     end
   end
 

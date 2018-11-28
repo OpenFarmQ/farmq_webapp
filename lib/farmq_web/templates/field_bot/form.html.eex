@@ -1,0 +1,19 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= label f, :name %>
+  <%= text_input f, :name, class: "form-control" %>
+  <%= error_tag f, :name %>
+
+  <%= label f, :location_id, "Choose bed" %>
+  <%= select f, :location_id, Enum.map(@beds, &{&1.name, &1.id}), prompt: "select a farm", class: "form-control" %>
+  <%= error_tag f, :location_id %>
+
+  <div>
+    <%= submit "Submit", class: "btn bg-green text-white mt-4" %>
+  </div>
+<% end %>
