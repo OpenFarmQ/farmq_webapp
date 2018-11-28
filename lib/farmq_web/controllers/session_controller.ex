@@ -26,6 +26,6 @@ defmodule FarmQWeb.SessionController do
   def delete(conn, _) do
     clear_session(conn)
     |> put_flash(:info, "You have been logged out")
-    |> redirect(to: Routes.page_path(conn, :contributor))
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end

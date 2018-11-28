@@ -1,21 +1,20 @@
-<%= form_for @changeset, Routes.registration_path(@conn, :create), [as: :registration], fn f -> %>
+<%= form_for @changeset, Routes.registration_path(@conn, :create), [as: :registration, class: "form-signin"], fn f -> %>
   <%= if @changeset.action do %>
     <div id="form-error" class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
+  <h1 class="h3 mb-3 font-weight-normal">Create a new account</h1>
 
-  <%= label f, :name %>
-  <%= text_input f, :name, class: "form-control" %>
+  <%= text_input f, :name, class: "form-control", placeholder: "Name" %>
   <%= error_tag f, :name %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, class: "form-control" %>
+  <%= email_input f, :email, class: "form-control", placeholder: "Email" %>
   <%= error_tag f, :email %>
 
-  <%= label f, :password %>
   <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
   <%= error_tag f, :password %>
 
-  <%= submit "Register", class: "btn text-white bg-green mt-2" %>
+  <%= submit "Register", class: "btn text-white bg-green mt-2 btn-block" %>
+  <p>Already have an account? <%= link "Login", to: Routes.session_path(@conn, :new) %></p>
 <% end %>

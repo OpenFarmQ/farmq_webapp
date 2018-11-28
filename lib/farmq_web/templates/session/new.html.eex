@@ -1,8 +1,9 @@
-<h1>Login</h1>
 
-<%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, id: "session_form"], fn f -> %>
-  <%= text_input f, :email, placeholder: "Email", class: "form-control" %>
+<%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, id: "session_form", class: "form-signin"], fn f -> %>
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <%= email_input f, :email, placeholder: "Email", class: "form-control" %>
   <%= password_input f, :password, placeholder: "Password", class: "form-control mt-2" %>
 
-  <%= submit "Log in", class: "btn bg-green text-white mt-2" %>
+  <%= submit "Sign in", class: "btn bg-green text-white mt-2 btn-block" %>
+  <p>Don't have an account? <%= link "Register", to: Routes.registration_path(@conn, :new) %>. It's free!</p>
 <% end %>

@@ -17,20 +17,50 @@
   <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow bg-green">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top flex-md-nowrap p-0 shadow bg-green">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Open FarmQ</a>
-        <%= if @current_user do %>
-          <div class="dropdown nav-item px-5">
-            <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown"><%= @current_user.name %><span class="caret"></span></a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="<%= Routes.session_path(@conn, :delete) %>">Sign out</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse pl-3" id="navbarNavAltMarkup">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= active_link(@conn, to: Routes.page_path(@conn, :get_started), class_active: "active nav-link", class_inactive: "nav-link") do %>
+              Get Started
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="<%= Routes.data_path(@conn, :index) %>">Browse Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= Routes.page_path(@conn, :farmq_insight) %>">Contribute Data</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav pr-5">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="i18nMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">language</i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="i18nMenu">
+              <a class="dropdown-item <%= get_active_locale_class("en") %>" href="?locale=en">English</a>
+              <a class="dropdown-item <%= get_active_locale_class("fr") %>" href="?locale=fr">French</a>
             </div>
-          </div>
-        <% else %>
-            <div class="nav-item text-nowrap px-5">
-              <a class="nav-link float-right px-5 text-white" href="<%= Routes.session_path(@conn, :new) %>">Sign in</a>
-            </div>
-        <% end %>
+          </li>
+          <%= if @current_user do %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="accountMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= @current_user.name %></a>
+              <div class="dropdown-menu" aria-labelledby="accountMenu">
+                <a class="dropdown-item" href="<%= Routes.session_path(@conn, :delete) %>">Sign out</a>
+              </div>
+            </li>
+            <% else %>
+            <li class="nav-item active">
+              <a class="nav-link" href="<%= Routes.session_path(@conn, :new) %>">Sign in</a>
+            </li>
+            <% end %>
+          </ul>
+        </div>
       </nav>
 
       <div class="container-fluid">

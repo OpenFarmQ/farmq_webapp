@@ -6,6 +6,7 @@ defmodule FarmQWeb.Router do
     plug :fetch_session
     plug :fetch_flash
     plug :put_secure_browser_headers
+    plug FarmQWeb.Plugs.LoadUser
   end
 
   pipeline :api do
@@ -18,8 +19,11 @@ defmodule FarmQWeb.Router do
 
   pipeline :contributor do
     plug :set_contributor_layout
-    plug FarmQWeb.Plugs.LoadUser
     plug FarmQWeb.Plugs.Locale
+  end
+
+  pipeline :login_register do
+    plug :set_login_register_layout
   end
 
   pipeline :browse do
@@ -35,13 +39,6 @@ defmodule FarmQWeb.Router do
     get "/docs", DocumentController, :index
     get "/contact", PageController, :contact
 
-    get "/register", RegistrationController, :new
-    post "/register", RegistrationController, :create
-
-    get "/login", SessionController, :new
-    post "/login", SessionController, :create
-    get "/logout", SessionController, :delete
-
     get "/crop_cycles/:id/download-prep-data", CsvController, :download_prep_data
     get "/crop_cycles/:id/download-sowing-data", CsvController, :download_sowing_data
     get "/crop_cycles/:id/download-harvest_data", CsvController, :download_harvest_data
@@ -54,6 +51,16 @@ defmodule FarmQWeb.Router do
     scope "/browse" do
       pipe_through :browse
       get "/", DataController, :index
+    end
+
+    scope "/" do
+      pipe_through :login_register
+      get "/register", RegistrationController, :new
+      post "/register", RegistrationController, :create
+
+      get "/login", SessionController, :new
+      post "/login", SessionController, :create
+      get "/logout", SessionController, :delete
     end
 
 
@@ -91,6 +98,11 @@ defmodule FarmQWeb.Router do
   defp set_browse_layout(conn, _params) do
     conn
     |> put_layout({FarmQWeb.LayoutView, :browse_app})
+  end
+
+  defp set_login_register_layout(conn, _params) do
+    conn
+    |> put_layout({FarmQWeb.LayoutView, :login_register})
   end
 
   # Other scopes may use custom stacks.
