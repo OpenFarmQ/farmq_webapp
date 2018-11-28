@@ -5,17 +5,22 @@ defmodule FarmQWeb.BedController do
   alias FarmQ.Core.Location
 
   def index(conn, _params) do
-    locations = Core.list_locations("Bed")
+    user = conn.assigns.current_user
+    locations = Core.list_locations_by_user("Bed", user)
     render(conn, "index.html", locations: locations)
   end
 
   def new(conn, _params) do
     changeset = Core.change_location(%Location{})
-    farms = Core.list_locations("Farm")
+    user = conn.assigns.current_user
+    farms = Core.list_locations_by_user("Farm", user)
     render(conn, "new.html", changeset: changeset, farms: farms)
   end
 
   def create(conn, %{"location" => location_params}) do
+    user = conn.assigns.current_user
+    location_params = Map.put(location_params, "user_id", user.id)
+
     case Core.create_location(location_params) do
       {:ok, location} ->
         conn

@@ -5,17 +5,21 @@ defmodule FarmQWeb.CropCycleController do
   alias FarmQ.Core.CropCycle
 
   def index(conn, _params) do
-    crop_cycles = Core.list_crop_cycles()
+    user = conn.assigns.current_user
+    crop_cycles = Core.list_crop_cycles_by_user(user)
     render(conn, "index.html", crop_cycles: crop_cycles)
   end
 
   def new(conn, _params) do
+    user = conn.assigns.current_user
     changeset = Core.change_crop_cycle(%CropCycle{})
-    beds = Core.list_locations("Bed")
+    beds = Core.list_locations_by_user("Bed", user)
     render(conn, "new.html", beds: beds, changeset: changeset)
   end
 
   def create(conn, %{"crop_cycle" => crop_cycle_params}) do
+    user = conn.assigns.current_user
+    crop_cycle_params = Map.put(crop_cycle_params, "user_id", user.id)
     case Core.create_crop_cycle(crop_cycle_params) do
       {:ok, crop_cycle} ->
         conn
@@ -23,7 +27,7 @@ defmodule FarmQWeb.CropCycleController do
         |> redirect(to: Routes.crop_cycle_path(conn, :show, crop_cycle))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        beds = Core.list_locations("Bed")
+        beds = Core.list_locations_by_user("Bed", user)
         render(conn, "new.html", beds: beds, changeset: changeset)
     end
   end
@@ -47,9 +51,10 @@ defmodule FarmQWeb.CropCycleController do
   end
 
   def edit(conn, %{"id" => id}) do
+    user = conn.assigns.current_user
     crop_cycle = Core.get_crop_cycle!(id)
     changeset = Core.change_crop_cycle(crop_cycle)
-    beds = Core.list_locations("Bed")
+    beds = Core.list_locations_by_user("Bed", user)
     render(conn, "edit.html", beds: beds, crop_cycle: crop_cycle, changeset: changeset)
   end
 
@@ -63,7 +68,8 @@ defmodule FarmQWeb.CropCycleController do
         |> redirect(to: Routes.crop_cycle_path(conn, :show, crop_cycle))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        beds = Core.list_locations("Bed")
+        user = conn.assigns.current_user
+        beds = Core.list_locations_by_user("Bed", user)
         render(conn, "edit.html", beds: beds, crop_cycle: crop_cycle, changeset: changeset)
     end
   end

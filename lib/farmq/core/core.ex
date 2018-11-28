@@ -5,6 +5,9 @@ defmodule FarmQ.Core do
 
   import Ecto.Query, warn: false
   alias FarmQ.Repo
+  alias FarmQ.Core.User
+  alias FarmQ.Core
+
 
   alias FarmQ.Core.Parameter
 
@@ -214,6 +217,12 @@ defmodule FarmQ.Core do
     |> Repo.all
   end
 
+  def list_field_bots_by_user(%User{} = user) do
+    FieldBot
+    |> where(user_id: ^user.id)
+    |> Repo.all
+  end
+
 
 
   @doc """
@@ -315,6 +324,13 @@ defmodule FarmQ.Core do
   def list_locations(type) do
     Location
     |> where([l], l.type == ^type)
+    |> Repo.all
+  end
+
+  def list_locations_by_user(type, %User{} = user) do
+    Location
+    |> where([l], l.type == ^type)
+    |> where(user_id: ^user.id)
     |> Repo.all
   end
 
@@ -508,6 +524,13 @@ defmodule FarmQ.Core do
   """
   def list_crop_cycles do
     CropCycle
+    |> Repo.all()
+    |> Repo.preload([:bed, :field_preparation_data, :harvest_data, sowing_data: [:plant]])
+  end
+
+  def list_crop_cycles_by_user(%User{} = user) do
+    CropCycle
+    |> where(user_id: ^user.id)
     |> Repo.all()
     |> Repo.preload([:bed, :field_preparation_data, :harvest_data, sowing_data: [:plant]])
   end
@@ -1001,7 +1024,6 @@ defmodule FarmQ.Core do
     FieldClearationData.changeset(field_clearation_data, %{})
   end
 
-  alias FarmQ.Core.User
   import Comeonin.Bcrypt
 
   def build_user(attrs \\ %{}) do
@@ -1031,4 +1053,100 @@ defmodule FarmQ.Core do
 
   def get_user(id), do: Repo.get(User, id)
 
+
+  alias FarmQ.Core.SensorData
+
+  @doc """
+  Returns the list of sensor_data.
+
+  ## Examples
+
+      iex> list_sensor_data()
+      [%SensorData{}, ...]
+
+  """
+  def list_sensor_data do
+    Repo.all(SensorData)
+  end
+
+  @doc """
+  Gets a single sensor_data.
+
+  Raises `Ecto.NoResultsError` if the Sensor data does not exist.
+
+  ## Examples
+
+      iex> get_sensor_data!(123)
+      %SensorData{}
+
+      iex> get_sensor_data!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_sensor_data!(id), do: Repo.get!(SensorData, id)
+
+  @doc """
+  Creates a sensor_data.
+
+  ## Examples
+
+      iex> create_sensor_data(%{field: value})
+      {:ok, %SensorData{}}
+
+      iex> create_sensor_data(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_sensor_data(attrs \\ %{}) do
+    %SensorData{}
+    |> SensorData.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a sensor_data.
+
+  ## Examples
+
+      iex> update_sensor_data(sensor_data, %{field: new_value})
+      {:ok, %SensorData{}}
+
+      iex> update_sensor_data(sensor_data, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_sensor_data(%SensorData{} = sensor_data, attrs) do
+    sensor_data
+    |> SensorData.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a SensorData.
+
+  ## Examples
+
+      iex> delete_sensor_data(sensor_data)
+      {:ok, %SensorData{}}
+
+      iex> delete_sensor_data(sensor_data)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_sensor_data(%SensorData{} = sensor_data) do
+    Repo.delete(sensor_data)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking sensor_data changes.
+
+  ## Examples
+
+      iex> change_sensor_data(sensor_data)
+      %Ecto.Changeset{source: %SensorData{}}
+
+  """
+  def change_sensor_data(%SensorData{} = sensor_data) do
+    SensorData.changeset(sensor_data, %{})
+  end
 end

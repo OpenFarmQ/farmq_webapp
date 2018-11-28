@@ -11,6 +11,7 @@ defmodule FarmQ.Core.Parameter do
     field :name, :string
     field :unit, :string
     many_to_many :sensors, Sensor, join_through: "sensors_parameters"
+    has_many :sensor_data, FarmQ.Core.SensorData
 
     timestamps()
   end

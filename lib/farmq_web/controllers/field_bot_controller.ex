@@ -5,17 +5,21 @@ defmodule FarmQWeb.FieldBotController do
   alias FarmQ.Core.FieldBot
 
   def index(conn, _params) do
-    field_bots = Core.list_field_bots()
+    user = conn.assigns.current_user
+    field_bots = Core.list_field_bots_by_user(user)
     render(conn, "index.html", field_bots: field_bots)
   end
 
   def new(conn, _params) do
-    beds = Core.list_locations("Bed")
+    user = conn.assigns.current_user
+    beds = Core.list_locations_by_user("Bed", user)
     changeset = Core.change_field_bot(%FieldBot{})
     render(conn, "new.html", changeset: changeset, beds: beds)
   end
 
   def create(conn, %{"field_bot" => field_bot_params}) do
+    user = conn.assigns.current_user
+    field_bot_params = Map.put(field_bot_params, "user_id", user.id)
     case Core.create_field_bot(field_bot_params) do
       {:ok, field_bot} ->
         conn

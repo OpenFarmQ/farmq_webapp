@@ -5,7 +5,8 @@ defmodule FarmQWeb.FarmController do
   alias FarmQ.Core.Location
 
   def index(conn, _params) do
-    locations = Core.list_locations("Farm")
+    user = conn.assigns.current_user
+    locations = Core.list_locations_by_user("Farm", user)
     render(conn, "index.html", locations: locations)
   end
 
@@ -15,6 +16,8 @@ defmodule FarmQWeb.FarmController do
   end
 
   def create(conn, %{"location" => location_params}) do
+    user = conn.assigns.current_user
+    location_params = Map.put(location_params, "user_id", user.id)
     case Core.create_location(location_params) do
       {:ok, location} ->
         conn

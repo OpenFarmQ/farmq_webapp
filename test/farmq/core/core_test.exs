@@ -716,4 +716,67 @@ defmodule FarmQ.CoreTest do
       user_from_db = Core.get_user_by_credentials(valid_attrs)
       assert user1.id == user_from_db.id
     end
+
+  describe "sensor_data" do
+    alias FarmQ.Core.SensorData
+
+    @valid_attrs %{collected_time: "2010-04-17T14:00:00Z", value: "120.5"}
+    @update_attrs %{collected_time: "2011-05-18T15:01:01Z", value: "456.7"}
+    @invalid_attrs %{collected_time: nil, value: nil}
+
+    def sensor_data_fixture(attrs \\ %{}) do
+      {:ok, sensor_data} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Core.create_sensor_data()
+
+      sensor_data
+    end
+
+    test "list_sensor_data/0 returns all sensor_data" do
+      sensor_data = sensor_data_fixture()
+      assert Core.list_sensor_data() == [sensor_data]
+    end
+
+    test "get_sensor_data!/1 returns the sensor_data with given id" do
+      sensor_data = sensor_data_fixture()
+      assert Core.get_sensor_data!(sensor_data.id) == sensor_data
+    end
+
+    test "create_sensor_data/1 with valid data creates a sensor_data" do
+      assert {:ok, %SensorData{} = sensor_data} = Core.create_sensor_data(@valid_attrs)
+      assert sensor_data.collected_time == DateTime.from_naive!(~N[2010-04-17T14:00:00Z], "Etc/UTC")
+      assert sensor_data.value == Decimal.new("120.5")
+    end
+
+    test "create_sensor_data/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Core.create_sensor_data(@invalid_attrs)
+    end
+
+    test "update_sensor_data/2 with valid data updates the sensor_data" do
+      sensor_data = sensor_data_fixture()
+      assert {:ok, %SensorData{} = sensor_data} = Core.update_sensor_data(sensor_data, @update_attrs)
+
+      
+      assert sensor_data.collected_time == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
+      assert sensor_data.value == Decimal.new("456.7")
+    end
+
+    test "update_sensor_data/2 with invalid data returns error changeset" do
+      sensor_data = sensor_data_fixture()
+      assert {:error, %Ecto.Changeset{}} = Core.update_sensor_data(sensor_data, @invalid_attrs)
+      assert sensor_data == Core.get_sensor_data!(sensor_data.id)
+    end
+
+    test "delete_sensor_data/1 deletes the sensor_data" do
+      sensor_data = sensor_data_fixture()
+      assert {:ok, %SensorData{}} = Core.delete_sensor_data(sensor_data)
+      assert_raise Ecto.NoResultsError, fn -> Core.get_sensor_data!(sensor_data.id) end
+    end
+
+    test "change_sensor_data/1 returns a sensor_data changeset" do
+      sensor_data = sensor_data_fixture()
+      assert %Ecto.Changeset{} = Core.change_sensor_data(sensor_data)
+    end
+  end
 end
