@@ -1,15 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-green">
   <div class="container">
-    <a class="navbar-brand" href="<%= Routes.page_path(@conn, :index) %>">Open FarmQ</a>
+    <a class="navbar-brand none" href="<%= Routes.page_path(@conn, :index) %>">Open FarmQ</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar">
       <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link" href="<%= Routes.page_path(@conn, :get_started) %>">Get Started</a>
-        <a class="nav-item nav-link" href="<%= Routes.data_path(@conn, :index) %>">Browse Data</a>
-        <a class="nav-item nav-link" href="<%= Routes.document_path(@conn, :index) %>">Documentation</a>
-        <a class="nav-item nav-link" href="<%= Routes.page_path(@conn, :dashboard_for_dc) %>">Dasboard</a>
+        <a class="nav-item nav-link" href="<%= Routes.data_path(@conn, :index) %>" target="_blank">Browse Data</a>
+        <a class="nav-item nav-link" href="<%= Routes.page_path(@conn, :contributor) %>" target="_blank">Contribute Data</a>
 
     </div>
     <div class="navbar-nav">

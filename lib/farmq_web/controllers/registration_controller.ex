@@ -11,8 +11,8 @@ defmodule FarmQWeb.RegistrationController do
     case Core.create_user(registration_params) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "You are now officialy part of FarmQ community")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> put_flash(:info, "You are now officialy part of FarmQ community, sign in to continue")
+        |> redirect(to: Routes.page_path(conn, :contributor))
       {:error, changeset} ->
         conn
         |> render(:new, changeset: changeset)

@@ -737,6 +737,8 @@ defmodule FarmQ.Core do
     SowingData
     |> where(crop_cycle_id: ^crop_cycle.id)
     |> Repo.all
+    |> Repo.preload(:plant)
+
   end
 
   @doc """
@@ -1068,6 +1070,33 @@ defmodule FarmQ.Core do
   def list_sensor_data do
     Repo.all(SensorData)
   end
+
+  @doc """
+  Returns list of sensor data according to crop_cycle
+  preparation_date >= sensor date
+  clearation_date <= sensor date
+  """
+
+  def list_sensor_data_by_crop_cycle(%CropCycle{} = crop_cycle) do
+    preloaded_crop_cycle = crop_cycle |> Repo.preload([:field_preparation_data, :field_clearation_data])
+    from = Timex.to_datetime(preloaded_crop_cycle.field_preparation_data.preparation_date)
+    to = Timex.to_datetime(preloaded_crop_cycle.field_clearation_data.clearation_date)
+
+    SensorData
+    |> where([s], s.collected_time >= ^from)
+    |> where([s], s.collected_time <= ^to)
+    |> Repo.all
+    |> Repo.preload([:parameter, :bed])
+  end
+
+  def list_sensor_data_by_field_bot(%FieldBot{} = field_bot) do
+    SensorData
+    |> where([s], s.field_bot_id == ^field_bot.id) |> limit(10)
+    |> Repo.all
+    |> Repo.preload([:parameter, :bed])
+  end
+
+
 
   @doc """
   Gets a single sensor_data.

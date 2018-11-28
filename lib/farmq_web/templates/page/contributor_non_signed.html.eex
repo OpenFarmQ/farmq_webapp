@@ -1,0 +1,33 @@
+<div class="container">
+
+  <div class="card-deck mt-4">
+    <div class="card">
+      <div class="card-header bg-green text-white">Get Insights</div>
+      <div class="card-body">
+        <p class="card-text">You will get exclusive insights and suugestions for actions to do on the farm. The ML data-models required to give you insights are made by a large community of Open FarmQ. You are one-step closer to upscale your career, Sign in.</p>
+      </div>
+      <a class="btn btn-sm bg-green text-white float-right" href="<%= Routes.session_path(@conn, :new) %>" role="button">
+        <i class="material-icons">arrow_forward</i>
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="card-header bg-green text-white">Mange Your Farms and Beds</div>
+      <div class="card-body">
+        <p class="card-text">In order to get exclusive insights, you need to create your farms and beds and add in their details. You should also add details of your crop-cycles. You are one-step closer to upscale your career, Sign in.</p>
+      </div>
+      <a class="btn btn-sm bg-green text-white float-right" href="<%= Routes.session_path(@conn, :new) %>" role="button">
+        <i class="material-icons">arrow_forward</i>
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="card-header bg-green text-white">Deploy field-bots</div>
+      <div class="card-body">
+        <p class="card-text">You need to configure and deploy field-bots in order to give you data-based suggestions and insights.You are one-step closer to upscale your career, Sign in.</p>
+      </div>
+      <a class="btn btn-sm bg-green text-white float-right" href="<%= Routes.session_path(@conn, :new) %>" role="button">
+        <i class="material-icons">arrow_forward</i>
+      </a>
+    </div>
+  </div>

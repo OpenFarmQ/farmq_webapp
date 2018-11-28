@@ -19,6 +19,12 @@ defmodule FarmQWeb.Router do
   pipeline :contributor do
     plug :set_contributor_layout
     plug FarmQWeb.Plugs.LoadUser
+    plug FarmQWeb.Plugs.Locale
+  end
+
+  pipeline :browse do
+    plug :set_browse_layout
+    plug FarmQWeb.Plugs.LoadUser
   end
 
   scope "/", FarmQWeb do
@@ -28,7 +34,6 @@ defmodule FarmQWeb.Router do
     get "/get-started", PageController, :get_started
     get "/docs", DocumentController, :index
     get "/contact", PageController, :contact
-    get "/dashboard-for-dc", PageController, :dashboard_for_dc
 
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
@@ -37,11 +42,24 @@ defmodule FarmQWeb.Router do
     post "/login", SessionController, :create
     get "/logout", SessionController, :delete
 
-    get "/csv", CsvController, :export
-    get "/browse", DataController, :index
+    get "/crop_cycles/:id/download-prep-data", CsvController, :download_prep_data
+    get "/crop_cycles/:id/download-sowing-data", CsvController, :download_sowing_data
+    get "/crop_cycles/:id/download-harvest_data", CsvController, :download_harvest_data
+    get "/crop_cycles/:id/download-clearation-data", CsvController, :download_clearation_data
+    get "/crop_cycles/:id/download-sensor-data", CsvController, :download_sensor_data
+
+
+
+
+    scope "/browse" do
+      pipe_through :browse
+      get "/", DataController, :index
+    end
 
 
     post "/receive", DataReceiverController, :create
+
+    get "/contributor", PageController, :contributor
 
     scope "/contributor" do
       pipe_through :contributor
@@ -68,6 +86,11 @@ defmodule FarmQWeb.Router do
   defp set_contributor_layout(conn, _params) do
     conn
     |> put_layout({FarmQWeb.LayoutView, :contributor_app})
+  end
+
+  defp set_browse_layout(conn, _params) do
+    conn
+    |> put_layout({FarmQWeb.LayoutView, :browse_app})
   end
 
   # Other scopes may use custom stacks.
